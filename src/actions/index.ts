@@ -61,32 +61,22 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
           ),
         ];
 
-        await Promise.allSettled(promises)
-          .then(() => {
-            return {
-              ok: true,
-              statusCode: 200,
-              body: JSON.stringify({ message: "success" }),
-              headers: {
-                "Access-Control-Allow-Origin": "*",
-              },
-            };
-          })
-          .catch((err) => {
-            return {
-              statusCode: 404,
-              body: err.toString(),
-            };
-          });
-
-        return {
-          ok: true,
-          statusCode: 200,
-          body: JSON.stringify({ message: "success" }),
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        };
+        try {
+          await Promise.allSettled(promises);
+          return {
+            ok: true,
+            statusCode: 200,
+            body: JSON.stringify({ message: "success" }),
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          };
+        } catch (e: any) {
+          return {
+            statusCode: 404,
+            body: {message: e.toString(), val1: import.meta.env, val2: process.env},
+          };
+        }
       } catch (e) {
         console.log("ERROR:", e);
         return {
