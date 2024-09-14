@@ -1,0 +1,32 @@
+---
+import SectionIntro from './SectionIntro.astro';
+import type { SectionTitleProps } from './SectionTitle.astro';
+
+interface Props {
+  title?: astroHTML.JSX.Element | string;
+  className?: string;
+  id?: string;
+  titleTag?: SectionTitleProps['Tag'];
+}
+
+const { className, id } = Astro.props;
+---
+
+<section class:list={['section', className]} id={id}>
+  <SectionIntro>
+    <slot name="section-title" />
+    <slot name="section-subtitle" />
+  </SectionIntro>
+  <slot />
+</section>
+
+<style lang="scss">
+  .section {
+    padding-top: 240px;
+    padding-bottom: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

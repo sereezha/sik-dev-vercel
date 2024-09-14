@@ -1,0 +1,45 @@
+<div id="toast-container"></div>
+
+<style lang="scss" is:global>
+  .toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateY(calc(-100% - 24px)) translateX(-50%);
+    display: grid;
+    gap: 16px;
+    padding: 8px 24px 12px;
+    border-radius: 8px;
+    color: var(--evening-blue, #596b86);
+    color: var(--natural-white, #fafafa);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.42;
+    letter-spacing: 0.56px;
+    transition: transform 0.3s;
+    max-width: 300px;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .toast--info {
+    color: var(--evening-blue, #596b86);
+  }
+
+  .toast--error {
+    background: var(--bloody-red, #be3834);
+  }
+
+  .toast.is-visible {
+    transform: translateY(0) translateX(-50%);
+  }
+
+  .toast-telegram {
+    text-decoration: none;
+    padding: 4px 8px 8px;
+    color: var(--bloody-red);
+    background-color: var(--natural-white);
+    border-radius: 60px;
+  }
+</style>

@@ -1,0 +1,163 @@
+@font-face {
+  font-family: BudujSans;
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src:
+    local('BudujSans'),
+    url(/fonts/BudujSans-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: BudujSans;
+  font-style: normal;
+  font-weight: 500;
+  font-display: fallback;
+  src:
+    local('BudujSans'),
+    url(/fonts/BudujSans-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: BudujSans;
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+  src:
+    local('BudujSans'),
+    url(/fonts/BudujSans-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: BudujSansHeight;
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+  src:
+    local('BudujSans'),
+    url(/fonts/BudujSans-BoldHeight.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: BudujSansHeight;
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src:
+    local('BudujSans'),
+    url(/fonts/BudujSans-BlackHeight.woff2) format('woff2');
+}
+
+:root {
+  --night-dark: #292428;
+  --evening-blue: #596b86;
+  --bloody-red: #be3834;
+  --tissue-biege: #e6ded1;
+  --natural-white: #fafafa;
+  --noble-pink: #310421;
+  --water-blue: #4756dc;
+  --calm-green: #258458;
+  --soil-brown: #947f6f;
+  --ripe-orange: #df831e;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: #252124;
+  font-family: BudujSans, serif;
+  font-feature-settings:
+    'dlig' on,
+    'ss04' on;
+}
+
+canvas,
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+}
+
+#__next,
+#root {
+  isolation: isolate;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol[role='list'],
+ul[role='list'] {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+.wh-nowrap {
+  white-space: nowrap;
+}
+
+section {
+  padding: 0 16px;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

@@ -1,0 +1,24 @@
+---
+
+---
+
+<div class="container">
+  <slot />
+</div>
+
+<style lang="scss">
+  .container {
+    --padding-inline: 16px;
+    --width: 1360px;
+    max-width: calc(var(--width) + var(--padding-inline) * 2);
+    padding: 0 var(--padding-inline);
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .container {
+      --padding-inline: 40px;
+      --width: 100%;
+    }
+  }
+</style>

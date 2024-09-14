@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import SectionIntro from './SectionIntro.astro';
+import SectionTitle from './SectionTitle.astro';
+import telegramFrameImg from '@assets/img/telegram-frame.png';
+---
+
+<section class="section-subscribe" id="contact">
+  <div class="content">
+    <SectionIntro>
+      <SectionTitle Tag="h2">
+        підписуйтесь в телеграмі або інсті, щоб слідкувати за анонсами
+      </SectionTitle>
+    </SectionIntro>
+    <a href="https://t.me/sikwine">
+      <Image src={telegramFrameImg} alt="" />
+      <span class="visually-hidden">посилання на телеграм</span>
+    </a>
+  </div>
+</section>
+
+<style lang="scss">
+  .section-subscribe {
+    padding: 0;
+  }
+
+  .content {
+    display: grid;
+    justify-items: center;
+    gap: 64px;
+  }
+
+  .content img {
+    max-width: 504px;
+    width: 100%;
+  }
+</style>

@@ -1,0 +1,101 @@
+<header class="header">
+  <a class="header__logo" href="/" aria-label="sik logo"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      fill="none"
+      viewBox="0 0 32 32"
+    >
+      <g fill="#FAFAFA">
+        <path
+          d="m29.07 31.76-3.89-9.8-1.44 3.18v6.62h-2.93V0h2.93v19.03l5.18-11.7h2.93L26.6 18.88 32 31.76h-2.93ZM16.55 7.33l-2-7.33h4.03l-2.03 7.33Zm-1.59 24.43V7.33h3.18v24.43h-3.18ZM.12 22.1h2.93c0 5.13.66 6.97 3.37 6.97 2.5 0 3.37-1.84 3.37-3.47 0-3-.88-3.81-2.78-4.5l-1.83-.66C1.7 19.2 0 17.17 0 13.04c0-3.3 1.78-6.23 5.76-6.23 4.25 0 6.35 4.2 6.35 9.65H9.18c0-5.03-1.02-6.72-3.42-6.72-1.9 0-2.83 1.69-2.83 3.3 0 3.13.9 4.06 2.25 4.5l1.78.58c3.8 1.25 5.81 2.93 5.81 7.48 0 4.27-2.76 6.4-6.35 6.4-4.64 0-6.3-3.96-6.3-9.9Z"
+        ></path>
+      </g>
+    </svg></a
+  >
+  <div class="header__right">
+    <ul class="header__list" role="list">
+      <li class="header__list-item">
+        <a class="header__list-link" href="#about">про сік</a>
+      </li>
+      <li class="header__list-item">
+        <a class="header__list-link" href="#contact">контакти</a>
+      </li>
+    </ul><a href="#form" class="subscribe-link"
+      >підписка <span class="subscribe-link__wine">на вино</span></a
+    >
+  </div>
+</header>
+
+<style lang="scss">
+  .header {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .header__logo {
+    flex-shrink: 0;
+  }
+
+  .header__right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .header__list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header__list-link {
+    color: #fff;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.41;
+    text-decoration: none;
+  }
+
+  .subscribe-link {
+    padding: 4px 16px 8px;
+    color: var(--night-dark, #292428);
+    font-feature-settings: 'ss04' on;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.41;
+    text-decoration: none;
+    border-radius: 60px;
+    background: var(--natural-white);
+    box-shadow: 0 2px 8px 0 rgba(32, 38, 89, 0.16);
+  }
+
+  .subscribe-link__wine {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .header__list {
+      gap: 24px;
+    }
+
+    .header__right {
+      gap: 40px;
+    }
+
+    .subscribe-link__wine {
+      display: inline;
+    }
+  }
+</style>
+

@@ -1,0 +1,87 @@
+---
+import GeneralLayout from '../layouts/GeneralLayout.astro';
+import Card from '@components/faq/FaqCard.astro';
+import Section from '@components/section/Section.astro';
+import videoMp4 from '@assets/video/logo.mp4';
+import videoWebm from '@assets/video/logo.webm';
+import SectionTitle from '@components/section/SectionTitle.astro';
+import SectionFaq from '@components/faq/SectionFaq.astro';
+import SectionSubscribe from '@components/section/SectionSubscribe.astro';
+import SectionAbout from '@components/section/SectionAbout.astro';
+import SectionForm from '@components/section/SectionForm.astro';
+---
+
+<GeneralLayout title="sik">
+  <div class="first-screen">
+    <div class="hero-section">
+      <video
+        width="1080"
+        height="608"
+        playsinline
+        muted
+        loop
+        poster="./assets/video-thumbnail.png"
+      >
+        <source src={videoMp4} type="video/mp4; codecs=hvc1" />
+        <source src={videoWebm} type="video/webm" />
+      </video>
+    </div>
+  </div>
+  <Section>
+    <SectionTitle slot="section-title">
+      ми запускаємо четвертий сезон підписки на вино
+    </SectionTitle>
+  </Section>
+  <Section>
+    <SectionTitle slot="section-title">
+      кожен місяць до вас приїжджатиме одна або дві пляшки-сюрприз з історіями,
+      які варта уваги
+    </SectionTitle>
+  </Section>
+  <Section>
+    <SectionTitle
+      slot="section-title"
+      set:html={`послухати історії можна за приватним посиланням, <span class="wh-nowrap"
+      >де ви</span
+    > знайдете особливу
+    <span class="wh-nowrap">відео-розповідь</span>`}
+    />
+  </Section>
+  <SectionForm />
+  <SectionFaq />
+  <SectionAbout />
+  <SectionSubscribe />
+</GeneralLayout>
+
+<style lang="scss">
+  video {
+    max-width: 1020px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .hero-section {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .first-screen {
+    height: 100vh;
+    padding-bottom: 50px;
+  }
+</style>
+
+<script>
+  window.addEventListener('load', () => {
+    const video = document.querySelector('video');
+    if (video) {
+      setTimeout(() => {
+        video.play();
+      }, 50);
+    }
+  });
+</script>
