@@ -61,6 +61,7 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
           ),
         ];
 
+
         try {
           await Promise.allSettled(promises);
           return {
