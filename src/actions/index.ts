@@ -1,4 +1,4 @@
-import { defineAction } from "astro:actions";
+import { defineAction, ActionError } from "astro:actions";
 import { z } from "astro:schema";
 
 export const server = {
@@ -24,7 +24,10 @@ export const server = {
           !months ||
           phone.match(PHONE_REGEX) === null
         ) {
-          throw new Error("error");
+          throw new ActionError({
+            code: "BAD_REQUEST",
+            message: "Bad Request",
+          });
         }
 
         const formData = new FormData();
@@ -61,17 +64,23 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
           ),
         ];
 
-
         try {
-          await Promise.allSettled(promises);
+          const result = await Promise.allSettled(promises);
+          const isSomePromiseSuccess = result.some(
+            (res) => res.status === "fulfilled" && res.value.ok,
+          );
+
+          if (!isSomePromiseSuccess) {
+            throw new ActionError({
+              code: "BAD_REQUEST",
+              message: "Bad Request",
+            });
+          }
+
           return {
             ok: true,
             statusCode: 200,
-            body: JSON.stringify({
-              message: "success",
-              val1: import.meta.env,
-              val2: process.env,
-            }),
+            body: JSON.stringify({ message: "success" }),
             headers: {
               "Access-Control-Allow-Origin": "*",
             },
@@ -79,11 +88,7 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
         } catch (e: any) {
           return {
             statusCode: 404,
-            body: {
-              message: e.toString(),
-              val1: import.meta.env,
-              val2: process.env,
-            },
+            body: e.toString(),
           };
         }
       } catch (e) {
