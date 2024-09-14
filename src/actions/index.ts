@@ -13,8 +13,8 @@ export const server = {
       const PHONE_REGEX = /^\+?3?8?(0\d{9})$/;
       try {
         const tg = {
-          token: process.env.BOT_TOKEN,
-          chat_id: process.env.CHAT_ID,
+          token: import.meta.env.BOT_TOKEN,
+          chat_id: import.meta.env.CHAT_ID,
         };
 
         if (
@@ -45,7 +45,7 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
         };
 
         const promises = [
-          fetch(process.env.GOOGLE_SHEET as string, {
+          fetch(import.meta.env.GOOGLE_SHEET as string, {
             method: "POST",
             body: formData,
           }),
