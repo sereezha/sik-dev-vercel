@@ -66,7 +66,11 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
           return {
             ok: true,
             statusCode: 200,
-            body: JSON.stringify({ message: "success" }),
+            body: {
+              message: JSON.stringify({ message: "success" }),
+              val1: import.meta.env,
+              val2: process.env,
+            },
             headers: {
               "Access-Control-Allow-Origin": "*",
             },
@@ -74,7 +78,11 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
         } catch (e: any) {
           return {
             statusCode: 404,
-            body: {message: e.toString(), val1: import.meta.env, val2: process.env},
+            body: {
+              message: e.toString(),
+              val1: import.meta.env,
+              val2: process.env,
+            },
           };
         }
       } catch (e) {
