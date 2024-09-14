@@ -66,11 +66,11 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
           return {
             ok: true,
             statusCode: 200,
-            body: {
-              message: JSON.stringify({ message: "success" }),
+            body: JSON.stringify({
+              message: "success",
               val1: import.meta.env,
               val2: process.env,
-            },
+            }),
             headers: {
               "Access-Control-Allow-Origin": "*",
             },
