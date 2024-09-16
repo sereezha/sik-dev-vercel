@@ -103,12 +103,13 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
             body: e.toString(),
           };
         }
-      } catch (e) {
+      } catch (e: any) {
         console.log("ERROR:", e);
         return {
           ok: false,
           statusCode: 500,
           body: JSON.stringify({
+            e: JSON.stringify(e),
             success: false,
             error: "Internal Server Error",
           }),
