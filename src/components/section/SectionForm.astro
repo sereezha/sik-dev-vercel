@@ -732,19 +732,19 @@ import SectionTitle from './SectionTitle.astro';
         webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
       }),
     });
-    // const { invoiceId, url } = await generateMono({ price: sum });
+    const { invoiceId, url } = await generateMono({ price: sum });
 
-    // setTimeout(() => {
-    //   window.open(url, '_blank');
-    // }, 0);
-    // sendMessage({
-    //   phone,
-    //   telegram,
-    //   bottles: bottles.toString(),
-    //   months: months.toString(),
-    //   invoiceId,
-    //   url,
-    // });
+    setTimeout(() => {
+      window.open(url, '_blank');
+    }, 0);
+    sendMessage({
+      phone,
+      telegram,
+      bottles: bottles.toString(),
+      months: months.toString(),
+      invoiceId,
+      url,
+    });
   });
 
   const formObserver = new IntersectionObserver(
