@@ -743,21 +743,30 @@ import SectionTitle from './SectionTitle.astro';
     //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     //   }),
     // });
-    const { invoiceId, url } = await generateMono({
-      price: sum,
-      bottles: bottles.toString(),
-    });
-    setTimeout(() => {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    });
-    sendMessage({
-      phone,
-      telegram,
-      bottles: bottles.toString(),
-      months: months.toString(),
-      invoiceId,
-      url,
-    });
+    await fetch(
+      'https://api.monobank.ua/personal/checkout/order/33df258b-a996-4feb-8917-704de5ae46d6',
+      {
+        method: 'GET',
+        headers: {
+          'X-Token': 'mE_rOIhSVb0SB9HdQa6ELRQ',
+        },
+      }
+    );
+    // const { invoiceId, url } = await generateMono({
+    //   price: sum,
+    //   bottles: bottles.toString(),
+    // });
+    // setTimeout(() => {
+    //   window.open(url, '_blank', 'noopener,noreferrer');
+    // });
+    // sendMessage({
+    //   phone,
+    //   telegram,
+    //   bottles: bottles.toString(),
+    //   months: months.toString(),
+    //   invoiceId,
+    //   url,
+    // });
   });
 
   const formObserver = new IntersectionObserver(
