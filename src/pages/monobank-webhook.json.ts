@@ -4,61 +4,61 @@ export const GET: APIRoute = async ({ request }) => {
   return new Response(null, { status: 200 });
 };
 
-// export const POST: APIRoute = async ({ request }) => {
-//   try {
-//     const payload = await request.json();
+export const POST: APIRoute = async ({ request }) => {
+  try {
+    const payload = await request.json();
 
-//     const obj2 = {
-//       chat_id: "187508671",
-//       text: `
-//       ${JSON.stringify(payload)}
-//     `,
-//     };
+    const obj2 = {
+      chat_id: "187508671",
+      text: `
+      ${JSON.stringify(payload)}
+    `,
+    };
 
-//     fetch(
-//       `https://api.telegram.org/bot7067783177:AAHKbBPbtje4X3FvmSEIoMzZS4yiz4ZHpVc/sendMessage?parse_mode=html`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json; charset=UTF-8",
-//         },
-//         body: JSON.stringify(obj2),
-//       },
-//     );
+    fetch(
+      `https://api.telegram.org/bot7067783177:AAHKbBPbtje4X3FvmSEIoMzZS4yiz4ZHpVc/sendMessage?parse_mode=html`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(obj2),
+      },
+    );
 
-//     // Validate the payload
-//     if (!payload.invoiceId || !payload.status) {
-//       return new Response(JSON.stringify({ error: "Invalid payload" }), {
-//         status: 400,
-//       });
-//     }
+    // Validate the payload
+    if (!payload.invoiceId || !payload.status) {
+      return new Response(JSON.stringify({ error: "Invalid payload" }), {
+        status: 400,
+      });
+    }
 
-//     const obj = {
-//       chat_id: "187508671",
-//       text: `
-//       ${payload.status}
-//     `,
-//     };
+    const obj = {
+      chat_id: "187508671",
+      text: `
+      ${payload.status}
+    `,
+    };
 
-//     fetch(
-//       `https://api.telegram.org/bot${import.meta.env.BOT_TOKEN}/sendMessage?parse_mode=html`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json; charset=UTF-8",
-//         },
-//         body: JSON.stringify(obj),
-//       },
-//     );
+    fetch(
+      `https://api.telegram.org/bot${import.meta.env.BOT_TOKEN}/sendMessage?parse_mode=html`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(obj),
+      },
+    );
 
-//     return new Response(JSON.stringify({ success: true }), { status: 200 });
-//   } catch (error) {
-//     console.error("Error processing webhook:", error);
-//     return new Response(JSON.stringify({ error: "Internal server error" }), {
-//       status: 500,
-//     });
-//   }
-// };
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (error) {
+    console.error("Error processing webhook:", error);
+    return new Response(JSON.stringify({ error: "Internal server error" }), {
+      status: 500,
+    });
+  }
+};
 
 // //   try {
 // //     const payload = await request.json();
