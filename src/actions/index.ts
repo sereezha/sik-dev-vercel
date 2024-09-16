@@ -1,6 +1,8 @@
 import { defineAction, ActionError } from "astro:actions";
 import { z } from "astro:schema";
 
+export const prerender = false;
+
 export const server = {
   submitSubscriptionForm: defineAction({
     input: z.object({
