@@ -643,33 +643,44 @@ import SectionTitle from './SectionTitle.astro';
     footnote.classList.remove('is-hidden');
   });
 
-  const generateMono = async ({ price }: { price: number }) => {
+  const generateMono = async ({
+    price,
+    bottles,
+  }: {
+    price: number;
+    bottles: string;
+  }) => {
     const body = {
+      order_ref: crypto.randomUUID(),
       amount: 1,
-      cardData: {
-        pan: '4441111140544051',
-        exp: '0928',
-        cvv: '774',
-      },
-      paymentType: 'debit',
-      initiationKind: 'client',
-      redirectUrl: 'https://hovorovskyi.com/',
-      webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
-    };
-    const res = await fetch(
-      'https://api.monobank.ua/api/merchant/invoice/create',
-      {
-        method: 'POST',
-        headers: {
-          'X-Token': 'unbNDpLMdL2y1rYJ8oX47U2WG26YYVmXKOrJP-UVuub0',
-          'Content-Type': 'application/json',
+      count: 1,
+      products: [
+        {
+          name: bottles,
+          cnt: 1,
+          price,
         },
-        body: JSON.stringify(body),
-      }
-    );
+      ],
+      dlv_method_list: ['np_brnm', 'np_box'],
+      payment_method_list: ['card', 'part_purchase'],
+      payments_number: 3,
+      // redirectUrl: 'https://hovorovskyi.com/',
+      // webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+      returnUrl: 'https://hovorovskyi.com/',
+      callbackUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+    };
+    const res = await fetch('https://api.monobank.ua/personal/checkout/order', {
+      method: 'POST',
+      headers: {
+        'X-Token': 'mE_rOIhSVb0SB9HdQa6ELRQ',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
 
     const data = await res.json();
-    return { invoiceId: data.invoiceId, url: data.pageUrl };
+    console.log(data.result);
+    return { invoiceId: data.result.order_id, url: data.result.redirect_url };
   };
 
   form.addEventListener('submit', async (e) => {
@@ -732,8 +743,10 @@ import SectionTitle from './SectionTitle.astro';
     //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     //   }),
     // });
-    const { invoiceId, url } = await generateMono({ price: sum });
-
+    const { invoiceId, url } = await generateMono({
+      price: sum,
+      bottles: bottles.toString(),
+    });
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
     });
