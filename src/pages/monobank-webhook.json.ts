@@ -17,24 +17,24 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const obj = {
-      chat_id: "187508671",
-      text: `
-<b>InvoiceId</b>: ${payload.invoiceId}
-<b>Status</b>: ${payload.status}
-    `,
-    };
+//     const obj = {
+//       chat_id: "187508671",
+//       text: `
+// <b>InvoiceId</b>: ${payload.invoiceId}
+// <b>Status</b>: ${payload.status}
+//     `,
+//     };
 
-    fetch(
-      `https://api.telegram.org/bot${import.meta.env.BOT_TOKEN}/sendMessage?parse_mode=html`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(obj),
-      },
-    );
+    // fetch(
+    //   `https://api.telegram.org/bot${import.meta.env.BOT_TOKEN}/sendMessage?parse_mode=html`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json; charset=UTF-8",
+    //     },
+    //     body: JSON.stringify(obj),
+    //   },
+    // );
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
