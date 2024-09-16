@@ -109,7 +109,7 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
         console.log("ERROR:", e);
         return {
           ok: false,
-          statusCode: 500,
+          statusCode: 400,
           body: JSON.stringify({
             e: JSON.stringify(e),
             success: false,
