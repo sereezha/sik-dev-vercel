@@ -191,7 +191,7 @@ import SectionTitle from './SectionTitle.astro';
   </div>
 </Section>
 
-<style lang="scss">
+<style>
   .notification-block {
     position: fixed;
     z-index: 5;
@@ -743,20 +743,20 @@ import SectionTitle from './SectionTitle.astro';
     //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     //   }),
     // });
-    const { invoiceId, url } = await generateMono({
-      price: sum,
-      bottles: bottles.toString(),
-    });
-    setTimeout(() => {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    });
+    // const { invoiceId, url } = await generateMono({
+    //   price: sum,
+    //   bottles: bottles.toString(),
+    // });
+    // setTimeout(() => {
+    //   window.open(url, '_blank', 'noopener,noreferrer');
+    // });
     sendMessage({
       phone,
       telegram,
       bottles: bottles.toString(),
       months: months.toString(),
-      invoiceId,
-      url,
+      invoiceId: 'fdsfa',
+      url: 'fdsafd',
     });
   });
 

@@ -1,7 +1,9 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/serverless";
-import basicSsl from "@vitejs/plugin-basic-ssl";
+import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
+import mkcert from "vite-plugin-mkcert";
 
 export default defineConfig({
   site: "https://hovorovskyi.com",
@@ -13,11 +15,19 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [basicSsl()],
+    plugins: [mkcert()],
     server: {
       https: true,
     },
   },
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+    mdx(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
 });

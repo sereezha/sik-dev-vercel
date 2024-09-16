@@ -1,0 +1,8 @@
+---
+import { AstroSeo, type AstroSeoProps } from '@astrolib/seo';
+import { Metadata } from '../../config';
+
+const metadata: AstroSeoProps = { ...Metadata };
+---
+
+<AstroSeo {...metadata} />

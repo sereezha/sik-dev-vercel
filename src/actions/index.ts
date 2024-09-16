@@ -1,5 +1,6 @@
 import { defineAction, ActionError } from "astro:actions";
 import { z } from "astro:schema";
+import { dbClient } from "src/turso";
 
 export const prerender = false;
 
@@ -45,6 +46,19 @@ export const server = {
         formData.append("Months", months);
         formData.append("InvoiceId", invoiceId);
         formData.append("PaymentUrl", paymentUrl);
+        try {
+          await dbClient.execute({
+            sql: "INSERT INTO users (Phone, Telegram, Bottles, Months, InvoiceID, PaymentURL, PaymentStatus) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            args: [phone, telegram, bottles, months, invoiceId, paymentUrl, ""],
+          });
+          const result = await dbClient.execute({
+            sql: "UPDATE users SET PaymentStatus = ? WHERE InvoiceID = ?",
+            args: ['paid', '123fdsfa'],
+          });
+          console.log("result", result);
+        } catch (dbError) {
+          console.error("Database error:", dbError);
+        }
 
         const obj = {
           chat_id: tg.chat_id,
