@@ -738,8 +738,8 @@ import SectionTitle from './SectionTitle.astro';
     const { invoiceId, url, status } = await generateMono({ price: sum });
 
     setTimeout(() => {
-      window.open(url, '_blank');
-    }, 0);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
     sendMessage({
       phone,
       telegram,
