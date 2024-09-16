@@ -722,16 +722,16 @@ import SectionTitle from './SectionTitle.astro';
 
     submitButton.classList.add('is-loading');
     disableForm();
-    await fetch('https://api.monobank.ua/personal/webhook', {
-      method: 'POST',
-      headers: {
-        'X-Token': 'umXstJtTXl_8ib19uYUWFiRnE3pJF11NCVFC8jnCC3ao',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
-      }),
-    });
+    // await fetch('https://api.monobank.ua/personal/webhook', {
+    //   method: 'POST',
+    //   headers: {
+    //     'X-Token': 'umXstJtTXl_8ib19uYUWFiRnE3pJF11NCVFC8jnCC3ao',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+    //   }),
+    // });
     const { invoiceId, url } = await generateMono({ price: sum });
 
     setTimeout(() => {
