@@ -563,7 +563,6 @@ import SectionTitle from './SectionTitle.astro';
     months: string;
     invoiceId: string;
     url: string;
-    status: string;
   }
 
   async function sendMessage({
@@ -573,7 +572,6 @@ import SectionTitle from './SectionTitle.astro';
     months,
     invoiceId,
     url,
-    status
   }: SendMessageParams) {
     try {
       const { data, error } = await actions.submitSubscriptionForm({
@@ -583,7 +581,6 @@ import SectionTitle from './SectionTitle.astro';
         months,
         invoiceId,
         paymentUrl: url,
-        status
       });
 
       // const url = `https://sik-backend-dev.netlify.app/.netlify/functions/send?phone=${phone}&telegram=${telegram}&bottles=${bottles}&months=${months}`;
@@ -648,11 +645,11 @@ import SectionTitle from './SectionTitle.astro';
 
   const generateMono = async ({ price }: { price: number }) => {
     const body = {
-      amount: price,
+      amount: 1,
       cardData: {
         pan: '4441111140544051',
         exp: '0928',
-        cvv: '729',
+        cvv: '774',
       },
       paymentType: 'debit',
       initiationKind: 'client',
@@ -660,11 +657,11 @@ import SectionTitle from './SectionTitle.astro';
       webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     };
     const res = await fetch(
-      'https://api.monobank.ua/api/merchant/invoice/payment-direct',
+      'https://api.monobank.ua/api/merchant/invoice/create',
       {
         method: 'POST',
         headers: {
-          'X-Token': 'umXstJtTXl_8ib19uYUWFiRnE3pJF11NCVFC8jnCC3ao',
+          'X-Token': 'unbNDpLMdL2y1rYJ8oX47U2WG26YYVmXKOrJP-UVuub0',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
@@ -672,7 +669,7 @@ import SectionTitle from './SectionTitle.astro';
     );
 
     const data = await res.json();
-    return { invoiceId: data.invoiceId, url: data.tdsUrl, status: data.status };
+    return { invoiceId: data.invoiceId, url: data.pageUrl };
   };
 
   form.addEventListener('submit', async (e) => {
@@ -735,7 +732,7 @@ import SectionTitle from './SectionTitle.astro';
     //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     //   }),
     // });
-    const { invoiceId, url, status } = await generateMono({ price: sum });
+    const { invoiceId, url } = await generateMono({ price: sum });
 
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
@@ -747,7 +744,6 @@ import SectionTitle from './SectionTitle.astro';
       months: months.toString(),
       invoiceId,
       url,
-      status
     });
   });
 
