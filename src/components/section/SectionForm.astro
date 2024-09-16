@@ -561,6 +561,8 @@ import SectionTitle from './SectionTitle.astro';
     telegram: string;
     bottles: string;
     months: string;
+    invoiceId: string;
+    url: string;
   }
 
   async function sendMessage({
@@ -568,6 +570,8 @@ import SectionTitle from './SectionTitle.astro';
     telegram,
     bottles,
     months,
+    invoiceId,
+    url,
   }: SendMessageParams) {
     try {
       const { data, error } = await actions.submitSubscriptionForm({
@@ -575,6 +579,8 @@ import SectionTitle from './SectionTitle.astro';
         telegram,
         bottles,
         months,
+        invoiceId,
+        paymentUrl: url,
       });
 
       // const url = `https://sik-backend-dev.netlify.app/.netlify/functions/send?phone=${phone}&telegram=${telegram}&bottles=${bottles}&months=${months}`;
@@ -637,7 +643,36 @@ import SectionTitle from './SectionTitle.astro';
     footnote.classList.remove('is-hidden');
   });
 
-  form.addEventListener('submit', (e) => {
+  const generateMono = async ({ price }: { price: number }) => {
+    const body = {
+      amount: price,
+      cardData: {
+        pan: '4441111140544051',
+        exp: '0928',
+        cvv: '729',
+      },
+      paymentType: 'debit',
+      initiationKind: 'client',
+      redirectUrl: 'https://hovorovskyi.com/',
+      webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+    };
+    const res = await fetch(
+      'https://api.monobank.ua/api/merchant/invoice/payment-direct',
+      {
+        method: 'POST',
+        headers: {
+          'X-Token': 'umXstJtTXl_8ib19uYUWFiRnE3pJF11NCVFC8jnCC3ao',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    const data = await res.json();
+    return { invoiceId: data.invoiceId, url: data.tdsUrl };
+  };
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log('submit');
 
@@ -654,6 +689,7 @@ import SectionTitle from './SectionTitle.astro';
       bottles: number | string;
       months: number;
     };
+    const { sum, month } = getPrices(bottles.toString(), Number(months));
 
     if (!phone.trim()) {
       phoneEl.classList.add('has-error');
@@ -686,12 +722,29 @@ import SectionTitle from './SectionTitle.astro';
 
     submitButton.classList.add('is-loading');
     disableForm();
-    sendMessage({
-      phone,
-      telegram,
-      bottles: bottles.toString(),
-      months: months.toString(),
+    await fetch('https://api.monobank.ua/personal/webhook', {
+      method: 'POST',
+      headers: {
+        'X-Token': 'umXstJtTXl_8ib19uYUWFiRnE3pJF11NCVFC8jnCC3ao',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+      }),
     });
+    // const { invoiceId, url } = await generateMono({ price: sum });
+
+    // setTimeout(() => {
+    //   window.open(url, '_blank');
+    // }, 0);
+    // sendMessage({
+    //   phone,
+    //   telegram,
+    //   bottles: bottles.toString(),
+    //   months: months.toString(),
+    //   invoiceId,
+    //   url,
+    // });
   });
 
   const formObserver = new IntersectionObserver(
