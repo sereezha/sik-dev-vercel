@@ -563,6 +563,7 @@ import SectionTitle from './SectionTitle.astro';
     months: string;
     invoiceId: string;
     url: string;
+    status: string;
   }
 
   async function sendMessage({
@@ -572,6 +573,7 @@ import SectionTitle from './SectionTitle.astro';
     months,
     invoiceId,
     url,
+    status
   }: SendMessageParams) {
     try {
       const { data, error } = await actions.submitSubscriptionForm({
@@ -581,6 +583,7 @@ import SectionTitle from './SectionTitle.astro';
         months,
         invoiceId,
         paymentUrl: url,
+        status
       });
 
       // const url = `https://sik-backend-dev.netlify.app/.netlify/functions/send?phone=${phone}&telegram=${telegram}&bottles=${bottles}&months=${months}`;
@@ -669,7 +672,7 @@ import SectionTitle from './SectionTitle.astro';
     );
 
     const data = await res.json();
-    return { invoiceId: data.invoiceId, url: data.tdsUrl };
+    return { invoiceId: data.invoiceId, url: data.tdsUrl, status: data.status };
   };
 
   form.addEventListener('submit', async (e) => {
@@ -732,7 +735,7 @@ import SectionTitle from './SectionTitle.astro';
     //     webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
     //   }),
     // });
-    const { invoiceId, url } = await generateMono({ price: sum });
+    const { invoiceId, url, status } = await generateMono({ price: sum });
 
     setTimeout(() => {
       window.open(url, '_blank');
@@ -744,6 +747,7 @@ import SectionTitle from './SectionTitle.astro';
       months: months.toString(),
       invoiceId,
       url,
+      status
     });
   });
 

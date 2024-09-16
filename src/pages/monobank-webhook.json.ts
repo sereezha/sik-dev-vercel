@@ -8,24 +8,6 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const payload = await request.json();
 
-    const obj2 = {
-      chat_id: "187508671",
-      text: `
-      ${JSON.stringify(payload)}
-    `,
-    };
-
-    fetch(
-      `https://api.telegram.org/bot7067783177:AAHKbBPbtje4X3FvmSEIoMzZS4yiz4ZHpVc/sendMessage?parse_mode=html`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(obj2),
-      },
-    );
-
     // Validate the payload
     if (!payload.invoiceId || !payload.status) {
       return new Response(JSON.stringify({ error: "Invalid payload" }), {
@@ -36,7 +18,8 @@ export const POST: APIRoute = async ({ request }) => {
     const obj = {
       chat_id: "187508671",
       text: `
-      ${payload.status}
+<b>InvoiceId</b>: ${payload.invoiceId}
+<b>Status</b>: ${payload.status}
     `,
     };
 

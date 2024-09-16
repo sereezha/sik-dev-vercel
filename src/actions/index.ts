@@ -10,9 +10,10 @@ export const server = {
       months: z.string().min(1),
       invoiceId: z.string().min(1),
       paymentUrl: z.string().min(1),
+      status: z.string().min(1),
     }),
     handler: async (
-      { phone, telegram, bottles, months, invoiceId, paymentUrl },
+      { phone, telegram, bottles, months, invoiceId, paymentUrl, status },
       context,
     ) => {
       const PHONE_REGEX = /^\+?3?8?(0\d{9})$/;
@@ -43,6 +44,7 @@ export const server = {
         formData.append("Months", months);
         formData.append("InvoiceId", invoiceId);
         formData.append("PaymentUrl", paymentUrl);
+        formData.append("PaymentStatus", status);
 
         const obj = {
           chat_id: tg.chat_id,
@@ -53,6 +55,7 @@ ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
 <b>Months</b>: ${months}
 <b>InvoiceId</b>: ${invoiceId}
 <b>PaymentUrl</b>: ${paymentUrl}
+<b>PaymentStatus</b>: ${status}
     `,
         };
 
