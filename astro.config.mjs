@@ -5,7 +5,7 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 
 export default defineConfig({
   site: "https://hovorovskyi.com",
-  output: "hybrid",
+  output: "server",
   adapter: vercel(),
 
   build: {
