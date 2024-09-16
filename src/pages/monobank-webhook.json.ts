@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-export const prerender = false;
+// export const prerender = false;
 
 export const GET: APIRoute = async ({ request }) => {
   return new Response(null, { status: 200 });
@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error("Error processing webhook:", error);
     return new Response(JSON.stringify({ error: "Internal server error" }), {
-      status: 500,
+      status: 400,
     });
   }
 };
