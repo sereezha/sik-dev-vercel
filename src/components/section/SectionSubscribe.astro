@@ -13,10 +13,10 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
         підписуйтесь в телеграмі або інсті, щоб слідкувати за анонсами
       </SectionTitle>
     </SectionIntro>
-    <a href="https://t.me/sikwine">
+    <button type="button">
       <Image src={telegramFrameImg} alt="" />
       <span class="visually-hidden">посилання на телеграм</span>
-    </a>
+    </button>
   </div>
 </section>
 
@@ -36,3 +36,11 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
     width: 100%;
   }
 </style>
+
+<script>
+  const link = document.querySelector('.section-subscribe button')!;
+  link.addEventListener('click', () => {
+    // @ts-ignore
+    window.gtag('event', 'view_telegram_channel');
+  });
+</script>
