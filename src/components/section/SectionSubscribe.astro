@@ -35,17 +35,17 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
   }
 </style>
 
-<script>
-  const testButton = document.querySelector('#test-event')!;
+<script is:inline>
+  const testButton = document.querySelector('#test-event');
   testButton.addEventListener('click', () => {
     console.log('TEST EVENT');
     // @ts-ignore
-    window.gtag('event', 'test_event');
+    gtag('event', 'test_event');
   });
-  const link = document.querySelector('.section-subscribe button')!;
+  const link = document.querySelector('.section-subscribe button');
   link.addEventListener('click', () => {
     console.log('click');
     // @ts-ignore
-    window.gtag('event', 'view_telegram_channel_gtag');
+    gtag('event', 'view_telegram_channel_gtag');
   });
 </script>
