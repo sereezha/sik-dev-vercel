@@ -13,9 +13,8 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
         підписуйтесь в телеграмі або інсті, щоб слідкувати за анонсами
       </SectionTitle>
     </SectionIntro>
-    <button type="button">
-      btn
-    </button>
+    <button type="button"> btn </button>
+    <button type="button" id="test-event"> BTN TEST EVENT </button>
   </div>
 </section>
 
@@ -37,6 +36,12 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
 </style>
 
 <script>
+  const testButton = document.querySelector('#test-event')!;
+  testButton.addEventListener('click', () => {
+    console.log('TEST EVENT');
+    // @ts-ignore
+    window.gtag('event', 'test_event');
+  });
   const link = document.querySelector('.section-subscribe button')!;
   link.addEventListener('click', () => {
     console.log('click');
