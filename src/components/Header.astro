@@ -106,10 +106,7 @@
     // @ts-ignore
     if (typeof window.gtag === 'function') {
       // @ts-ignore
-      window.gtag('event', 'header_button_click', {
-        event_category: 'engagement',
-        event_label: 'Header CTA',
-      });
+      window.gtag('event', 'signin');
     } else {
       console.error('gtag is not available');
     }
