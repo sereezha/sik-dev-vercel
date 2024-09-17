@@ -40,5 +40,7 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
   const link = document.querySelector('.section-subscribe button')!;
   link.addEventListener('click', () => {
     console.log('click');
+    // @ts-ignore
+    window.gtag('event', 'view_telegram_channel_gtag');
   });
 </script>
