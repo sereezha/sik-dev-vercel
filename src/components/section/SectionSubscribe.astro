@@ -40,7 +40,7 @@ import telegramFrameImg from '@assets/img/telegram-frame.png';
   testButton.addEventListener('click', () => {
     console.log('TEST EVENT');
     // @ts-ignore
-    gtag('event', 'test_event');
+    window.gtag('event', 'test_event');
   });
   const link = document.querySelector('.section-subscribe button');
   link.addEventListener('click', () => {
