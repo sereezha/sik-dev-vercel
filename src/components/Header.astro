@@ -103,10 +103,15 @@
 <script>
   const signin = document.querySelector('#signin')!;
   signin.addEventListener('click', () => {
-    console.log('signin');
     // @ts-ignore
-    gtag('event', 'signin');
-    // @ts-ignore
-    window.gtag('event', 'signin');
+    if (typeof window.gtag === 'function') {
+      // @ts-ignore
+      window.gtag('event', 'header_button_click', {
+        event_category: 'engagement',
+        event_label: 'Header CTA',
+      });
+    } else {
+      console.error('gtag is not available');
+    }
   });
 </script>
