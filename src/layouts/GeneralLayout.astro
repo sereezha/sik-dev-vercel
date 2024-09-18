@@ -8,13 +8,13 @@ interface Props {
   title: string;
 }
 
-const { title } = Astro.props;
+const { title = 'sik astro' } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="uk">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js)
     <script
       async
       is:inline
@@ -29,10 +29,10 @@ const { title } = Astro.props;
       gtag('config', 'G-XG5PT95276');
       gtag('event', 'test_event');
       gtag('event', 'random_event');
-    </script>
+    </script> -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>sik astro</title>
+    <title>{title}</title>
     <meta name="description" content="ком'юніті людей, які люблять вино" />
     <link rel="icon" href="./favicon.ico" sizes="32x32" />
     <link

@@ -1,0 +1,18 @@
+---
+import GeneralLayout from './GeneralLayout.astro';
+import BlockQuote from "../components/BlockQuote.astro";
+
+const { frontmatter } = Astro.props;
+
+export const components = {
+  blockquote: BlockQuote,
+  // Add any other custom components here
+};
+---
+
+<GeneralLayout title={frontmatter.title}>
+  <article>
+    <h1>{frontmatter.title}</h1>
+    <slot />
+  </article>
+</GeneralLayout>

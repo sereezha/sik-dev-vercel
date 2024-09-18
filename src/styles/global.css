@@ -124,11 +124,6 @@ p {
   isolation: isolate;
 }
 
-ol,
-ul {
-  margin: 0;
-  padding: 0;
-}
 
 ol[role='list'],
 ul[role='list'] {
