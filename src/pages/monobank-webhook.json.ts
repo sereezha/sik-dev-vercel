@@ -9,6 +9,7 @@ export const GET: APIRoute = async ({ request }) => {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const payload = await request.json();
+    console.log(payload);
 
     // Validate the payload
     if (!payload.invoiceId || !payload.status) {
@@ -20,7 +21,6 @@ export const POST: APIRoute = async ({ request }) => {
     const obj = {
       chat_id: "187508671",
       text: `
-      ${JSON.stringify(payload)}
       <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
