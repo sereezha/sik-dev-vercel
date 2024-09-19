@@ -21,14 +21,12 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    console.log(payload.failureReason);
-
     const obj = {
       chat_id: import.meta.env.CHAT_ID,
       text: `
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
-${payload.failure ? `<b>Failure Reason</b>: ${payload.failureReason}` : ""}
+${payload.status === 'failure' ? `<b>Failure Reason</b>: ${payload.failureReason}` : ""}
     `,
     };
 
