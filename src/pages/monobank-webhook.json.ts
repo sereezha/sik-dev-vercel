@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const obj = {
-      chat_id: "187508671",
+      chat_id: import.meta.env.CHAT_ID,
       text: `
       <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
