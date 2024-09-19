@@ -9,10 +9,10 @@ export const GET: APIRoute = async ({ request }) => {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const payload = await request.json();
-    // const formData = new FormData();
+    const formData = new FormData();
 
-    // formData.append("Phone", payload.invoiceId);
-    // formData.append("PaymentStatus", payload.status);
+    formData.append("Phone", payload.invoiceId);
+    formData.append("PaymentStatus", payload.status);
 
     // Validate the payload
     if (!payload.invoiceId || !payload.status) {
@@ -24,17 +24,16 @@ export const POST: APIRoute = async ({ request }) => {
     const obj = {
       chat_id: import.meta.env.CHAT_ID,
       text: `
-      <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
+${payload.failure ? `<b>Failure Reason</b>: ${payload.failureReason}` : ""}
     `,
     };
-    console.log(obj, import.meta.env.BOT_TOKEN, JSON.stringify(obj));
 
-    // await fetch(import.meta.env.GOOGLE_SHEET as string, {
-    //   method: "POST",
-    //   body: formData,
-    // });
+    await fetch(import.meta.env.GOOGLE_SHEET as string, {
+      method: "POST",
+      body: formData,
+    });
     await fetch(
       `https://api.telegram.org/bot${import.meta.env.BOT_TOKEN}/sendMessage?parse_mode=html`,
       {
