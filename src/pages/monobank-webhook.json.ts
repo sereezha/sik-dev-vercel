@@ -9,6 +9,7 @@ export const GET: APIRoute = async ({ request }) => {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const payload = await request.json();
+    console.log(import.meta.env.BOT_TOKEN);
 
     // Validate the payload
     if (!payload.invoiceId || !payload.status) {
