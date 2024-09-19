@@ -1,51 +1,37 @@
 ---
-import { Image } from 'astro:assets';
+import Button from '@components/Button.astro';
 import Section from './Section.astro';
-import SectionIntro from './SectionIntro.astro';
-import SectionTitle from './SectionTitle.astro';
-import telegramFrameImg from '@assets/img/telegram-frame.png';
+import Paragraph from '@components/Paragraph.astro';
+import Paragraphs from '@components/Paragraphs.astro';
+import { Config } from 'src/config';
 ---
 
-<section class="section-subscribe" id="contact">
-  <div class="content">
-    <SectionIntro>
-      <SectionTitle Tag="h2">
-        підписуйтесь в телеграмі або інсті, щоб слідкувати за анонсами
-      </SectionTitle>
-    </SectionIntro>
-    <button type="button"> btn </button>
-    <button type="button" id="test-event"> BTN TEST EVENT </button>
+<Section>
+  <Fragment slot="section-subtitle">Як це працює</Fragment>
+  <Fragment slot="section-title">Підписка на вино</Fragment>
+  <Paragraphs>
+    <Paragraph>
+      Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас
+      приїжджатиме одна або дві пляшки вина. І кожен раз ці вина будуть різні.
+    </Paragraph>
+    <Paragraph>
+      А ще, ми знімаємо відео-огляди про кожну пляшку, що потрапляють у
+      підписку. Доступ до цих відео мають лише підписники. Казали ж, як Netflix!
+    </Paragraph>
+  </Paragraphs>
+  <div class="button">
+    <Button href={Config.anchors.subscribe}>Підписатись</Button>
   </div>
-</section>
+</Section>
 
-<style lang="scss">
-  .section-subscribe {
-    padding: 0;
+<style>
+  .button {
+    margin-block-start: 32px;
   }
 
-  .content {
-    display: grid;
-    justify-items: center;
-    gap: 64px;
-  }
-
-  .content img {
-    max-width: 504px;
-    width: 100%;
+  @media screen and (min-width: 1024px) {
+    .button {
+      margin-block-start: 40px;
+    }
   }
 </style>
-
-<script is:inline>
-  const testButton = document.querySelector('#test-event');
-  testButton.addEventListener('click', () => {
-    console.log('TEST EVENT');
-    // @ts-ignore
-    window.gtag('event', 'test_event');
-  });
-  const link = document.querySelector('.section-subscribe button');
-  link.addEventListener('click', () => {
-    console.log('click');
-    // @ts-ignore
-    gtag('event', 'view_telegram_channel_gtag');
-  });
-</script>

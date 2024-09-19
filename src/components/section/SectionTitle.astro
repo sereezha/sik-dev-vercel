@@ -6,33 +6,21 @@ export interface SectionTitleProps {
 const { Tag = 'p', slot } = Astro.props;
 ---
 
-<Tag class="section-title">
+<Tag class="section-title heading">
   <slot />
 </Tag>
 
 <style lang="scss">
   .section-title {
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: -0.32px;
+    font-size: 40px;
     line-height: 1;
-    color: var(--natural-white);
-    max-width: 1040px;
-    width: 100%;
-    text-align: center;
+    color: #fcfbfa;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     .section-title {
-      font-size: 44px;
-      letter-spacing: -0.44px;
-    }
-  }
-
-  @media screen and (min-width: 1280px) {
-    .section-title {
-      font-size: 72px;
-      letter-spacing: -0.72px;
+      font-size: 56px;
+      letter-spacing: 0.87;
     }
   }
 </style>

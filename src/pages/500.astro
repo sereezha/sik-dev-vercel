@@ -1,0 +1,16 @@
+---
+import { Config } from 'src/config';
+import ErrorPageLayout from '../layouts/ErrorPageLayout.astro';
+---
+
+<ErrorPageLayout
+  metaTitle="500"
+  title="500"
+  type="500"
+  link={{ href: Config.links.telegram, text: 'Телеграм' }}
+>
+  <Fragment slot="description"
+    >Сталась помилка на нашому боці, вибачте. Оновіть сторінку або напишіть нам
+    у Телеграмі</Fragment
+  >
+</ErrorPageLayout>

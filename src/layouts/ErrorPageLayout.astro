@@ -1,0 +1,122 @@
+---
+import GeneralLayout from './GeneralLayout.astro';
+import SimpleHeader from '../components/SimpleHeader.astro';
+import Container from '@components/Container.astro';
+import Footer from '@components/Footer.astro';
+import Button from '@components/Button.astro';
+
+interface Props {
+  metaTitle: string;
+  title: string;
+  type?: '404' | '500';
+  link: {
+    href: string;
+    text: string;
+  };
+}
+
+const { metaTitle, title, type = '404', link } = Astro.props;
+---
+
+<GeneralLayout title={metaTitle}>
+  <div class:list={['error-page', `error-page--${type}`]}>
+    <Container>
+      <div class="wrapper">
+        <SimpleHeader />
+        <div class="content">
+          <h1 class="title heading">{title}</h1>
+          <h2 class="description heading">
+            <slot name="description" />
+          </h2>
+          <div class="button">
+            <Button href={link.href}>{link.text}</Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+    <Footer />
+  </div>
+</GeneralLayout>
+
+<style>
+  .error-page {
+    --error-page-gap: 16px;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: var(--error-page-gap);
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: var(--error-page-gap);
+    text-align: center;
+  }
+
+  .error-page--404 {
+    background-color: #e59fa3;
+  }
+
+  .error-page--500 {
+    background-color: #b6b9cf;
+  }
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 160px;
+    line-height: 1;
+  }
+
+  .description {
+    max-width: 720px;
+    width: 100%;
+    margin-inline: auto;
+    font-size: 28px;
+    line-height: 1.14;
+  }
+
+  .button {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: 767px) {
+    .error-page {
+      --error-page-gap: 64px;
+    }
+
+    .title {
+      margin-bottom: 24px;
+      font-size: 320px;
+      line-height: 0.84;
+    }
+
+    .description {
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .button {
+      margin-top: 48px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .error-page {
+      --error-page-gap: 54px;
+    }
+
+    .title {
+      margin-bottom: 32px;
+      font-size: 360px;
+      line-height: 0.77;
+    }
+  }
+
+  @media screen and (max-height: 699px) {
+    .error-page {
+      --error-page-gap: 32px;
+    }
+  }
+</style>

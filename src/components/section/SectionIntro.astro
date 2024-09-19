@@ -1,40 +1,39 @@
 ---
+import SectionTitle from './SectionTitle.astro';
+import SectionSubtitle from './SectionSubtitle.astro';
+interface Props {
+  align?: 'center' | 'start' | 'end';
+}
+
+const { align = 'start' }: Props = Astro.props;
 ---
 
-<div class="section-intro">
-  <slot />
+<div class:list={['section-intro', `section-intro--align-${align}`]}>
+  <SectionSubtitle><slot name="section-subtitle" /></SectionSubtitle>
+  <SectionTitle><slot name="section-title" /></SectionTitle>
 </div>
 
-<style lang="scss">
+<style>
   .section-intro {
-    transition-duration: 0.5s;
-    transition-property: transform, opacity;
-    transform: translateY(50px);
-    opacity: 0;
     display: grid;
-    justify-content: center;
+    gap: 8px;
   }
 
-  .section-intro.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .section-intro--align-start {
+    text-align: start;
+  }
+
+  .section-intro--align-center {
+    text-align: center;
+  }
+
+  .section-intro--align-end {
+    text-align: end;
+  }
+
+  @media screen and (min-width: 767px) {
+    .section-intro {
+      gap: 16px;
+    }
   }
 </style>
-
-<script>
-  const title = document.querySelectorAll('.section-intro');
-  const titleObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    },
-    {
-      threshold: 1,
-    }
-  );
-
-  title.forEach((item) => titleObserver.observe(item));
-</script>

@@ -39,22 +39,20 @@ export const server = {
 
         const formData = new FormData();
 
-        formData.append("Phone", phone);
+        formData.append("First name", phone);
+        formData.append("Last name", phone);
         formData.append("Telegram", telegram);
         formData.append("Bottles", bottles);
         formData.append("Months", months);
-        formData.append("InvoiceId", invoiceId);
-        formData.append("PaymentUrl", paymentUrl);
 
         const obj = {
           chat_id: tg.chat_id,
           text: `
-<b>Phone</b>: ${phone}
+<b>First name</b>: ${phone}
+<b>Last name</b>: ${phone}
 ${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
 <b>Bottles</b>: ${bottles}
 <b>Months</b>: ${months}
-<b>InvoiceId</b>: ${invoiceId}
-<b>PaymentUrl</b>: ${paymentUrl}
     `,
         };
 

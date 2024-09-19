@@ -1,0 +1,14 @@
+---
+import ErrorPageLayout from '../layouts/ErrorPageLayout.astro';
+---
+
+<ErrorPageLayout
+  metaTitle="404"
+  title="404"
+  type="404"
+  link={{ href: '/', text: 'Повернутись на головну' }}
+>
+  <Fragment slot="description"
+    >Такої сторінки не існує. Але ми допоможемо вам знайти куди рухатись далі</Fragment
+  >
+</ErrorPageLayout>

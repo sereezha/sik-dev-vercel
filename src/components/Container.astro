@@ -6,19 +6,24 @@
   <slot />
 </div>
 
-<style lang="scss">
+<style>
   .container {
     --padding-inline: 16px;
-    --width: 1360px;
+    --width: 1376px;
     max-width: calc(var(--width) + var(--padding-inline) * 2);
     padding: 0 var(--padding-inline);
     margin: 0 auto;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 767px) {
     .container {
       --padding-inline: 40px;
-      --width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .container {
+      --padding-inline: 80px;
     }
   }
 </style>

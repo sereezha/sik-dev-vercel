@@ -1,0 +1,13 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GeneralLayout from './GeneralLayout.astro';
+
+const { title = 'sik' } = Astro.props;
+---
+
+<GeneralLayout title={title}>
+  <Header />
+  <slot />
+  <Footer />
+</GeneralLayout>

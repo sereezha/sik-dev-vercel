@@ -1,4 +1,5 @@
 ---
+import Container from '@components/Container.astro';
 import SectionIntro from './SectionIntro.astro';
 import type { SectionTitleProps } from './SectionTitle.astro';
 
@@ -6,27 +7,49 @@ interface Props {
   title?: astroHTML.JSX.Element | string;
   className?: string;
   id?: string;
+  labelledby?: string;
   titleTag?: SectionTitleProps['Tag'];
 }
 
-const { className, id } = Astro.props;
+const { className, id, labelledby } = Astro.props;
 ---
 
 <section class:list={['section', className]} id={id}>
-  <SectionIntro>
-    <slot name="section-title" />
-    <slot name="section-subtitle" />
-  </SectionIntro>
-  <slot />
+  <Container>
+    <div class="wrapper">
+      <SectionIntro>
+        <slot slot="section-subtitle" name="section-subtitle" />
+        <slot slot="section-title" name="section-title" />
+      </SectionIntro>
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+  </Container>
 </section>
 
-<style lang="scss">
+<style>
   .section {
-    padding-top: 240px;
-    padding-bottom: 240px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-block: 80px;
+  }
+
+  .wrapper {
+    display: grid;
+    gap: 40px;
+  }
+
+  @media screen and (min-width: 767px) {
+    .wrapper {
+      gap: 64px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .wrapper {
+      display: grid;
+      grid-template-columns: 463px minmax(300px, 537px);
+      align-items: start;
+      justify-content: space-between;
+    }
   }
 </style>

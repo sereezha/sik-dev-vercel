@@ -10,10 +10,12 @@ import SectionSubscribe from '@components/section/SectionSubscribe.astro';
 import SectionAbout from '@components/section/SectionAbout.astro';
 import SectionForm from '@components/section/SectionForm.astro';
 import SectionTest from '@components/section/SectionTest.astro';
-import { getCollection } from 'astro:content';
+import PageLayout from 'src/layouts/PageLayout.astro';
+import SectionTable from '@components/section/SectionTable.astro';
+import SectionLogo from '@components/section/SectionLogo.astro';
 ---
 
-<GeneralLayout title="sik">
+<PageLayout title="sik">
   <div class="first-screen">
     <div class="hero-section">
       <video
@@ -29,11 +31,9 @@ import { getCollection } from 'astro:content';
       </video>
     </div>
   </div>
-  <Section>
-    <SectionTitle slot="section-title">
-      ми запускаємо четвертий сезон підписки на вино
-    </SectionTitle>
-  </Section>
+  <SectionSubscribe />
+  <SectionTable />
+  <SectionAbout />
   <Section>
     <SectionTitle slot="section-title">
       кожен місяць до вас приїжджатиме одна або дві пляшки-сюрприз з історіями,
@@ -51,10 +51,8 @@ import { getCollection } from 'astro:content';
   </Section>
   <SectionForm />
   <SectionFaq />
-  <SectionAbout />
-  <SectionTest />
-  <SectionSubscribe />
-</GeneralLayout>
+  <SectionLogo />
+</PageLayout>
 
 <style lang="scss">
   video {

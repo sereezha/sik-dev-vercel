@@ -1,79 +1,50 @@
 ---
-import { Image } from 'astro:assets';
+import Button from '@components/Button.astro';
 import Section from './Section.astro';
-import SectionIntro from './SectionIntro.astro';
-import SectionTitle from './SectionTitle.astro';
-import SectionSubtitle from './SectionSubtitle.astro';
-import img1 from '@assets/img/about/1.jpg';
-import img2 from '@assets/img/about/2.jpg';
-import img3 from '@assets/img/about/3.jpg';
-import img4 from '@assets/img/about/4.jpg';
-import img5 from '@assets/img/about/5.jpg';
-import img6 from '@assets/img/about/6.jpg';
-
-const images = [img1, img2, img3, img4, img5, img6];
+import Paragraph from '@components/Paragraph.astro';
+import Paragraphs from '@components/Paragraphs.astro';
+import { Config } from 'src/config';
+import { Image } from 'astro:assets';
+import RomaImage from '@assets/img/roma.png';
 ---
 
-<section class="about" id="about">
-  <div class="content">
-    <SectionIntro>
-      <SectionTitle Tag="h2"> що за сік?</SectionTitle>
-      <SectionSubtitle>
-        ми будуємо ком’юніті людей, які люблять вино. організовуємо десятки
-        дегустацій кожного місяця та робимо підписку на вино
-      </SectionSubtitle>
-    </SectionIntro>
-    <div class="images">
-      {images.map((image) => <Image src={image} alt="" />)}
-    </div>
-  </div>
-</section>
+<Section>
+  <Fragment slot="section-subtitle">Що всередині</Fragment>
+  <Fragment slot="section-title">Що за пляшки на мене чекають?</Fragment>
+  <Paragraphs>
+    <Paragraph>
+      Секрет! Дізнатись можна лише замовивши підписку та розпакувавши пляшки. Їх
+      для вас кожен місяць ретельно підбирає Рома Ремеєв — екс-шеф сомельє
+      Goodwine і один з кращих сомельє України. Він, як відомо, спробував усе
+      вино в світі.
+    </Paragraph>
+    <Paragraph>
+      Звісно ж, ми дивимось рейтинги цих вин по Паркеру, Vivino, Wine Spectator
+      та Wine Enthusiast. Авжеж, враховуємо сезонність. До вас не приїде
+      Супертоскана в 30-градусну спеку. Тому не переживайте, вино буде чудове,
+      обіцяємо.
+    </Paragraph>
+  </Paragraphs>
+  <figure class="roma">
+    <Image width={120} height={120} class="roma-image" src={RomaImage} alt="" />
+    <figcaption>Той самий Рома Ремеєв</figcaption>
+  </figure>
+</Section>
 
-<style lang="scss">
-  .about {
-    padding-top: 0;
-    padding-bottom: 160px;
-
-    @media screen and (min-width: 768px) {
-      padding-bottom: 240px;
-    }
-
-    @media screen and (min-width: 1280px) {
-      padding-bottom: 320px;
-    }
-  }
-
-  .content {
-    display: grid;
-    justify-items: center;
-    gap: 64px;
-  }
-
-  .images {
-    --cols: 1;
-
+<style>
+  .roma {
     display: grid;
     gap: 8px;
-    margin-top: 40px;
-    grid-template-columns: repeat(var(--cols), 1fr);
-
-    @media screen and (min-width: 768px) {
-      --cols: 2;
-
-      gap: 10px 16px;
-      margin-top: 48px;
-    }
-
-    @media screen and (min-width: 1280px) {
-      --cols: 3;
-
-      gap: 16px;
-      margin-top: 64px;
-    }
+    margin-block-start: 40px;
   }
 
-  .images img {
-    border-radius: 16px;
-    overflow: hidden;
+  .roma-image {
+    border-radius: 50%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .roma {
+      margin-block-start: 66px;
+    }
   }
 </style>

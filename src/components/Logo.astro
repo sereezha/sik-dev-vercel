@@ -1,0 +1,32 @@
+---
+import logoAsset from '@assets/logo.svg?raw';
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  isLink?: boolean;
+  theme?: 'light' | 'dark';
+  width?: number | string;
+  height?: number | string;
+}
+const { isLink = true, theme = 'light', width = 95, height = 62 } = Astro.props;
+const Tag = isLink ? 'a' : 'div';
+const props = isLink ? { href: '/' } : {};
+---
+
+<Tag {...props} class:list={['logo', `logo--${theme}`]}>
+  <Icon name="logo" width={width} height={height} />
+</Tag>
+
+<style>
+  .logo {
+    display: flex;
+  }
+
+  .logo--light {
+    color: #fcfbfa;
+  }
+
+  .logo--dark {
+    color: #1a1a1f;
+  }
+</style>

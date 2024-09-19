@@ -1,77 +1,85 @@
 ---
 import Container from './Container.astro';
+import { Config } from '../config';
 ---
 
 <footer class="footer">
-  <Container>
-    <div class="footer__wrapper">
-      <a class="footer__social" href="https://www.instagram.com/sik.wine"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          fill="none"
-        >
-          <path
-            fill="#FAFAFA"
-            fill-rule="evenodd"
-            d="M9.83.037C8.057.12 6.765.342 5.676.751 3.453 1.586 1.741 3.244.877 5.4.103 7.328 0 8.583 0 16.052c0 7.01.078 8.168.669 9.98A8.304 8.304 0 0 0 4.4 30.641c.555.323 1.498.697 2.252.892 1.624.42 3.461.5 10.581.457 5.449-.032 6.11-.059 7.439-.294 2.05-.364 3.754-1.29 5.058-2.747 1.196-1.337 1.9-3.037 2.18-5.262.118-.938.12-14.66.003-15.486-.249-1.749-.758-3.23-1.47-4.28-1.57-2.314-3.835-3.51-7.256-3.83C22.301.007 11.405-.036 9.831.037Zm-.199 2.946c-2.367.129-3.756.632-4.9 1.773-.467.466-.723.83-1.004 1.427-.294.623-.514 1.427-.629 2.291-.137 1.034-.232 6.053-.185 9.77.059 4.703.137 5.698.544 6.927a5.24 5.24 0 0 0 1.164 1.965c1.122 1.187 2.375 1.686 4.724 1.88 1.356.113 12.04.113 13.397 0 2.29-.189 3.436-.625 4.557-1.731 1.13-1.115 1.608-2.345 1.779-4.572.18-2.345.134-12.566-.064-14.168-.337-2.726-1.64-4.433-3.937-5.155-.721-.228-1.476-.338-2.798-.412-1.32-.072-11.291-.07-12.648.005ZM24.3 5.55c-.892.132-1.54.852-1.598 1.775-.11 1.742 1.922 2.687 3.233 1.504.606-.547.77-1.617.356-2.323-.168-.285-.555-.658-.836-.802-.259-.134-.802-.206-1.155-.154ZM15.259 7.8a8.16 8.16 0 0 0-2.869.817 8.319 8.319 0 0 0-4.44 5.765c-.19.901-.19 2.319 0 3.22.953 4.512 5.233 7.35 9.737 6.455 2.468-.49 4.585-2.118 5.743-4.419.955-1.899 1.111-4.279.413-6.31-.782-2.273-2.584-4.139-4.867-5.037-.564-.222-1.5-.428-2.244-.494-.787-.07-.752-.07-1.473.003Zm-.142 2.939c-2.534.454-4.402 2.68-4.402 5.245a5.31 5.31 0 0 0 5.328 5.326 5.242 5.242 0 0 0 4.764-2.972c.448-.918.526-1.268.526-2.346s-.078-1.429-.526-2.346a5.075 5.075 0 0 0-2.322-2.376c-.78-.403-1.319-.538-2.254-.566-.431-.014-.932.002-1.114.035Z"
-            clip-rule="evenodd"></path>
-        </svg>інстаграм</a
-      >
-
-      <a class="footer__social" href="https://t.me/sikwine">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          fill="none"
-        >
-          <path
-            fill="#FAFAFA"
-            fill-rule="evenodd"
-            d="M29.811 2.832C27.684 3.615 1.47 13.686 1.083 13.87c-1.284.608-1.434 1.411-.365 1.955.103.052 1.877.62 3.943 1.26l3.756 1.166 8.528-5.335c4.69-2.934 8.622-5.367 8.738-5.407.29-.101.538-.092.655.024.081.082.085.123.02.242-.043.08-3.158 2.908-6.922 6.286-3.764 3.378-6.854 6.168-6.866 6.2-.012.033-.14 1.72-.283 3.748l-.26 3.69.283-.039c.155-.02.402-.101.547-.178.146-.077 1.126-.965 2.178-1.973s1.95-1.846 1.994-1.863c.044-.017 1.72 1.17 3.724 2.637 2.003 1.468 3.799 2.741 3.99 2.83.504.233 1.07.256 1.44.059.328-.176.65-.613.785-1.069.052-.176 1.197-5.468 2.545-11.76 2.243-10.475 2.45-11.489 2.45-12.033.001-.513-.02-.636-.158-.906a1.462 1.462 0 0 0-.424-.499c-.37-.26-.982-.288-1.57-.072Z"
-            clip-rule="evenodd"></path>
-        </svg>телеграм</a
-      >
+  <div class="wrapper">
+    <p class="copyright">©️ сік, 2023 — зараз</p>
+    <ul class="links-list row" role="list">
+      <li>
+        <a href={Config.links.instagram}>інстаграм</a>
+      </li>
+      <li>
+        <a href={Config.links.telegram}>телеграм</a>
+      </li>
+    </ul>
+    <div class="right row">
+      <p class="location">КИїв, УКРАЇНА</p>
+      <a href="mailto:hello@sik.wine">hello@sik.wine</a>
     </div>
-  </Container>
+  </div>
 </footer>
 
-<style lang="scss">
+<style>
+  .row {
+    display: flex;
+    gap: 16px;
+  }
+
   .footer {
-    padding-top: 160px;
-    padding-bottom: 24px;
+    padding: 8px 24px;
   }
 
-  .footer__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
+  .copyright {
+    grid-area: copyright;
   }
 
-  .footer__social {
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
-    color: var(--natural-white);
-    font-size: 36px;
-    line-height: 1;
-    text-decoration: none;
+  .links-list {
+    grid-area: links-list;
   }
 
-  .footer__logo {
-    display: block;
-    justify-self: center;
-    width: 56px;
-    height: 32px;
+  .right {
+    grid-area: right;
   }
 
-  @media screen and (min-width: 1024px) {
-    .footer__wrapper {
-      gap: 48px;
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+      'links-list'
+      'right'
+      'copyright';
+    gap: 4px;
+    justify-items: center;
+    color: #6f6f72;
+    font-size: 12px;
+    line-height: 2;
+    font-weight: 400;
+  }
+
+  .wrapper * {
+    color: inherit;
+    font: inherit;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 767px) {
+    .wrapper {
+      grid-template-areas: 'copyright links-list right';
+      grid-template-columns: 1fr auto 1fr;
+      font-size: 13px;
+      line-height: 1.84;
+    }
+    .copyright {
+      justify-self: start;
+    }
+
+    .links-list {
+      justify-self: center;
+    }
+
+    .right {
+      justify-self: end;
     }
   }
 </style>

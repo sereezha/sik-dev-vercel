@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/serverless";
 
-import mdx from "@astrojs/mdx";
+import icon from "astro-icon";
 
 export default defineConfig({
   site: "https://hovorovskyi.com",
@@ -13,5 +13,5 @@ export default defineConfig({
     inlineStylesheets: "always",
   },
 
-  integrations: [sitemap(), mdx()],
+  integrations: [sitemap(), icon()],
 });
