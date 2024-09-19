@@ -16,13 +16,14 @@ interface Props {
 }
 
 const { metaTitle, title, type = '404', link } = Astro.props;
+
 ---
 
 <GeneralLayout title={metaTitle}>
   <div class:list={['error-page', `error-page--${type}`]}>
     <Container>
       <div class="wrapper">
-        <SimpleHeader />
+        <SimpleHeader theme="dark" />
         <div class="content">
           <h1 class="title heading">{title}</h1>
           <h2 class="description heading">
@@ -53,6 +54,7 @@ const { metaTitle, title, type = '404', link } = Astro.props;
     grid-template-rows: auto 1fr;
     gap: var(--error-page-gap);
     text-align: center;
+    color: #1a1a1f;
   }
 
   .error-page--404 {
@@ -114,9 +116,9 @@ const { metaTitle, title, type = '404', link } = Astro.props;
     }
   }
 
-  @media screen and (max-height: 699px) {
+  @media screen and (max-height: 700px) {
     .error-page {
-      --error-page-gap: 32px;
+      --error-page-gap: 12px;
     }
   }
 </style>

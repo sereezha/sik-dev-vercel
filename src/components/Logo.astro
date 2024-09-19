@@ -14,7 +14,7 @@ const props = isLink ? { href: '/' } : {};
 ---
 
 <Tag {...props} class:list={['logo', `logo--${theme}`]}>
-  <Icon name="logo" width={width} height={height} />
+  <Icon name={`logo-${theme}`} width={width} height={height} />
 </Tag>
 
 <style>

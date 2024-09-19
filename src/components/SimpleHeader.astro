@@ -1,9 +1,14 @@
 ---
 import Logo from './Logo.astro';
+interface Props {
+  theme: 'light' | 'dark';
+}
+
+const { theme = 'light' } = Astro.props;
 ---
 
 <header class="header">
-  <Logo />
+  <Logo theme={theme} />
 </header>
 
 <style>
