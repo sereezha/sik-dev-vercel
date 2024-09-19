@@ -82,6 +82,10 @@ p {
   font-style: italic;
 }
 
+.eb-garamond-font {
+  font-family: "EB Garamond", serif;
+}
+
 #__next,
 #root {
   isolation: isolate;
