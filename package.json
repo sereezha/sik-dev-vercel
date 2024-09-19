@@ -9,6 +9,18 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/mdx": "^3.1.6",
