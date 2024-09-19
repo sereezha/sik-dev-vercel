@@ -1,4 +1,9 @@
 import type { APIRoute } from "astro";
+import sendpulse from 'sendpulse-api';
+
+const API_USER_ID = "f5672714ec9f64043cb4feeafc0fa09a"; // From SendPulse dashboard
+const API_SECRET = "a59dad5edc5b08b97e608957593e7f4b";
+const TOKEN_STORAGE = "/tmp/";          // Temp storage for API tokens
 
 export const prerender = false;
 
