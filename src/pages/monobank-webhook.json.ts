@@ -27,7 +27,6 @@ export const POST: APIRoute = async ({ request }) => {
       <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
-${payload.failure ? `<b>Failure Reason</b>: ${payload.failureReason}` : ""}
     `,
     };
 
