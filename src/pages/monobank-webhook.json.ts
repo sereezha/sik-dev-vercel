@@ -27,11 +27,11 @@ export const POST: APIRoute = async ({ request }) => {
       <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
-${payload.failure && `<b>Failure Reason</b>: ${payload.failureReason}`}
+${payload.failure ? `<b>Failure Reason</b>: ${payload.failureReason}` : ""}
     `,
     };
 
-    fetch(import.meta.env.GOOGLE_SHEET as string, {
+    await fetch(import.meta.env.GOOGLE_SHEET as string, {
       method: "POST",
       body: formData,
     });
