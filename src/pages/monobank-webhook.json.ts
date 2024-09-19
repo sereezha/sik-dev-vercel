@@ -21,6 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    console.log(payload.failureReason);
+
     const obj = {
       chat_id: import.meta.env.CHAT_ID,
       text: `
