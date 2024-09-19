@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '@components/Logo.astro';
+---
+
+<div class="logo">
+  <Logo isLink={false} width="100%" height="100%" />
+</div>
+<Icon class="logo-text" name="logo-text" />
+
+<style>
+  .logo-text {
+    width: 45px;
+    height: 20px;
+  }
+
+  .logo {
+    width: 93px;
+    height: 60px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .logo {
+      width: 186px;
+      height: 120px;
+    }
+
+    .logo-text {
+      width: 88px;
+      height: 40px;
+    }
+  }
+</style>
