@@ -20,6 +20,8 @@ export const POST: APIRoute = async ({ request }) => {
     const obj = {
       chat_id: "187508671",
       text: `
+      ${JSON.stringify(payload)}
+      <br />
 <b>InvoiceId</b>: ${payload.invoiceId}
 <b>Status</b>: ${payload.status}
     `,
