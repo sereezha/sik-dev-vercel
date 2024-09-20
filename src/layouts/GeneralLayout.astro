@@ -10,20 +10,20 @@ import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/Faceb
 
 interface Props {
   title: string;
+  pageThemeColor?: string;
 }
 
-const { title = 'sik astro' } = Astro.props;
+const { title = 'sik astro', pageThemeColor } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="uk">
   <head>
-    <CommonMeta />
+    <CommonMeta pageThemeColor={pageThemeColor} />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
     <Seo />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#252124" />
     <GoogleAnalytics />
     <!-- <FacebookAnalytics /> -->
   </head>
