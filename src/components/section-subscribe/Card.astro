@@ -14,7 +14,6 @@ const benefits = benefitsMap[type];
 const bottles = bottlesMap[type];
 const initialPrice = getPrices(bottles, 1).sum;
 const initialHref = `/${bottles}/1`;
-
 ---
 
 <div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles}>
@@ -61,7 +60,11 @@ const initialHref = `/${bottles}/1`;
             type="radio"
             class="radio-input visually-hidden"
           /><span class="radio-inner"
-            ><span class="radio-inner__text">3 міс.</span></span
+            ><span class="radio-inner__text"
+              >3 <span class="month-short">міс.</span><span class="month-long"
+                >місяці</span
+              ></span
+            ></span
           ></label
         ><label class="radio-item js-radio-item"
           ><input
@@ -97,7 +100,6 @@ const initialHref = `/${bottles}/1`;
 <style>
   .radiogroup {
     display: grid;
-    align-items: center;
     grid-template-columns: repeat(4, 1fr);
     background-color: #969ab7;
     border-radius: 8px;
@@ -111,8 +113,15 @@ const initialHref = `/${bottles}/1`;
     box-shadow: 1px 2px 6px 0px #0000000f;
   }
 
+  .month-long {
+    display: none;
+  }
+
   .radio-inner {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     color: #fcfbfa;
     border-radius: 4px;
     padding: 8px 12px;
@@ -194,6 +203,16 @@ const initialHref = `/${bottles}/1`;
   .benefits-title {
     font-size: 17px;
     line-height: 1.41;
+  }
+
+  @media screen and (min-width: 767px) {
+    .month-short {
+      display: none;
+    }
+
+    .month-long {
+      display: inline;
+    }
   }
 
   @media screen and (min-width: 539px) and (max-width: 1023px) {
