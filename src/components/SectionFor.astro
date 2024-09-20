@@ -114,10 +114,11 @@ import Paragraph from './Paragraph.astro';
   .section {
     display: grid;
     text-align: center;
+    padding-block: 60px 80px;
   }
 
   .wrapper {
-    padding: 80px 0;
+    padding-block-start: 80px;
     max-width: 700px;
     width: 100%;
   }
@@ -150,6 +151,9 @@ import Paragraph from './Paragraph.astro';
   }
 
   @media screen and (min-width: 768px) {
+    .section {
+      padding-block: 100px;
+    }
     .grid {
       grid-template-columns: 1fr 1fr;
       border-right: 0;
