@@ -26,11 +26,11 @@ export const Metadata: AstroSeoProps = {
         type: "image/jpeg",
       },
     ],
-    site_name: "Сік — підписка на вино",
+    site_name: "Підписка на вино",
     url: SITE_BASE_URL,
     type: "website",
     locale: "uk_UA",
-    // title: "Сік — підписка на вино",
+    title: "Сік — підписка на вино",
     description: "Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас приїжджатиме одна або дві пляшки вина.",
   },
   twitter: {
