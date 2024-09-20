@@ -19,7 +19,7 @@ export const Metadata: AstroSeoProps = {
   openGraph: {
     images: [
       {
-        url: `${SITE_BASE_URL}/img/preview.jpg`,
+        url: `${SITE_BASE_URL}/assets/preview.jpg`,
         width: 2400,
         height: 1260,
         alt: "Sik wine logo",
