@@ -9,6 +9,7 @@ import { Config } from '../config';
     <ul class="links-list row" role="list">
       <li>
         <a
+          id="test-event-button"
           target="_blank"
           rel="noopener noreferrer"
           href={Config.links.instagram}>інстаграм</a
@@ -27,7 +28,6 @@ import { Config } from '../config';
       <a href="mailto:hello@sik.wine">hello@sik.wine</a>
     </div>
   </div>
-  <button id="test-event-button">test event</button>
 </footer>
 
 <style>
@@ -99,10 +99,6 @@ import { Config } from '../config';
 
 <script is:inline>
   document.getElementById('test-event-button').addEventListener('click', () => {
-    window.gtag('event', 'random_event');
-    window.gtag('event', 'test_event');
-    window.dataLayer.push({
-      event: 'test_event_dataLayer',
-    });
+    window.gtag('event', 'signin');
   });
 </script>

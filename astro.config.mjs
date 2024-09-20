@@ -18,7 +18,11 @@ export default defineConfig({
   integrations: [
     sitemap(),
     icon(),
-
+    partytown({
+      config: {
+        forward: ["dataLayer.push", "fbq", "gtag"],
+      },
+    }),
   ],
   devToolbar: {
     enabled: true,
