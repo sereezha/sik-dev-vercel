@@ -3,8 +3,10 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/serverless";
 import icon from "astro-icon";
 
+import partytown from "@astrojs/partytown";
+
 export default defineConfig({
-  site: 'https://hovorovskyi.com',
+  site: "https://hovorovskyi.com",
   output: "hybrid",
   adapter: vercel(),
 
@@ -13,7 +15,15 @@ export default defineConfig({
   },
   scopedStyleStrategy: "class",
 
-  integrations: [sitemap(), icon()],
+  integrations: [
+    sitemap(),
+    icon(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
   devToolbar: {
     enabled: true,
   },
