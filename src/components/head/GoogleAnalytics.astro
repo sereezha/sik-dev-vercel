@@ -1,0 +1,21 @@
+<!-- Google tag (gtag.js) -->
+<script
+  async
+  is:inline
+  src=`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`
+></script>
+<script
+  is:inline
+  define:vars={{
+    GOOGLE_ANALYTICS_ID: import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID,
+  }}
+>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+
+  gtag('config', `${GOOGLE_ANALYTICS_ID}`);
+  gtag('event', 'random_event');
+</script>

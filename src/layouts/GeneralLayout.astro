@@ -4,6 +4,7 @@ import '../styles/global.css';
 import Toast from '@components/toast/Toast.astro';
 import CommonMeta from '@components/head/CommonMeta.astro';
 import Seo from '@components/head/Seo.astro';
+import GoogleAnalytics from '@components/head/GoogleAnalytics.astro';
 
 interface Props {
   title: string;
@@ -15,22 +16,7 @@ const { title = 'sik astro' } = Astro.props;
 <!doctype html>
 <html lang="uk">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      is:inline
-      src="https://www.googletagmanager.com/gtag/js?id=G-XG5PT95276"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-XG5PT95276');
-      gtag('event', 'test_event');
-      gtag('event', 'random_event');
-    </script>
+    <GoogleAnalytics />
     <CommonMeta />
     <Seo />
     <meta name="robots" content="noindex, nofollow" />
