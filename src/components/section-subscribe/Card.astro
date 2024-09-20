@@ -19,7 +19,7 @@ const initialHref = `/${bottles}/1`;
 <div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles}>
   <div class="content">
     <h3 class="title heading">{title}</h3>
-    <p class="description">{description}</p>
+    <p class="description" set:html={description} />
     <ul role="list" class="benefits">
       {
         benefits.map((benefit) => (
