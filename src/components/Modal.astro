@@ -119,7 +119,6 @@ const titleId = `${id}-title`;
         const id = container.id;
         const showOnMount = container.getAttribute('data-show-on-mount') === 'true';
         const isInStorage = localStorage.getItem(id);
-        console.log(isInStorage, id);
         if (isInStorage) {
           container.remove();
           return;

@@ -2,6 +2,8 @@
 import AdultModal from '@components/AdultModal.astro';
 import '../styles/global.css';
 import Toast from '@components/toast/Toast.astro';
+import CommonMeta from '@components/head/CommonMeta.astro';
+import Seo from '@components/head/Seo.astro';
 
 interface Props {
   title: string;
@@ -29,46 +31,14 @@ const { title = 'sik astro' } = Astro.props;
       gtag('event', 'test_event');
       gtag('event', 'random_event');
     </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content="ком'юніті людей, які люблять вино" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link
-      rel="icon"
-      href="/favicon-light.svg"
-      type="image/svg+xml"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      href="/favicon-dark.svg"
-      type="image/svg+xml"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <CommonMeta />
+    <Seo />
     <link
       rel="preload"
       as="image"
       href="/assets/video-thumbnail.png"
       fetchpriority="high"
     />
-    <meta property="og:title" content="sik" />
-    <meta
-      property="og:description"
-      content="ком'юніті людей, які люблять вино"
-    />
-    <meta property="og:image" content="https://sik.wine/img/preview.jpg" />
-    <meta property="og:image:alt" content="Пляшки натурального вина" />
-    <meta property="og:url" content="https://sik.wine" />
-    <meta property="og:site_name" content="sik" />
-    <meta property="og:locale" content="uk_UA" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image:alt" content="Пляшки натурального вина" />
-    <link rel="canonical" href="https://sik.wine" />
     <meta name="theme-color" content="#252124" />
 
     <!-- Facebook Pixel Code -->

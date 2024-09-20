@@ -1,0 +1,9 @@
+---
+import { AstroSeo, type AstroSeoProps } from '@astrolib/seo';
+import { Metadata } from '../../config';
+
+const { title = 'Сік' } = Astro.props;
+const metadata: AstroSeoProps = { ...Metadata, title };
+---
+
+<AstroSeo {...metadata} />

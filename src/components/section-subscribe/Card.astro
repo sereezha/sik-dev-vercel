@@ -53,7 +53,7 @@ const initialHref = `/${bottles}/1`;
             type="radio"
             class="radio-input visually-hidden"
             checked=""
-          /><span class="radio-inner">місяць</span></label
+          /><span class="radio-inner js-month">місяць</span></label
         ><label class="radio-item js-radio-item"
           ><input
             value="3"
@@ -97,6 +97,7 @@ const initialHref = `/${bottles}/1`;
 <style>
   .radiogroup {
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(4, 1fr);
     background-color: #969ab7;
     border-radius: 8px;
