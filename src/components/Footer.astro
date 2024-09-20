@@ -99,7 +99,8 @@ import { Config } from '../config';
 
 <script is:inline>
   document.getElementById('test-event-button').addEventListener('click', () => {
-    window.gtag('event', 'test_event_gtag');
+    window.gtag('event', 'random_event');
+    window.gtag('event', 'test_event');
     window.dataLayer.push({
       event: 'test_event_dataLayer',
     });
