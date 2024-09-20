@@ -1,8 +1,12 @@
 /// <reference path="../.astro/types.d.ts" />
 
-interface Window {
-  modalController: {
-    show: (id: string) => void;
-    hide: (id: string) => void;
-  };
+export {};
+
+declare global {
+  interface Window {
+    modalController: {
+      show: (id: string) => void;
+      hide: (id: string) => void;
+    };
+  }
 }

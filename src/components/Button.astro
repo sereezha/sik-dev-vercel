@@ -4,12 +4,14 @@ interface Props {
   appearance?: 'text' | 'default';
   href?: string;
   fullWidth?: boolean;
+  className?: string;
 }
 const {
   size = 'medium',
   href,
   fullWidth = false,
   appearance = 'default',
+  className,
   ...otherProps
 } = Astro.props;
 const Tag = href ? 'a' : 'button';
@@ -20,6 +22,7 @@ const Tag = href ? 'a' : 'button';
   href={href}
   class:list={[
     'button',
+    className,
     `button--appearance-${appearance}`,
     {
       'button--full-width': fullWidth,

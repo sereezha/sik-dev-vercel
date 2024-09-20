@@ -1,0 +1,222 @@
+---
+import { getPrices } from 'src/services/subscriptions/utils';
+import Button from '../Button.astro';
+import { benefitsMap, bottlesMap } from './config';
+
+export interface CardProps {
+  type: 'one' | 'two' | 'special';
+  title: string;
+  description: string;
+}
+
+const { type, title, description } = Astro.props as CardProps;
+const benefits = benefitsMap[type];
+const bottles = bottlesMap[type];
+const initialPrice = getPrices(bottles, 1).sum;
+const initialHref = `/${bottles}/1`;
+
+---
+
+<div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles}>
+  <div class="content">
+    <h3 class="title heading">{title}</h3>
+    <p class="description">{description}</p>
+    <ul role="list" class="benefits">
+      {
+        benefits.map((benefit) => (
+          <li class="benefits-item">
+            <span class="benefits-icon">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 64 64"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M17 17L47 47" stroke="#1A1A1F" />
+                <path d="M47 17L17 47" stroke="#1A1A1F" />
+              </svg>
+            </span>
+            <span class="benefits-title" set:html={benefit.title} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="footer">
+    <form>
+      <div class="radiogroup">
+        <label class="radio-item js-radio-item"
+          ><input
+            value="1"
+            name="months"
+            type="radio"
+            class="radio-input visually-hidden"
+            checked=""
+          /><span class="radio-inner">місяць</span></label
+        ><label class="radio-item js-radio-item"
+          ><input
+            value="3"
+            name="months"
+            type="radio"
+            class="radio-input visually-hidden"
+          /><span class="radio-inner"
+            ><span class="radio-inner__text">3 міс.</span></span
+          ></label
+        ><label class="radio-item js-radio-item"
+          ><input
+            value="6"
+            name="months"
+            type="radio"
+            class="radio-input visually-hidden"
+          /><span class="radio-inner"
+            ><span class="radio-inner__text">пів року</span></span
+          ></label
+        ><label class="radio-item js-radio-item"
+          ><input
+            value="12"
+            name="months"
+            type="radio"
+            class="radio-input visually-hidden"
+          /><span class="radio-inner"
+            ><span class="radio-inner__text">рік</span></span
+          ></label
+        >
+      </div>
+    </form>
+    <Button className="js-button" href={initialHref} fullWidth
+      ><div class="button">
+        Підписатись <span class="price"
+          ><span class="js-price">{initialPrice}</span> ₴</span
+        >
+      </div></Button
+    >
+  </div>
+</div>
+
+<style>
+  .radiogroup {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: #969ab7;
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  input.radio-input:checked ~ .radio-inner,
+  .radio-item.is-active .radio-inner {
+    background-color: #fcfbfa;
+    color: #1a1a1f;
+    box-shadow: 1px 2px 6px 0px #0000000f;
+  }
+
+  .radio-inner {
+    display: block;
+    color: #fcfbfa;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .radio-item {
+    display: block;
+  }
+
+  .card {
+    display: grid;
+    gap: 24px;
+    padding: 20px 16px 16px;
+    color: #1a1a1f;
+  }
+
+  .footer {
+    display: grid;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .description {
+    font-size: 17px;
+    line-height: 1.41;
+  }
+
+  .content {
+    display: grid;
+    gap: 8px;
+  }
+
+  .card--one {
+    background-color: #b6b9cf;
+  }
+
+  .card--two {
+    background-color: #e59fa3;
+  }
+
+  .card--special {
+    background-color: #b6ad9f;
+  }
+
+  .button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .benefits {
+    display: grid;
+    gap: 10px;
+    padding-inline-end: 28px;
+  }
+
+  .benefits-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .benefits-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+  }
+
+  .benefits-title {
+    font-size: 17px;
+    line-height: 1.41;
+  }
+
+  @media screen and (min-width: 539px) and (max-width: 1023px) {
+    .benefits {
+      padding-inline-end: 0;
+    }
+  }
+</style>
+
+<script>
+  import { getPrices } from '../../services/subscriptions/utils';
+
+  const cards = document.querySelectorAll('.js-card')!;
+  cards.forEach((card) => {
+    const bottles = card.getAttribute('data-bottles')!;
+    const radioItems = card.querySelectorAll('.js-radio-item');
+    const price = card.querySelector('.js-price')!;
+    const button = card.querySelector('.js-button')! as HTMLAnchorElement;
+    radioItems.forEach((item) => {
+      item.addEventListener('change', (e) => {
+        const { value } = e.target as HTMLInputElement;
+        button.href = `/${bottles}/${value}`;
+        price.textContent = getPrices(bottles, Number(value)).sum.toString();
+      });
+    });
+  });
+</script>

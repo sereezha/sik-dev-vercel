@@ -17,6 +17,8 @@ const { align = 'start' }: Props = Astro.props;
   .section-intro {
     display: grid;
     gap: 8px;
+    max-width: 463px;
+    width: 100%;
   }
 
   .section-intro--align-start {
@@ -25,10 +27,12 @@ const { align = 'start' }: Props = Astro.props;
 
   .section-intro--align-center {
     text-align: center;
+    margin-inline: auto;
   }
 
   .section-intro--align-end {
     text-align: end;
+    margin-inline-start: auto;
   }
 
   @media screen and (min-width: 767px) {

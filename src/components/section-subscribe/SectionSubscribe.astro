@@ -1,0 +1,79 @@
+---
+import SectionIntro from '../section/SectionIntro.astro';
+import Container from '../Container.astro';
+import Card from './Card.astro';
+import { type CardProps } from './Card.astro';
+
+const cards: CardProps[] = [
+  {
+    title: 'Одна',
+    description:
+      'Вам приїде одна хороша пляшка вина, яку ретельно підбере Рома Ремеєв. Всередині коробки буде: ',
+    type: 'one',
+  },
+  {
+    title: 'Одна',
+    description:
+      'Вам приїде одна хороша пляшка вина, яку ретельно підбере Рома Ремеєв. Всередині коробки буде: ',
+    type: 'two',
+  },
+  {
+    title: 'Одна',
+    description:
+      'Вам приїде одна хороша пляшка вина, яку ретельно підбере Рома Ремеєв. Всередині коробки буде: ',
+    type: 'special',
+  },
+];
+---
+
+<section class="section">
+  <Container>
+    <div class="wrapper">
+      <SectionIntro align="center">
+        <Fragment slot="section-subtitle">Яке ВИНО</Fragment>
+        <Fragment slot="section-title">Скiльки можна замовити пляшок?</Fragment>
+      </SectionIntro>
+      <div class="cards">
+        {
+          cards.map((card) => (
+            <Card
+              title={card.title}
+              description={card.description}
+              type={card.type}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .wrapper {
+    display: grid;
+    gap: 40px;
+  }
+
+  .cards {
+    display: grid;
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 767px) {
+    .wrapper {
+      gap: 60px;
+    }
+
+    .cards {
+      display: grid;
+      gap: 40px;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+  }
+</style>

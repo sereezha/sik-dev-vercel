@@ -6,7 +6,7 @@ import videoMp4 from '@assets/video/logo.mp4';
 import videoWebm from '@assets/video/logo.webm';
 import SectionTitle from '@components/section/SectionTitle.astro';
 import SectionFaq from '@components/faq/SectionFaq.astro';
-import SectionSubscribe from '@components/section/SectionSubscribe.astro';
+import SectionHowItWorks from '@components/section/SectionHowItWorks.astro';
 import SectionAbout from '@components/section/SectionAbout.astro';
 import SectionForm from '@components/section/SectionForm.astro';
 import SectionTest from '@components/section/SectionTest.astro';
@@ -14,6 +14,7 @@ import PageLayout from 'src/layouts/PageLayout.astro';
 import SectionTable from '@components/section/SectionTable.astro';
 import SectionLogo from '@components/section/SectionLogo.astro';
 import AdultModal from '@components/AdultModal.astro';
+import SectionSubscribe from '@components/section-subscribe/SectionSubscribe.astro';
 ---
 
 <PageLayout title="sik">
@@ -32,9 +33,10 @@ import AdultModal from '@components/AdultModal.astro';
       </video>
     </div>
   </div>
-  <SectionSubscribe />
+  <SectionHowItWorks />
   <!-- <SectionTable /> -->
   <SectionAbout />
+  <SectionSubscribe />
   <SectionLogo />
 </PageLayout>
 

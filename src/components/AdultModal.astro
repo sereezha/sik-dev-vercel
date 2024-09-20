@@ -27,7 +27,6 @@ import Modal from './Modal.astro';
       if (action === 'under-18') {
         title.textContent = 'Ви ще неповнолітній ало';
       } else {
-        console.log('over-18');
         // @ts-ignore
         window.modalController.hide('adult-modal');
         localStorage.setItem('adult-modal', 'true');
