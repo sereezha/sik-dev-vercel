@@ -5,13 +5,13 @@ import type { SectionTitleProps } from './SectionTitle.astro';
 
 interface Props {
   title?: astroHTML.JSX.Element | string;
-  className?: string;
   id?: string;
   labelledby?: string;
   titleTag?: SectionTitleProps['Tag'];
+  class?: string;
 }
 
-const { className, id, labelledby } = Astro.props;
+const { class: className, id, labelledby } = Astro.props;
 ---
 
 <section class:list={['section', className]} id={id}>

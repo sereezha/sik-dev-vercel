@@ -11,6 +11,10 @@ export default defineConfig({
   build: {
     inlineStylesheets: "always",
   },
+  scopedStyleStrategy: "class",
 
   integrations: [sitemap(), icon()],
+  devToolbar: {
+    enabled: true,
+  },
 });
