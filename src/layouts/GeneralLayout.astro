@@ -32,5 +32,14 @@ const { title = 'sik astro' } = Astro.props;
     <slot />
     <Toast />
     <AdultModal />
+    <script is:inline>
+      const adultModal = document.getElementById('adult-modal');
+      const isInStorage = localStorage.getItem('adult-modal');
+      if (isInStorage) {
+        adultModal?.remove();
+      } else {
+        adultModal?.setAttribute('aria-hidden', 'false');
+      }
+    </script>
   </body>
 </html>

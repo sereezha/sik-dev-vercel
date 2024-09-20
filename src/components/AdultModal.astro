@@ -28,7 +28,7 @@ import Modal from './Modal.astro';
         title.textContent = 'Ви ще неповнолітній ало';
       } else {
         // @ts-ignore
-        window.modalController.hide('adult-modal');
+        window.modalController.destroy('adult-modal');
         localStorage.setItem('adult-modal', 'true');
       }
     });

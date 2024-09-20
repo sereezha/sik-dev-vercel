@@ -15,7 +15,8 @@ const titleId = `${id}-title`;
   id={id}
   aria-labelledby={titleId}
   data-show-on-mount={showOnMount.toString()}
-  aria-hidden="true"
+  data-a11y-dialog={id}
+  aria-hidden={'true'}
 >
   <div class="dialog-overlay" data-a11y-dialog-hide></div>
   <div class="dialog" role="document">
@@ -100,6 +101,7 @@ const titleId = `${id}-title`;
 
 <script>
   import A11yDialog from 'a11y-dialog';
+  import { lock, unlock } from 'tua-body-scroll-lock';
 
   class ModalController {
     private dialogs: Map<string, A11yDialog> = new Map();
@@ -117,7 +119,8 @@ const titleId = `${id}-title`;
     private initializeDialogs() {
       document.querySelectorAll('.dialog-container').forEach((container) => {
         const id = container.id;
-        const showOnMount = container.getAttribute('data-show-on-mount') === 'true';
+        const showOnMount =
+          container.getAttribute('data-show-on-mount') === 'true';
         const isInStorage = localStorage.getItem(id);
         if (isInStorage) {
           container.remove();
@@ -125,9 +128,17 @@ const titleId = `${id}-title`;
         }
         if (id) {
           const dialog = new A11yDialog(container as HTMLElement);
+          dialog
+            .on('show', () => {
+              lock();
+            })
+            .on('hide', () => {
+              unlock();
+            });
           if (showOnMount) {
             dialog.show();
           }
+
           this.dialogs.set(id, dialog);
         }
       });
@@ -137,6 +148,15 @@ const titleId = `${id}-title`;
       const dialog = this.dialogs.get(id);
       if (dialog) {
         dialog.show();
+      } else {
+        console.warn(`Modal with id "${id}" not found.`);
+      }
+    }
+
+    public destroy(id: string) {
+      const dialog = this.dialogs.get(id);
+      if (dialog) {
+        dialog.destroy();
       } else {
         console.warn(`Modal with id "${id}" not found.`);
       }
