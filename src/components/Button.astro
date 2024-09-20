@@ -1,10 +1,17 @@
 ---
 interface Props {
   size?: 'medium' | 'small';
+  appearance?: 'text' | 'default';
   href?: string;
   fullWidth?: boolean;
 }
-const { size = 'medium', href, fullWidth = false } = Astro.props;
+const {
+  size = 'medium',
+  href,
+  fullWidth = false,
+  appearance = 'default',
+  ...otherProps
+} = Astro.props;
 const Tag = href ? 'a' : 'button';
 ---
 
@@ -13,16 +20,20 @@ const Tag = href ? 'a' : 'button';
   href={href}
   class:list={[
     'button',
+    `button--appearance-${appearance}`,
     {
       'button--full-width': fullWidth,
     },
   ]}
+  {...otherProps}
 >
   <slot />
 </Tag>
 
 <style>
   .button {
+    --button-background-color: #fcfbfa;
+    --button-color: #1a1a1f;
     appearance: none;
     display: inline-flex;
     text-decoration: none;
@@ -30,15 +41,22 @@ const Tag = href ? 'a' : 'button';
     font-weight: 600;
     line-height: 1.14;
     text-align: center;
-    background-color: #fcfbfa;
-    color: #1a1a1f;
+    background-color: var(--button-background-color);
+    color: var(--button-color);
     padding: 0.57em 1.14em;
     border: none;
     border-radius: 2px;
+    cursor: pointer;
   }
 
   .button--full-width {
     display: flex;
+    justify-content: center;
     width: 100%;
+  }
+
+  .button--appearance-text {
+    --button-background-color: transparent;
+    --button-color: #fcfbfa;
   }
 </style>

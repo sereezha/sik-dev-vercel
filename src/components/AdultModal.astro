@@ -1,0 +1,37 @@
+---
+import Button from './Button.astro';
+import Modal from './Modal.astro';
+---
+
+<Modal showOnMount id="adult-modal">
+  <Fragment slot="title">
+    Будь ласка, підтвердіть, що вам 18+ років для перегляду сайту.
+  </Fragment>
+  <Fragment slot="buttons">
+    <Button fullWidth appearance="text" data-action="under-18"
+      >Я ще неповнолітній</Button
+    >
+    <Button fullWidth data-action="over-18">Мені більше 18</Button>
+  </Fragment>
+</Modal>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const adultModal = document.getElementById('adult-modal');
+
+    adultModal?.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const action = target.getAttribute('data-action');
+      const title = adultModal.querySelector('#adult-modal-title')!;
+
+      if (action === 'under-18') {
+        title.textContent = 'Ви ще неповнолітній ало';
+      } else {
+        console.log('over-18');
+        // @ts-ignore
+        window.modalController.hide('adult-modal');
+        localStorage.setItem('adult-modal', 'true');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,159 @@
+---
+import A11yDialog from 'a11y-dialog';
+import Button from './Button.astro';
+interface Props {
+  id: string;
+  showOnMount?: boolean;
+}
+
+const { id, showOnMount = false } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<div
+  class="dialog-container"
+  id={id}
+  aria-labelledby={titleId}
+  data-show-on-mount={showOnMount.toString()}
+  aria-hidden="true"
+>
+  <div class="dialog-overlay" data-a11y-dialog-hide></div>
+  <div class="dialog" role="document">
+    <div class="dialog-content">
+      <h1 class="dialog-title heading" id={titleId}>
+        <slot name="title" />
+      </h1>
+      <slot><Fragment></Fragment></slot>
+      <div class="dialog-buttons">
+        <slot name="buttons" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .dialog-container,
+  .dialog-overlay {
+    position: fixed;
+    inset: 0;
+  }
+
+  .dialog-container {
+    z-index: 999;
+    display: flex;
+  }
+
+  .dialog-container[aria-hidden='true'] {
+    display: none;
+  }
+
+  .dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.67);
+  }
+
+  .dialog {
+    --padding-inline: 16px;
+    margin: auto;
+    padding-inline: var(--padding-inline);
+    z-index: 2;
+    position: relative;
+    max-width: calc(720px + 2 * var(--padding-inline));
+    width: 100%;
+  }
+
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #6f6f72;
+    padding: 24px 16px 16px;
+    min-height: 406px;
+  }
+
+  .dialog-title {
+    font-size: 28px;
+    line-height: 1.14;
+  }
+
+  .dialog-buttons {
+    display: grid;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  @media screen and (min-width: 767px) {
+    .dialog {
+      --padding-inline: 40px;
+    }
+
+    .dialog-title {
+      font-size: 56px;
+      line-height: 0.85;
+    }
+
+    .dialog-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      align-self: end;
+    }
+  }
+</style>
+
+<script>
+  import A11yDialog from 'a11y-dialog';
+
+  class ModalController {
+    private dialogs: Map<string, A11yDialog> = new Map();
+
+    constructor() {
+      document.addEventListener(
+        'DOMContentLoaded',
+        this.initializeDialogs.bind(this)
+      );
+
+      this.show = this.show.bind(this);
+      this.hide = this.hide.bind(this);
+    }
+
+    private initializeDialogs() {
+      document.querySelectorAll('.dialog-container').forEach((container) => {
+        const id = container.id;
+        const showOnMount = container.getAttribute('data-show-on-mount') === 'true';
+        const isInStorage = localStorage.getItem(id);
+        console.log(isInStorage, id);
+        if (isInStorage) {
+          container.remove();
+          return;
+        }
+        if (id) {
+          const dialog = new A11yDialog(container as HTMLElement);
+          if (showOnMount) {
+            dialog.show();
+          }
+          this.dialogs.set(id, dialog);
+        }
+      });
+    }
+
+    public show(id: string) {
+      const dialog = this.dialogs.get(id);
+      if (dialog) {
+        dialog.show();
+      } else {
+        console.warn(`Modal with id "${id}" not found.`);
+      }
+    }
+
+    public hide(id: string) {
+      const dialog = this.dialogs.get(id);
+      if (dialog) {
+        dialog.hide();
+      } else {
+        console.warn(`Modal with id "${id}" not found.`);
+      }
+    }
+  }
+
+  // Create a global instance of ModalController
+  // @ts-ignore
+  window.modalController = new ModalController();
+</script>
