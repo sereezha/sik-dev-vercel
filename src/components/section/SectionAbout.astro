@@ -4,7 +4,7 @@ import Section from './Section.astro';
 import Paragraph from '@components/Paragraph.astro';
 import Paragraphs from '@components/Paragraphs.astro';
 import { Config } from 'src/config';
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import RomaImage from '@assets/img/roma.png';
 ---
 
@@ -26,12 +26,12 @@ import RomaImage from '@assets/img/roma.png';
     </Paragraph>
   </Paragraphs>
   <figure class="roma">
-    <Image
+    <Picture
       densities={[1, 2]}
-      width={120}
-      height={120}
-      class="roma-image"
+      width={RomaImage.width / 2}
       src={RomaImage}
+      formats={['webp']}
+      class="roma-image"
       alt=""
     />
     <figcaption>Той самий Рома Ремеєв</figcaption>
