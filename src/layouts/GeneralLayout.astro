@@ -18,12 +18,14 @@ const { title = 'sik astro' } = Astro.props;
 <!doctype html>
 <html lang="uk">
   <head>
-    <GoogleAnalytics />
-    <!-- <FacebookAnalytics /> -->
     <CommonMeta />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <GoogleAnalytics />
     <Seo />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#252124" />
+    <!-- <FacebookAnalytics /> -->
   </head>
   <body>
     <!-- <FacebookAnalyticsNoScript /> -->
