@@ -49,6 +49,10 @@ const cards: CardProps[] = [
 </section>
 
 <style>
+  .section {
+    padding-block: 60px;
+  }
+
   .wrapper {
     display: grid;
     gap: 40px;
@@ -60,6 +64,10 @@ const cards: CardProps[] = [
   }
 
   @media screen and (min-width: 767px) {
+    .section {
+      padding-block: 100px;
+    }
+
     .wrapper {
       gap: 60px;
     }
@@ -70,7 +78,11 @@ const cards: CardProps[] = [
     }
   }
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1024px) {
+    .section {
+      padding-block: 80px 100px;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

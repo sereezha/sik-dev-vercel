@@ -8,10 +8,18 @@ import { Config } from '../config';
     <p class="copyright">©️ сік, 2023 — зараз</p>
     <ul class="links-list row" role="list">
       <li>
-        <a target="_blank" rel="noopener noreferrer" href={Config.links.instagram}>інстаграм</a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={Config.links.instagram}>інстаграм</a
+        >
       </li>
       <li>
-        <a target="_blank" rel="noopener noreferrer" href={Config.links.telegram}>телеграм</a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={Config.links.telegram}>телеграм</a
+        >
       </li>
     </ul>
     <div class="right row">
@@ -22,13 +30,17 @@ import { Config } from '../config';
 </footer>
 
 <style>
+  :root {
+    --footer-block-padding: 8px;
+  }
+
   .row {
     display: flex;
     gap: 16px;
   }
 
   .footer {
-    padding: 8px 24px;
+    padding: var(--footer-block-padding) 24px;
   }
 
   .copyright {

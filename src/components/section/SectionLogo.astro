@@ -8,11 +8,15 @@ import LogoWithText from '@components/LogoWithText.astro';
 
 <style>
   .section {
+    --padding-top: 80px;
+    --padding-bottom: 120px;
+
     display: grid;
     gap: 12px;
     justify-items: center;
     align-items: center;
-    padding: 80px 0 112px;
+    padding-block: var(--padding-top)
+      calc(var(--padding-bottom) - var(--footer-block-padding));
     text-align: center;
   }
 
@@ -23,6 +27,9 @@ import LogoWithText from '@components/LogoWithText.astro';
 
   @media screen and (min-width: 767px) {
     .section {
+      --padding-top: 100px;
+      --padding-bottom: 240px;
+
       gap: 24px;
     }
   }

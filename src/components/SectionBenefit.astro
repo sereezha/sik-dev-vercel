@@ -1,0 +1,44 @@
+---
+import Container from './Container.astro';
+---
+
+<section class="section">
+  <Container>
+    <h2 class="title heading">
+      Пийте вино. Діліться ним з близькими. Підписуйтесь. Воно того вартує
+    </h2>
+  </Container>
+</section>
+
+<style>
+  .section {
+    padding-block: 80px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+    padding-inline: 64px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 767px) {
+    .title {
+      font-size: 56px;
+      line-height: 0.85;
+      padding: 0;
+    }
+
+    .section {
+      padding-block: 100px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .title {
+      font-size: 80px;
+      line-height: 1;
+    }
+  }
+</style>
