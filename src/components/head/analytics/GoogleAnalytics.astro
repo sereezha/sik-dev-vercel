@@ -14,9 +14,12 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
     dataLayer.push(arguments);
-  }
+  };
   gtag('js', new Date());
 
   gtag('config', `${GOOGLE_ANALYTICS_ID}`);
   gtag('event', 'random_event');
+  dataLayer.push({
+    event: 'random_event_dataLayer',
+  });
 </script>

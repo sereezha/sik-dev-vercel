@@ -27,6 +27,7 @@ import { Config } from '../config';
       <a href="mailto:hello@sik.wine">hello@sik.wine</a>
     </div>
   </div>
+  <button id="test-event-button">test event</button>
 </footer>
 
 <style>
@@ -95,3 +96,11 @@ import { Config } from '../config';
     }
   }
 </style>
+
+<script is:inline>
+  document.getElementById('test-event-button').addEventListener('click', () => {
+    dataLayer.push({
+      event: 'test_event_dataLayer',
+    });
+  });
+</script>
