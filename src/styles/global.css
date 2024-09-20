@@ -71,12 +71,13 @@ html:focus-within {
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-color: #1a1a1f;
   color: #fcfbfa;
   font-family: "Scuto Sans", sans-serif;
   font-weight: 400;
+  font-size: 17px;
+  line-height: 1.41;
 }
 
 canvas,

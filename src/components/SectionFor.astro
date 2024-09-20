@@ -1,0 +1,219 @@
+---
+import Container from './Container.astro';
+import SectionIntro from './section/SectionIntro.astro';
+import { Image } from 'astro:assets';
+import img from '@assets/img/image-test.jpg';
+import Paragraphs from './Paragraphs.astro';
+import Paragraph from './Paragraph.astro';
+---
+
+<section class="section">
+  <div class="img-desktop-wrapper">
+    <Image class="img-desktop" src={img} alt="" />
+  </div>
+  <Container>
+    <div class="wrapper">
+      <div class="content">
+        <div class="intro">
+          <SectionIntro align="center">
+            <Fragment slot="section-subtitle">Тут Якийсь Текст</Fragment>
+            <Fragment slot="section-title">Для кого це?</Fragment>
+          </SectionIntro>
+        </div>
+        <div class="grid">
+          <div class="grid-item">
+            <p>
+              Для тих, хто любить вино, але <span class="wh-nowrap"
+                >не любить</span
+              > обирати, що нового скуштувати
+            </p>
+          </div>
+          <div class="grid-item">
+            <p>
+              Тих, хто хоче кожен місяць розпаковувати таємну пляшку <span
+                class="wh-nowrap">та слухати</span
+              >
+              цікаві історії про неї
+            </p>
+          </div>
+          <div class="grid-item">
+            <p>
+              Тих, хто полює за особливими винами, а головне — особливими
+              емоціями
+            </p>
+          </div>
+          <div class="grid-item">
+            <p>
+              Та для тих, хто хоче приємно здивувати людину, яка також любить
+              вино
+            </p>
+          </div>
+        </div>
+        <div class="footer">
+          <p>Коротко кажучи — для всіх, хто любить вино</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="intro">
+          <SectionIntro align="center">
+            <Fragment slot="section-subtitle">До речі</Fragment>
+            <Fragment slot="section-title">Про подарунки</Fragment>
+          </SectionIntro>
+        </div>
+        <Paragraphs>
+          <Paragraph>
+            Ви можете підписати на вино свою близьку людину! Уявіть, щомісяця
+            новий подарунок протягом трьох, шести або дванадцяти місяців. Цілий
+            рік подарунків!
+          </Paragraph>
+          <Paragraph>
+            Також, ми можемо зробити вам персональний подарунковий сертифікат —
+            для цього натисніть на посилання нижче та напишіть нам в Телеграмі.
+          </Paragraph>
+        </Paragraphs>
+        <div class="footer">
+          <p>Замовити подарунковий сертифікат</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .grid {
+    --grid-border-width: 1px;
+    --grid-border-color: #6f6f72;
+    --grid-border-style: solid;
+    --grid-border: var(--grid-border-width) var(--grid-border-style)
+      var(--grid-border-color);
+
+    display: grid;
+    text-align: start;
+    border-right: var(--grid-border);
+  }
+
+  .grid-item {
+    padding: 16px 28px 32px 16px;
+    border-bottom: var(--grid-border);
+  }
+
+  .img-desktop-wrapper {
+    background-color: #cfceb6;
+  }
+
+  .img-desktop {
+    object-fit: contain;
+    object-position: center;
+    height: 100%;
+  }
+
+  .intro {
+    margin-bottom: 40px;
+  }
+
+  .section {
+    display: grid;
+    text-align: center;
+  }
+
+  .wrapper {
+    padding: 80px 0;
+    max-width: 700px;
+    width: 100%;
+  }
+
+  .content {
+    --content-padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: var(--content-padding) 0;
+  }
+
+  .content:first-child {
+    padding-top: 0;
+  }
+
+  .content:last-child {
+    padding-bottom: 0;
+  }
+
+  .footer {
+    margin-top: 80px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .img-desktop-wrapper {
+      max-height: 480px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      border-right: 0;
+    }
+
+    .grid-item:nth-child(2n + 1) {
+      border-right: var(--grid-border);
+    }
+
+    .grid-item:nth-child(2n) {
+      padding-inline: 32px 16px;
+    }
+
+    .grid-item:last-child,
+    .grid-item:nth-child(3) {
+      border-bottom: 0;
+      padding-block: 32px 16px;
+    }
+
+    .img-desktop-wrapper {
+      max-height: 100%;
+      min-height: 680px;
+    }
+
+    .footer {
+      margin-top: 120px;
+    }
+
+    .intro {
+      margin-bottom: 80px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .content {
+      --content-height: calc(100vh - var(--content-padding) * 2);
+      min-height: var(--content-height);
+      min-height: var(--content-height);
+    }
+
+    .footer {
+      margin-top: auto;
+    }
+
+    .intro {
+      margin-bottom: 120px;
+    }
+
+    .img-desktop-wrapper {
+      position: sticky;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: start;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    .section {
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+  }
+</style>
