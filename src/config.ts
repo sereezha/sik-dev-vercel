@@ -1,5 +1,7 @@
 import type { AstroSeoProps } from "@astrolib/seo";
 
+export const SITE_BASE_URL = "https://hovorovskyi.com";
+
 export const Config = {
   links: {
     instagram: "https://www.instagram.com/sik.wine",
@@ -13,11 +15,11 @@ export const Config = {
 export const Metadata: AstroSeoProps = {
   title: "sik",
   description: "ком'юніті людей, які люблять вино",
-  canonical: "https://hovorovskyi.com/",
+  canonical: SITE_BASE_URL,
   openGraph: {
     images: [
       {
-        url: "https://hovorovskyi.com/img/preview.jpg",
+        url: `${SITE_BASE_URL}/img/preview.jpg`,
         width: 2400,
         height: 1260,
         alt: "Sik wine logo",
@@ -25,7 +27,7 @@ export const Metadata: AstroSeoProps = {
       },
     ],
     site_name: "sik",
-    url: "https://hovorovskyi.com/",
+    url: SITE_BASE_URL,
     type: "website",
     locale: "uk_UA",
     title: "sik",
@@ -33,14 +35,5 @@ export const Metadata: AstroSeoProps = {
   },
   twitter: {
     cardType: "summary_large_image",
-  },
-};
-
-export const Analytics = {
-  facebook: {
-    id: "533165442383526",
-  },
-  google: {
-    id: "G-XXXXXXXXXX",
   },
 };

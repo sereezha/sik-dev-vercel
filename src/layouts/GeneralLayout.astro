@@ -4,7 +4,9 @@ import '../styles/global.css';
 import Toast from '@components/toast/Toast.astro';
 import CommonMeta from '@components/head/CommonMeta.astro';
 import Seo from '@components/head/Seo.astro';
-import GoogleAnalytics from '@components/head/GoogleAnalytics.astro';
+import GoogleAnalytics from '@components/head/analytics/GoogleAnalytics.astro';
+import FacebookAnalytics from '@components/head/analytics/facebook/FacebookAnalytics.astro';
+import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/FacebookAnalyticsNoScript.astro';
 
 interface Props {
   title: string;
@@ -17,6 +19,7 @@ const { title = 'sik astro' } = Astro.props;
 <html lang="uk">
   <head>
     <GoogleAnalytics />
+    <!-- <FacebookAnalytics /> -->
     <CommonMeta />
     <Seo />
     <meta name="robots" content="noindex, nofollow" />
@@ -27,38 +30,9 @@ const { title = 'sik astro' } = Astro.props;
       fetchpriority="high"
     />
     <meta name="theme-color" content="#252124" />
-
-    <!-- Facebook Pixel Code -->
-    <!-- <script is:inline>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        'script',
-        'https://connect.facebook.net/en_US/fbevents.js'
-      );
-      fbq('init', '533165442383526');
-      fbq('track', 'PageView');
-    </script> -->
-    <!-- End Facebook Pixel Code -->
   </head>
   <body>
+    <!-- <FacebookAnalyticsNoScript /> -->
     <slot />
     <Toast />
     <AdultModal />

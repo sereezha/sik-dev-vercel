@@ -517,7 +517,8 @@ import SectionTitle from './SectionTitle.astro';
 </style>
 
 <script>
-  import { toastManager } from '../toast/ToastManager';
+  import { SITE_BASE_URL } from 'src/config';
+import { toastManager } from '../toast/ToastManager';
   import { actions } from 'astro:actions';
 
   const PHONE_REGEX = /^\+?3?8?(0\d{9})$/;
@@ -666,8 +667,8 @@ import SectionTitle from './SectionTitle.astro';
       payments_number: 3,
       // redirectUrl: 'https://hovorovskyi.com/',
       // webHookUrl: 'https://hovorovskyi.com/monobank-webhook.json',
-      returnUrl: 'https://hovorovskyi.com/',
-      callbackUrl: 'https://hovorovskyi.com/monobank-webhook.json',
+      returnUrl: SITE_BASE_URL,
+      callbackUrl: `${SITE_BASE_URL}/monobank-webhook.json`,
     };
     const res = await fetch('https://api.monobank.ua/personal/checkout/order', {
       method: 'POST',
