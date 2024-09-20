@@ -1,0 +1,29 @@
+---
+import Logo from './Logo.astro';
+---
+
+<section class="hero">
+  <Logo />
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  @media screen and (min-width: 768px) {
+    .hero {
+      padding-block-start: 48px;
+      align-items: start;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .hero {
+      padding-block-start: 16px;
+    }
+  }
+</style>
