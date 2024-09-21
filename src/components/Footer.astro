@@ -1,28 +1,41 @@
 ---
-import Container from './Container.astro';
 import { SocialLinks } from '../config';
+
+interface Props {
+  shouldShowLinks?: boolean;
+}
+
+const { shouldShowLinks = true }: Props = Astro.props;
 ---
 
 <footer class="footer">
   <div class="wrapper">
     <p class="copyright">©️ сік, 2023 — зараз</p>
-    <ul class="links-list row" role="list">
-      <li>
-        <a
-          id="test-event-button"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={SocialLinks.instagram}>інстаграм</a
-        >
-      </li>
-      <li>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={SocialLinks.telegram}>телеграм</a
-        >
-      </li>
-    </ul>
+    {
+      shouldShowLinks && (
+        <ul class="links-list row" role="list">
+          <li>
+            <a
+              id="test-event-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={SocialLinks.instagram}
+            >
+              інстаграм
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={SocialLinks.telegram}
+            >
+              телеграм
+            </a>
+          </li>
+        </ul>
+      )
+    }
     <div class="right row">
       <p class="location">КИїв, УКРАЇНА</p>
       <a href="mailto:hello@sik.wine">hello@sik.wine</a>
