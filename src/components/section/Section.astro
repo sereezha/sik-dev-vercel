@@ -2,8 +2,9 @@
 import Container from '@components/Container.astro';
 import SectionIntro from './SectionIntro.astro';
 import type { SectionTitleProps } from './SectionTitle.astro';
+import type { HTMLAttributes } from 'astro/types';
 
-interface Props {
+interface Props extends HTMLAttributes<'section'> {
   title?: astroHTML.JSX.Element | string;
   id?: string;
   labelledby?: string;
@@ -11,10 +12,10 @@ interface Props {
   class?: string;
 }
 
-const { class: className, id, labelledby } = Astro.props;
+const { class: className, id, labelledby, ...props } = Astro.props;
 ---
 
-<section class:list={['section', className]} id={id}>
+<section class:list={['section', className]} id={id} {...props}>
   <Container>
     <div class="wrapper">
       <SectionIntro>

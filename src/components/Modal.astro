@@ -150,7 +150,8 @@ const titleId = `${id}-title`;
 
     .dialog-buttons {
       display: grid;
-      grid-template-columns: repeat(2, auto);
+      grid-auto-flow: column;
+      grid-auto-columns: auto;
       align-self: end;
     }
   }

@@ -163,3 +163,12 @@ a:not([class]) {
   position: absolute;
   width: 1px;
 }
+
+[data-intersect] {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+[data-intersect].is-visible {
+  opacity: 1;
+}
