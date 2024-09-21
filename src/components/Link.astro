@@ -1,21 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
+import { fade } from 'astro:transitions';
 
 interface Props extends HTMLAttributes<'a'> {
   href: string;
   isAnchor?: boolean;
+  withIcon?: boolean;
 }
 
-const { isAnchor, href } = Astro.props;
+const { isAnchor, href, withIcon = false } = Astro.props;
 const icon = isAnchor ? '↓' : '↗';
 ---
 
-<a class="link" href={href}>
+<a class:list={['link', { 'link--with-icon': withIcon }]} href={href}>
   <span class="text">
     <slot />
   </span>
-  <span class="icon">{icon}</span>
+  {withIcon && <span class="icon">{icon}</span>}
 </a>
 
 <style>
@@ -30,12 +32,16 @@ const icon = isAnchor ? '↓' : '↗';
     font-size: 13px;
     line-height: 1.84;
     color: var(--link-color);
-    border-bottom: 1px solid var(--link-border-color);
     transition-property: color, border-color;
     transition-duration: 0.2s;
     outline: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  .link--with-icon {
+    gap: 4px;
+    border-bottom: 1px solid var(--link-border-color);
   }
 
   .link::before {
