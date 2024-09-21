@@ -47,6 +47,11 @@
   --calm-green: #258458;
   --soil-brown: #947f6f;
   --ripe-orange: #df831e;
+  --main-white: #fcfbfa;
+
+  --outline-color: var(--main-white);
+  --outline-width: 1px;
+  --outline-offset: 2px;
 }
 
 *,
@@ -54,6 +59,11 @@
 *::before {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+}
+
+*:focus-visible {
+  outline: var(--outline-width) solid var(--outline-color);
+  outline-offset: var(--outline-offset);
 }
 
 * {

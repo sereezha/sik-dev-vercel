@@ -5,6 +5,8 @@ import { Image } from 'astro:assets';
 import img from '@assets/img/image-test.jpg';
 import Paragraphs from './Paragraphs.astro';
 import Paragraph from './Paragraph.astro';
+import Link from './Link.astro';
+import { SocialLinks } from '../config';
 ---
 
 <section class="section">
@@ -72,7 +74,9 @@ import Paragraph from './Paragraph.astro';
           </Paragraph>
         </Paragraphs>
         <div class="footer">
-          <p>Замовити подарунковий сертифікат</p>
+          <Link href={SocialLinks.telegram}
+            >Замовити подарунковий сертифікат</Link
+          >
         </div>
       </div>
     </div>

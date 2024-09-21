@@ -2,15 +2,20 @@ import type { AstroSeoProps } from "@astrolib/seo";
 
 export const SITE_BASE_URL = "https://hovorovskyi.com";
 
-export const Config = {
-  links: {
-    instagram: "https://www.instagram.com/sik.wine",
-    telegram: "https://t.me/sikwine",
-  },
-  anchors: {
-    subscribe: "#subscribe",
-  },
+export const SocialLinks = {
+  instagram: "https://www.instagram.com/sik.wine",
+  telegram: "https://t.me/sikwine",
 };
+
+export const AnchorSections = {
+  subscribe: "subscribe",
+}
+
+export const AnchorLinks = {
+  subscribe: `#${AnchorSections.subscribe}`,
+}
+
+
 
 export const Metadata: AstroSeoProps = {
   title: "Сік — підписка на вино",

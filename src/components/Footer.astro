@@ -1,6 +1,6 @@
 ---
 import Container from './Container.astro';
-import { Config } from '../config';
+import { SocialLinks } from '../config';
 ---
 
 <footer class="footer">
@@ -12,14 +12,14 @@ import { Config } from '../config';
           id="test-event-button"
           target="_blank"
           rel="noopener noreferrer"
-          href={Config.links.instagram}>інстаграм</a
+          href={SocialLinks.instagram}>інстаграм</a
         >
       </li>
       <li>
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href={Config.links.telegram}>телеграм</a
+          href={SocialLinks.telegram}>телеграм</a
         >
       </li>
     </ul>
@@ -42,6 +42,21 @@ import { Config } from '../config';
 
   .footer {
     padding: var(--footer-block-padding) 24px;
+  }
+
+  .footer a {
+    transition: color 0.2s;
+  }
+
+  .footer a:hover {
+    color: #cccbca;
+  }
+
+  .footer a:focus-visible {
+    --outline-color: #6f6f72;
+    --outline-offset: 4px;
+    outline: var(--outline-width) solid var(--outline-color);
+    outline-offset: var(--outline-offset);
   }
 
   .copyright {

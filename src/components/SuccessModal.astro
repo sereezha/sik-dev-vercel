@@ -1,0 +1,32 @@
+---
+import Button from './Button.astro';
+import Modal from './Modal.astro';
+---
+
+<Modal
+  type="success"
+  showCloseButton
+  id="form-success-modal"
+  description="Дякуємо! Ми дуже раді, що ви замовили підписку та найближчим часом звʼяжемось з вами, щоб підтвердити замовлення та дізнатись дані для відправки."
+>
+  <Fragment slot="title">Замовлення успішно прийняте!</Fragment>
+  <Fragment slot="buttons">
+    <Button href="/" fullWidth data-action="close">На головну</Button>
+  </Fragment>
+</Modal>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const successModal = document.getElementById('form-success-modal');
+
+    successModal?.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const action = target.getAttribute('data-action');
+
+      if (action === 'close') {
+        // @ts-ignore
+        window.modalController.destroy('form-success-modal');
+      }
+    });
+  });
+</script>

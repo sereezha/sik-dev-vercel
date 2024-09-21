@@ -1,17 +1,28 @@
 ---
 import A11yDialog from 'a11y-dialog';
 import Button from './Button.astro';
+import Paragraph from './Paragraph.astro';
+import { Icon } from 'astro-icon/components';
 interface Props {
   id: string;
   showOnMount?: boolean;
+  description?: string;
+  showCloseButton?: boolean;
+  type?: 'info' | 'success';
 }
 
-const { id, showOnMount = false } = Astro.props;
+const {
+  id,
+  showOnMount = false,
+  description,
+  type = 'info',
+  showCloseButton = false,
+} = Astro.props;
 const titleId = `${id}-title`;
 ---
 
 <div
-  class="dialog-container"
+  class={`dialog-container dialog-container--${type}`}
   id={id}
   aria-labelledby={titleId}
   data-show-on-mount={showOnMount.toString()}
@@ -21,10 +32,28 @@ const titleId = `${id}-title`;
   <div class="dialog-overlay" data-a11y-dialog-hide></div>
   <div class="dialog" role="document">
     <div class="dialog-content">
+      {
+        showCloseButton && (
+          <button
+            class="dialog-close"
+            type="button"
+            data-a11y-dialog-hide
+            aria-label="Закрити вікно"
+          >
+            <Icon width={32} height={32} name="close" />
+          </button>
+        )
+      }
       <h1 class="dialog-title heading" id={titleId}>
         <slot name="title" />
       </h1>
-      <slot><Fragment></Fragment></slot>
+      {
+        description && (
+          <div class="dialog-description">
+            <Paragraph set:html={description} />
+          </div>
+        )
+      }
       <div class="dialog-buttons">
         <slot name="buttons" />
       </div>
@@ -33,10 +62,31 @@ const titleId = `${id}-title`;
 </div>
 
 <style is:global>
+  .dialog-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
   .dialog-container,
   .dialog-overlay {
     position: fixed;
     inset: 0;
+  }
+
+  .dialog-container--info .dialog-content {
+    background-color: #6f6f72;
+  }
+
+  .dialog-container--success .dialog-content {
+    background-color: #78a782;
   }
 
   .dialog-container {
@@ -52,6 +102,12 @@ const titleId = `${id}-title`;
     background-color: rgba(0, 0, 0, 0.67);
   }
 
+  .dialog-description {
+    max-width: 560px;
+    width: 100%;
+    margin-top: 24px;
+  }
+
   .dialog {
     --padding-inline: 16px;
     margin: auto;
@@ -63,9 +119,9 @@ const titleId = `${id}-title`;
   }
 
   .dialog-content {
+    position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #6f6f72;
     padding: 24px 16px 16px;
     min-height: 406px;
   }
@@ -73,6 +129,7 @@ const titleId = `${id}-title`;
   .dialog-title {
     font-size: 28px;
     line-height: 1.14;
+    max-width: 660px;
   }
 
   .dialog-buttons {

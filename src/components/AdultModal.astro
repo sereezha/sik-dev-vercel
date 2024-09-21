@@ -3,9 +3,9 @@ import Button from './Button.astro';
 import Modal from './Modal.astro';
 ---
 
-<Modal showOnMount id="adult-modal">
+<Modal type="info" showOnMount id="adult-modal">
   <Fragment slot="title">
-    Будь ласка, підтвердіть, що вам 18+ років для перегляду сайту.
+    Будь ласка, підтвердіть, <span class="wh-nowrap">що вам</span> 18+ років для перегляду сайту.
   </Fragment>
   <Fragment slot="buttons">
     <Button fullWidth appearance="text" data-action="under-18"

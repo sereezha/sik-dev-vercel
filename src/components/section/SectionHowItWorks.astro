@@ -3,7 +3,7 @@ import Button from '@components/Button.astro';
 import Section from './Section.astro';
 import Paragraph from '@components/Paragraph.astro';
 import Paragraphs from '@components/Paragraphs.astro';
-import { Config } from 'src/config';
+import { AnchorLinks } from 'src/config';
 ---
 
 <Section>
@@ -20,7 +20,7 @@ import { Config } from 'src/config';
     </Paragraph>
   </Paragraphs>
   <div class="button">
-    <Button href={Config.anchors.subscribe}>Підписатись</Button>
+    <Button href={AnchorLinks.subscribe}>Підписатись</Button>
   </div>
 </Section>
 

@@ -8,6 +8,7 @@ import GoogleAnalytics from '@components/head/analytics/GoogleAnalytics.astro';
 import FacebookAnalytics from '@components/head/analytics/facebook/FacebookAnalytics.astro';
 import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/FacebookAnalyticsNoScript.astro';
 import Favicons from '@components/head/Favicons.astro';
+import SuccessModal from '@components/SuccessModal.astro';
 
 interface Props {
   title: string;
@@ -31,7 +32,10 @@ const { title = 'sik astro', pageThemeColor } = Astro.props;
     <!-- <FacebookAnalyticsNoScript /> -->
     <slot />
     <Toast />
-    <AdultModal />
+    <div id="modal-container">
+      <AdultModal />
+      <SuccessModal />
+    </div>
     <script is:inline>
       const adultModal = document.getElementById('adult-modal');
       const isInStorage = localStorage.getItem('adult-modal');

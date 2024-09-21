@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   isLink?: boolean;
@@ -23,7 +23,7 @@ const props = isLink ? { href: '/' } : {};
   }
 
   .logo--light {
-    color: #fcfbfa;
+    color: var(--main-white);
   }
 
   .logo--dark {
