@@ -1,14 +1,15 @@
 ---
 import SectionTitle from './SectionTitle.astro';
 import SectionSubtitle from './SectionSubtitle.astro';
-interface Props {
+import type { HTMLAttributes } from 'astro/types';
+interface Props extends HTMLAttributes<'div'> {
   align?: 'center' | 'start' | 'end';
 }
 
-const { align = 'start' }: Props = Astro.props;
+const { align = 'start' } = Astro.props;
 ---
 
-<div class:list={['section-intro', `section-intro--align-${align}`]}>
+<div class:list={['section-intro', `section-intro--align-${align}`]} data-intersect>
   <SectionSubtitle><slot name="section-subtitle" /></SectionSubtitle>
   <SectionTitle><slot name="section-title" /></SectionTitle>
 </div>

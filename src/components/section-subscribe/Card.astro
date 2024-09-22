@@ -18,7 +18,7 @@ const initialPrice = getPrices(bottles, 1).sum;
 const initialHref = getSubscribeUrl(bottles, 1);
 ---
 
-<div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles}>
+<div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles} data-intersect>
   <div class="content">
     <h3 class="title heading">{title}</h3>
     <p class="description" set:html={description} />
@@ -131,7 +131,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
     height: 100%;
     color: var(--main-white);
     border-radius: 4px;
-    padding: 8px 12px;
+    padding: 8px 6px;
     cursor: pointer;
     text-align: center;
     font-weight: 600;
@@ -215,6 +215,10 @@ const initialHref = getSubscribeUrl(bottles, 1);
   @media screen and (min-width: 768px) {
     .month-short {
       display: none;
+    }
+
+    .radio-inner {
+      padding: 8px 12px;
     }
 
     .month-long {
