@@ -12,7 +12,8 @@ import {
   pages,
   getMonthsTextDescription,
 } from './config';
-import Form from './components/Form.astro';
+import Form from '../../components/Form.astro';
+import { getPrices } from 'src/services/subscriptions/utils';
 
 export async function getStaticPaths() {
   return pages.map(({ slug, type, bottles, months }) => {
@@ -41,7 +42,7 @@ const descriptionText = getDescription(type as SubscriptionType);
 const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
 ---
 
-<FormLayout bottles={bottles} months={months}>
+<FormLayout>
   <Container>
     <div class="wrapper">
       <div class="main-content">

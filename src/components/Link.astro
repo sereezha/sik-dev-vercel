@@ -18,15 +18,15 @@ const {
   isInactive = false,
 } = Astro.props;
 const icon = isAnchor ? '↓' : '↗';
+const Tag = isInactive ? 'span' : 'a';
 ---
 
-<a
+<Tag
   class:list={[
     'link',
     {
       'link--with-icon': withIcon,
       'link--with-border': withBorder,
-      'link--inactive': isInactive,
     },
   ]}
   href={href}
@@ -35,18 +35,19 @@ const icon = isAnchor ? '↓' : '↗';
     <slot />
   </span>
   {withIcon && <span class="icon">{icon}</span>}
-</a>
+</Tag>
 
 <style>
   .link {
     --link-outline-offset: 7px;
+    --_link-color: var(--link-color, var(--main-white));
 
     position: relative;
     display: inline-flex;
     gap: 4px;
     font-size: 13px;
     line-height: 1.84;
-    color: var(--link-color, var(--main-white));
+    color: var(--_link-color);
     transition-property: color, border-color;
     transition-duration: 0.2s;
     outline: none;
@@ -58,12 +59,8 @@ const icon = isAnchor ? '↓' : '↗';
     gap: 4px;
   }
 
-  .link--inactive {
-    pointer-events: none;
-  }
-
   .link--with-border {
-    border-bottom: 1px solid var(--link-border-color, var(--link-color));
+    border-bottom: 1px solid var(--link-border-color, var(--_link-color));
   }
 
   .link::before {
@@ -75,14 +72,14 @@ const icon = isAnchor ? '↓' : '↗';
     left: var(--offset);
     bottom: var(--offset);
     right: var(--offset);
-    border: var(--outline-width) solid var(--link-color);
+    border: var(--outline-width) solid var(--_link-color);
     border-radius: 2px;
     display: none;
   }
 
   @media (hover: hover) and (pointer: fine) {
     .link:hover {
-      --link-color: #f5c620;
+      --_link-color: #f5c620;
     }
   }
 

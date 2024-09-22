@@ -1,13 +1,13 @@
 ---
 import Button from '@components/Button.astro';
-import { getPrices } from 'src/services/subscriptions/utils';
+import { getPrices } from '../services/subscriptions/utils';
 
 interface Props {
   months: number;
   bottles: number | 'special';
 }
 
-const { months, bottles } = Astro.props as Props;
+const { months, bottles } = Astro.props;
 ---
 
 <form class="form">
