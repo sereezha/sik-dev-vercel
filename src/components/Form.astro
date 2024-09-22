@@ -2,7 +2,6 @@
 import Button from '@components/Button.astro';
 import { getPrices } from '../services/subscriptions/utils';
 import Input from './input/Input.astro';
-import Inputmask from 'inputmask';
 import InputPhone from './input/InputPhone.astro';
 
 interface Props {
@@ -13,13 +12,21 @@ interface Props {
 const { months, bottles } = Astro.props;
 ---
 
-<form class="form">
+<form class="form" id="subscribe-form" novalidate>
   <div class="inputs">
-    <InputPhone id="phone-field" />
-    <Input type="email" inputmode="email" label="Email" id="email-field" />
+    <InputPhone name="phone" id="phone-field" />
+    <Input
+      name="email"
+      type="email"
+      inputmode="email"
+      label="Email"
+      id="email-field"
+    />
+    <input type="hidden" name="bottles" value={bottles} />
+    <input type="hidden" name="months" value={months} />
   </div>
   <div class="buttons">
-    <Button type="submit"
+    <Button type="submit" id="form-submit-button"
       >Підписатись за {getPrices(bottles, months).sum} ₴</Button
     >
   </div>
@@ -56,10 +63,98 @@ const { months, bottles } = Astro.props;
 </style>
 
 <script>
-  const input = document.querySelector('#phone-field')!;
-  input.addEventListener('input', (e) => {
-    if (input.inputmask) {
-      console.log(input.inputmask.unmaskedvalue());
+  import { actions } from 'astro:actions';
+  import type { FormData, ValidationResult } from 'src/utils/form';
+  import { validateForm } from '../utils/form';
+
+  const form = document.querySelector('#subscribe-form')! as HTMLFormElement;
+  const submitButton = form.querySelector('#form-submit-button')!;
+
+  const disableForm = () => {
+    submitButton.setAttribute('data-loading', '');
+    form.classList.add('is-disabled');
+  };
+
+  const enableForm = () => {
+    submitButton.removeAttribute('data-loading');
+    form.classList.remove('is-disabled');
+  };
+
+  const showFetchError = () => {
+    window.modalController.show('form-error-modal');
+  };
+
+  const resetForm = () => {
+    form.reset();
+  };
+
+  async function sendMessage({ email, phone, bottles, months }: FormData) {
+    try {
+      const { data, error } = await actions.submitSubscriptionForm({
+        email,
+        phone,
+        bottles,
+        months,
+      });
+
+      if (data?.ok) {
+        window.modalController.show('form-success-modal');
+        enableForm();
+        resetForm();
+      } else {
+        showFetchError();
+        enableForm();
+      }
+    } catch (error) {
+      showFetchError();
     }
+  }
+
+  const clearErrors = () => {
+    const phoneEl = form.querySelector('#phone-field')!;
+    const emailEl = form.querySelector('#email-field')!;
+    const errorFields = form.querySelectorAll('[data-error-message]');
+    errorFields.forEach((field) => {
+      field.textContent = '';
+    });
+    emailEl.classList.remove('has-error');
+    phoneEl.classList.remove('has-error');
+  };
+
+  const displayErrors = (
+    errors: Partial<Record<keyof FormData, string>>
+  ): void => {
+    for (const [field, message] of Object.entries(errors)) {
+      const errorEl = form.querySelector(`#${field}-field-error`);
+      const inputEl = form.querySelector(`#${field}-field`);
+      if (errorEl instanceof HTMLElement && inputEl instanceof HTMLElement) {
+        errorEl.textContent = message;
+        inputEl.classList.add('has-error');
+        inputEl.setAttribute('aria-invalid', 'true');
+      }
+    }
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+    const phoneEl = form.querySelector('#phone-field')! as HTMLInputElement;
+    const formData = new FormData(form);
+    let phoneValue = phoneEl.value;
+    if (phoneEl.inputmask) {
+      phoneValue = phoneEl.inputmask.unmaskedvalue();
+      formData.append('phone', phoneValue);
+    }
+    const { errors, validatedData }: ValidationResult = validateForm(
+      Object.fromEntries(formData) as unknown as FormData
+    );
+
+    if (Object.keys(errors).length > 0) {
+      displayErrors(errors);
+      return;
+    }
+
+    disableForm();
+    sendMessage(validatedData as FormData);
   });
 </script>

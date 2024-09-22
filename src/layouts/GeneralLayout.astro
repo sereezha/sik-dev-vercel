@@ -9,6 +9,7 @@ import FacebookAnalytics from '@components/head/analytics/facebook/FacebookAnaly
 import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/FacebookAnalyticsNoScript.astro';
 import Favicons from '@components/head/Favicons.astro';
 import SuccessModal from '@components/modals/SuccessModal.astro';
+import ErrorModal from '@components/modals/ErrorModal.astro';
 
 interface Props {
   title?: string;
@@ -35,6 +36,7 @@ const { pageThemeColor } = Astro.props;
     <div id="modal-container">
       <AdultModal />
       <SuccessModal />
+      <ErrorModal />
     </div>
     <script is:inline>
       const adultModal = document.getElementById('adult-modal');

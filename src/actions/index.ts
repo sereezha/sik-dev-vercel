@@ -1,5 +1,6 @@
 import { defineAction, ActionError } from "astro:actions";
 import { z } from "astro:schema";
+import { PHONE_REGEX } from "src/constants/regex";
 
 export const prerender = false;
 
@@ -7,17 +8,11 @@ export const server = {
   submitSubscriptionForm: defineAction({
     input: z.object({
       phone: z.string().min(1),
-      telegram: z.string().min(1),
+      email: z.string().email(),
       bottles: z.string().min(1),
       months: z.string().min(1),
-      invoiceId: z.string().min(1),
-      paymentUrl: z.string().min(1),
     }),
-    handler: async (
-      { phone, telegram, bottles, months, invoiceId, paymentUrl },
-      context,
-    ) => {
-      const PHONE_REGEX = /^\+?3?8?(0\d{9})$/;
+    handler: async ({ phone, email, bottles, months }, context) => {
       try {
         const tg = {
           token: import.meta.env.BOT_TOKEN,
@@ -25,7 +20,7 @@ export const server = {
         };
 
         if (
-          !telegram ||
+          !email ||
           phone.trim() === "$" ||
           !bottles ||
           !months ||
@@ -39,18 +34,16 @@ export const server = {
 
         const formData = new FormData();
 
-        formData.append("First name", phone);
-        formData.append("Last name", phone);
-        formData.append("Telegram", telegram);
+        formData.append("Phone", phone);
+        formData.append("Email", email);
         formData.append("Bottles", bottles);
         formData.append("Months", months);
 
         const obj = {
           chat_id: tg.chat_id,
           text: `
-<b>First name</b>: ${phone}
-<b>Last name</b>: ${phone}
-${telegram ? `<b>Telegram</b>: ${telegram}` : ""}
+<b>Phone</b>: ${phone}
+<b>Email</b>: ${email}
 <b>Bottles</b>: ${bottles}
 <b>Months</b>: ${months}
     `,

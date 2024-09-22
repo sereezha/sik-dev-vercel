@@ -17,20 +17,18 @@ const {
 } = Astro.props;
 ---
 
-<div
-  class:list={[
-    'wrapper',
-    {
-      'has-error': error,
-    },
-  ]}
->
+<div class:list={['wrapper']}>
   <div class="header">
     <label class="label" for={id}>{label}</label>
-    <span class="error" id={`${id}-error`}>{error}</span>
+    <span class="error" data-error-message id={`${id}-error`}>{error}</span>
   </div>
   <input
-    class:list={['input']}
+    class:list={[
+      'input',
+      {
+        'has-error': error,
+      },
+    ]}
     id={id}
     type={type}
     placeholder={placeholder}
@@ -44,7 +42,7 @@ const {
     gap: 8px;
   }
 
-  .wrapper.has-error .input {
+  .input.has-error {
     border-color: var(--color-error);
   }
 
