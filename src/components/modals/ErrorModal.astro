@@ -1,0 +1,34 @@
+---
+import { SocialLinks } from 'src/config';
+import Button from '../Button.astro';
+import Modal from '../Modal.astro';
+---
+
+<Modal
+  type="error"
+  showCloseButton
+  id="form-error-modal"
+  description="Не перейматесь, проблема на нашому боці — вже розбираємось. А ви поки напишіть нам в Телеграмі, ми з радістю допоможемо оформити замовлення."
+>
+  <Fragment slot="title">Щось пішло не так.</Fragment>
+  <Fragment slot="buttons">
+    <Button href={SocialLinks.telegram} fullWidth data-action="close"
+      >Телеграм</Button
+    >
+  </Fragment>
+</Modal>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const errorModal = document.getElementById('form-error-modal');
+
+    errorModal?.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const action = target.getAttribute('data-action');
+
+      if (action === 'close') {
+        window.modalController.hide('form-error-modal');
+      }
+    });
+  });
+</script>

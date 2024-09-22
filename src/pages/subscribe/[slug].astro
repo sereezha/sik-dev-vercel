@@ -14,6 +14,7 @@ import {
   getSubscriptionTypeColor,
 } from '../../services/subscriptions/config';
 import Form from '../../components/Form.astro';
+import { AnchorLinks, Routes } from 'src/config';
 
 export async function getStaticPaths() {
   return pages.map(({ slug, type, bottles, months }) => {
@@ -30,6 +31,7 @@ const monthsText = `${months} ${getMonthsText(months)}`;
 const monthsTextDescription = `${months} ${getMonthsTextDescription(months)}`;
 const descriptionText = getDescription(type as SubscriptionType);
 const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
+const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 ---
 
 <FormLayout>
@@ -62,7 +64,9 @@ const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
             </p>
           </div>
           <div class="checkout-desktop-link">
-            <Link href="/#subscribe">редагувати</Link>
+            <Link href={editLink}
+              >редагувати</Link
+            >
           </div>
         </div>
       </div>
@@ -76,7 +80,7 @@ const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
         >{subscriptionTypeText.desktop}</span
       > · {monthsText}
     </div>
-    <Link href="/#subscribe">редагувати</Link>
+    <Link href={editLink}>редагувати</Link>
   </div>
 </FormLayout>
 

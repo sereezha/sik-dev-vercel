@@ -3,11 +3,14 @@ import Link from '@components/Link.astro';
 import Header from './Header.astro';
 import { Icon } from 'astro-icon/components';
 import Logo from '@components/Logo.astro';
+import { Routes } from 'src/config';
 ---
 
 <Header className="form-header">
   <Fragment slot="links">
-    <Link href="/" withBorder={false} withIcon={false}>на головну</Link>
+    <Link href={Routes.home} withBorder={false} withIcon={false}
+      >на головну</Link
+    >
     <span>→</span>
     <Link
       aria-current="page"

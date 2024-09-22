@@ -9,17 +9,16 @@ export const SocialLinks = {
 
 export const AnchorSections = {
   subscribe: "subscribe",
-}
+};
 
 export const AnchorLinks = {
   subscribe: `#${AnchorSections.subscribe}`,
-}
-
-
+};
 
 export const Metadata: AstroSeoProps = {
   title: "Сік — підписка на вино",
-  description: "Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас приїжджатиме одна або дві пляшки вина.",
+  description:
+    "Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас приїжджатиме одна або дві пляшки вина.",
   canonical: SITE_BASE_URL,
   openGraph: {
     images: [
@@ -36,9 +35,15 @@ export const Metadata: AstroSeoProps = {
     type: "website",
     locale: "uk_UA",
     title: "Сік — підписка на вино",
-    description: "Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас приїжджатиме одна або дві пляшки вина.",
+    description:
+      "Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас приїжджатиме одна або дві пляшки вина.",
   },
   twitter: {
     cardType: "summary_large_image",
   },
+};
+
+export const Routes = {
+  home: "/",
+  subscribe: "/subscribe",
 };

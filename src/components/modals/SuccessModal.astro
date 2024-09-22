@@ -1,6 +1,7 @@
 ---
-import Button from './Button.astro';
-import Modal from './Modal.astro';
+import { Routes } from 'src/config';
+import Button from '../Button.astro';
+import Modal from '../Modal.astro';
 ---
 
 <Modal
@@ -11,7 +12,7 @@ import Modal from './Modal.astro';
 >
   <Fragment slot="title">Замовлення успішно прийняте!</Fragment>
   <Fragment slot="buttons">
-    <Button href="/" fullWidth data-action="close">На головну</Button>
+    <Button href={Routes.home} fullWidth data-action="close">На головну</Button>
   </Fragment>
 </Modal>
 
@@ -24,7 +25,7 @@ import Modal from './Modal.astro';
       const action = target.getAttribute('data-action');
 
       if (action === 'close') {
-        window.modalController.destroy('form-success-modal');
+        window.modalController.hide('form-success-modal');
       }
     });
   });

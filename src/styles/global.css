@@ -49,6 +49,7 @@
   --ripe-orange: #df831e;
   --main-white: #fcfbfa;
   --main-black: #1a1a1f;
+  --main-error: #b06a6a;
   --color-error: #d0545b;
 
   --outline-color: var(--main-white);

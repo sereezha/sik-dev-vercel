@@ -8,7 +8,7 @@ interface Props {
   showOnMount?: boolean;
   description?: string;
   showCloseButton?: boolean;
-  type?: 'info' | 'success';
+  type?: 'info' | 'success' | 'error';
 }
 
 const {
@@ -87,6 +87,10 @@ const titleId = `${id}-title`;
 
   .dialog-container--success .dialog-content {
     background-color: #78a782;
+  }
+
+  .dialog-container--error .dialog-content {
+    background-color: var(--main-error);
   }
 
   .dialog-container {

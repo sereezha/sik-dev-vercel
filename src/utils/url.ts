@@ -1,2 +1,4 @@
+import { Routes } from "src/config";
+
 export const getSubscribeUrl = (bottles: string | number, months: number) =>
-  `/subscribe/${bottles}-in-${months}`;
+  `${Routes.subscribe}/${bottles}-in-${months}`;
