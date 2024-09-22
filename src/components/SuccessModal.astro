@@ -24,7 +24,6 @@ import Modal from './Modal.astro';
       const action = target.getAttribute('data-action');
 
       if (action === 'close') {
-        // @ts-ignore
         window.modalController.destroy('form-success-modal');
       }
     });

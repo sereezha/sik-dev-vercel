@@ -27,7 +27,6 @@ import Modal from './Modal.astro';
       if (action === 'under-18') {
         title.textContent = 'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
       } else {
-        // @ts-ignore
         window.modalController.destroy('adult-modal');
         localStorage.setItem('adult-modal', 'true');
       }

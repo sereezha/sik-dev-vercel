@@ -58,9 +58,7 @@ const { months, bottles } = Astro.props;
 <script>
   const input = document.querySelector('#phone-field')!;
   input.addEventListener('input', (e) => {
-    // @ts-ignore
     if (input.inputmask) {
-      // @ts-ignore
       console.log(input.inputmask.unmaskedvalue());
     }
   });
