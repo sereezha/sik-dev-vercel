@@ -2,9 +2,11 @@
 import { getPrices } from 'src/services/subscriptions/utils';
 import Button from '../Button.astro';
 import { benefitsMap, bottlesMap } from './config';
+import { getSubscribeUrl } from 'src/utils/url';
+import type { SubscriptionType } from 'src/types/subscription';
 
 export interface CardProps {
-  type: 'one' | 'two' | 'special';
+  type: SubscriptionType;
   title: string;
   description: string;
 }
@@ -13,7 +15,7 @@ const { type, title, description } = Astro.props as CardProps;
 const benefits = benefitsMap[type];
 const bottles = bottlesMap[type];
 const initialPrice = getPrices(bottles, 1).sum;
-const initialHref = `/${bottles}/1`;
+const initialHref = getSubscribeUrl(bottles, 1);
 ---
 
 <div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles}>
@@ -228,7 +230,8 @@ const initialHref = `/${bottles}/1`;
 </style>
 
 <script>
-  import { getPrices } from '../../services/subscriptions/utils';
+  import { getSubscribeUrl } from 'src/utils/url';
+import { getPrices } from '../../services/subscriptions/utils';
 
   const cards = document.querySelectorAll('.js-card')!;
   cards.forEach((card) => {
@@ -239,7 +242,7 @@ const initialHref = `/${bottles}/1`;
     radioItems.forEach((item) => {
       item.addEventListener('change', (e) => {
         const { value } = e.target as HTMLInputElement;
-        button.href = `/${bottles}/${value}`;
+        button.href = getSubscribeUrl(bottles, Number(value));
         price.textContent = getPrices(bottles, Number(value)).sum.toString();
       });
     });

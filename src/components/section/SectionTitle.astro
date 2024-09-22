@@ -1,16 +1,17 @@
 ---
 export interface SectionTitleProps {
   Tag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+  className?: string;
 }
 
-const { Tag = 'p', slot } = Astro.props;
+const { Tag = 'h2', className } = Astro.props;
 ---
 
-<Tag class="section-title heading">
+<Tag class:list={['section-title', 'heading', className]}>
   <slot />
 </Tag>
 
-<style lang="scss">
+<style>
   .section-title {
     font-size: 40px;
     line-height: 1;

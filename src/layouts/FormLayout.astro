@@ -1,0 +1,19 @@
+---
+import FormHeader from '@components/header/FormHeader.astro';
+import GeneralLayout from './GeneralLayout.astro';
+---
+
+<GeneralLayout>
+  <div class="content">
+    <FormHeader />
+    <slot />
+  </div>
+</GeneralLayout>
+
+<style>
+  .content {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 24px;
+  }
+</style>

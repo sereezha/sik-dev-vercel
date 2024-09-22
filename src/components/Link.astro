@@ -1,19 +1,36 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
-import { fade } from 'astro:transitions';
 
 interface Props extends HTMLAttributes<'a'> {
   href: string;
   isAnchor?: boolean;
   withIcon?: boolean;
+  withBorder?: boolean;
+  isInactive?: boolean;
 }
 
-const { isAnchor, href, withIcon = false } = Astro.props;
+const {
+  isAnchor,
+  href,
+  withIcon = false,
+  withBorder = true,
+  isInactive = false,
+} = Astro.props;
 const icon = isAnchor ? '↓' : '↗';
 ---
 
-<a class:list={['link', { 'link--with-icon': withIcon }]} href={href}>
+<a
+  class:list={[
+    'link',
+    {
+      'link--with-icon': withIcon,
+      'link--with-border': withBorder,
+      'link--inactive': isInactive,
+    },
+  ]}
+  href={href}
+>
   <span class="text">
     <slot />
   </span>
@@ -23,15 +40,13 @@ const icon = isAnchor ? '↓' : '↗';
 <style>
   .link {
     --link-outline-offset: 7px;
-    --link-color: var(--main-white);
-    --link-border-color: var(--link-color);
 
     position: relative;
     display: inline-flex;
     gap: 4px;
     font-size: 13px;
     line-height: 1.84;
-    color: var(--link-color);
+    color: var(--link-color, var(--main-white));
     transition-property: color, border-color;
     transition-duration: 0.2s;
     outline: none;
@@ -41,7 +56,14 @@ const icon = isAnchor ? '↓' : '↗';
 
   .link--with-icon {
     gap: 4px;
-    border-bottom: 1px solid var(--link-border-color);
+  }
+
+  .link--inactive {
+    pointer-events: none;
+  }
+
+  .link--with-border {
+    border-bottom: 1px solid var(--link-border-color, var(--link-color));
   }
 
   .link::before {
@@ -58,8 +80,10 @@ const icon = isAnchor ? '↓' : '↗';
     display: none;
   }
 
-  .link:hover {
-    --link-color: #f5c620;
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      --link-color: #f5c620;
+    }
   }
 
   .link:focus-visible::before {

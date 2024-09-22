@@ -25,7 +25,7 @@ import Modal from './Modal.astro';
       const title = adultModal.querySelector('#adult-modal-title')!;
 
       if (action === 'under-18') {
-        title.textContent = 'Ви ще неповнолітній ало';
+        title.textContent = 'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
       } else {
         // @ts-ignore
         window.modalController.destroy('adult-modal');

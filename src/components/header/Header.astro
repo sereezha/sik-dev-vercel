@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="links">
+    <slot name="links" />
+  </div>
+  <slot />
+</header>
+
+<style>
+  .header {
+    padding: 14px 24px;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+</style>

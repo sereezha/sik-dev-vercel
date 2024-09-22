@@ -1,0 +1,46 @@
+---
+import Button from '@components/Button.astro';
+import { getPrices } from 'src/services/subscriptions/utils';
+
+interface Props {
+  months: number;
+  bottles: number | 'special';
+}
+
+const { months, bottles } = Astro.props as Props;
+---
+
+<form class="form">
+  <div class="inputs">
+    <input type="text" /><input type="text" />
+  </div>
+  <div class="buttons">
+    <Button type="submit"
+      >Підписатись за {getPrices(bottles, months).sum} ₴</Button
+    >
+  </div>
+</form>
+
+<style>
+  .form {
+    display: grid;
+    gap: 40px;
+  }
+
+  .inputs {
+    display: grid;
+    gap: 16px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: end;
+  }
+
+  @media screen and (min-width: 768px) {
+    .inputs {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+</style>

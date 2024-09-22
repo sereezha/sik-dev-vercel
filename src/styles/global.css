@@ -48,6 +48,7 @@
   --soil-brown: #947f6f;
   --ripe-orange: #df831e;
   --main-white: #fcfbfa;
+  --main-black: #1a1a1f;
 
   --outline-color: var(--main-white);
   --outline-width: 1px;
@@ -79,6 +80,8 @@ html:focus-within {
 }
 
 body {
+  display: grid;
+  grid-template-rows: 1fr auto;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;

@@ -11,11 +11,11 @@ import Favicons from '@components/head/Favicons.astro';
 import SuccessModal from '@components/SuccessModal.astro';
 
 interface Props {
-  title: string;
+  title?: string;
   pageThemeColor?: string;
 }
 
-const { title = 'sik astro', pageThemeColor } = Astro.props;
+const { pageThemeColor } = Astro.props;
 ---
 
 <!doctype html>

@@ -1,0 +1,18 @@
+---
+import Link from '@components/Link.astro';
+import Header from './Header.astro';
+---
+
+<Header>
+  <Fragment slot="links">
+    <Link href="/" withBorder={false} withIcon={false}>на головну</Link>
+    <span>→</span>
+    <Link
+      aria-current="page"
+      isInactive
+      href="/subscribe"
+      withBorder={false}
+      withIcon={false}>оплата</Link
+    >
+  </Fragment>
+</Header>

@@ -1,0 +1,200 @@
+---
+import Container from '@components/Container.astro';
+import Link from '@components/Link.astro';
+import Paragraph from '@components/Paragraph.astro';
+import SectionTitle from '@components/section/SectionTitle.astro';
+import FormLayout from 'src/layouts/FormLayout.astro';
+import type { SubscriptionType } from 'src/types/subscription';
+import {
+  getSubscriptionTypeText,
+  getMonthsText,
+  getDescription,
+  pages,
+  getMonthsTextDescription,
+} from './config';
+import Form from './components/Form.astro';
+
+export async function getStaticPaths() {
+  return pages.map(({ slug, type, bottles, months }) => {
+    return {
+      params: { slug },
+      props: { type, bottles, months },
+    };
+  });
+}
+
+const { type, bottles, months } = Astro.props;
+
+const getSubscriptionTypeColor = (type: SubscriptionType) => {
+  const mapper: Record<SubscriptionType, string> = {
+    one: '#b6b9cf',
+    two: '#e59fa3',
+    special: '#b6ad9f',
+  };
+
+  return mapper[type];
+};
+
+const monthsText = `${months} ${getMonthsText(months)}`;
+const monthsTextDescription = `${months} ${getMonthsTextDescription(months)}`;
+const descriptionText = getDescription(type as SubscriptionType);
+const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
+---
+
+<FormLayout bottles={bottles} months={months}>
+  <Container>
+    <div class="wrapper">
+      <div class="main-content">
+        <SectionTitle>Підписка на вино</SectionTitle>
+        <Paragraph>
+          Для того щоб підписатись заповніть форму нижче. Після оплати
+          ми напишемо вам підтвердження в Телеграмі та запитаємо бажані дані для
+          доставки. Відправляємо вино Новою Поштою за наш рахунок.
+        </Paragraph>
+        <Form months={months} bottles={bottles} />
+      </div>
+      <div class="checkout-desktop">
+        <SectionTitle Tag="p">Ваше замовлення</SectionTitle>
+        <div class="checkout-cards">
+          <div class="checkout-card checkout-card-desktop">
+            <h3 class="checkout-card-title eb-garamond-font">
+              {subscriptionTypeText.desktop}
+            </h3>
+            <p class="description" set:html={descriptionText} />
+          </div>
+          <div class="checkout-card checkout-card-desktop">
+            <h3 class="checkout-card-title eb-garamond-font">{monthsText}</h3>
+            <p class="description">
+              Сплачуєте один раз, а отримуєте різні вина протягом {monthsTextDescription}.
+            </p>
+          </div>
+          <div class="checkout-desktop-link">
+            <Link href="/#subscribe">редагувати</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+  <div class="checkout-card checkout-mobile">
+    <div class="checkout-mobile-content eb-garamond-font">
+      <span class="subscription-type-text-mobile"
+        >{subscriptionTypeText.mobile}</span
+      ><span class="subscription-type-text-desktop"
+        >{subscriptionTypeText.desktop}</span
+      > · {monthsText}
+    </div>
+    <Link href="/#subscribe">редагувати</Link>
+  </div>
+</FormLayout>
+
+<style
+  define:vars={{
+    'subscription-type': getSubscriptionTypeColor(type as SubscriptionType),
+  }}
+>
+  .checkout-card-title {
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .checkout-desktop-link {
+    display: flex;
+    justify-content: end;
+  }
+
+  .wrapper {
+    display: grid;
+    gap: 24px;
+  }
+
+  .main-content {
+    display: grid;
+    gap: 16px;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .checkout-card {
+    --link-color: var(--main-black);
+    background-color: var(--subscription-type);
+    color: var(--main-black);
+  }
+
+  .checkout-mobile {
+    margin-top: auto;
+    width: 100%;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .checkout-mobile-content {
+    font-size: 23px;
+    line-height: 1.04;
+  }
+
+  .checkout-desktop {
+    display: none;
+  }
+
+  .checkout-cards {
+    display: grid;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .checkout-card-desktop {
+    display: grid;
+    gap: 8px;
+    border-radius: 4px;
+    padding: 20px 52px 16px 20px;
+    min-height: 132px;
+  }
+
+  .subscription-type-text-desktop {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .main-content {
+      gap: 24px;
+    }
+
+    .checkout-mobile {
+      padding: 24px 40px;
+    }
+
+    .checkout-mobile-content {
+      font-size: 28px;
+      line-height: 1.14;
+    }
+
+    .subscription-type-text-mobile {
+      display: none;
+    }
+
+    .subscription-type-text-desktop {
+      display: inline;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .wrapper {
+      grid-template-columns: minmax(350px, 784px) minmax(350px, 440px);
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .checkout-mobile {
+      display: none;
+    }
+
+    .checkout-desktop {
+      display: block;
+    }
+  }
+</style>
