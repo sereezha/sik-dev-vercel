@@ -34,6 +34,7 @@ export function validateForm(formData: FormData): ValidationResult {
     validatedData.email = email;
   }
 
+
   validatedData.bottles = formData.bottles;
   validatedData.months = formData.months;
 
