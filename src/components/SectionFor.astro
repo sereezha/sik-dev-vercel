@@ -196,9 +196,14 @@ import { SocialLinks } from '../config';
 
   @media screen and (min-width: 1280px) {
     .content {
+      --content-padding: 80px;
       --content-height: calc(100vh - var(--content-padding) * 2);
       min-height: var(--content-height);
       min-height: var(--content-height);
+    }
+
+    .content:last-child {
+      padding-bottom: var(--content-padding);
     }
 
     .footer {
@@ -206,7 +211,7 @@ import { SocialLinks } from '../config';
     }
 
     .intro {
-      margin-bottom: 120px;
+      margin-bottom: 80px;
     }
 
     .img-desktop-wrapper {

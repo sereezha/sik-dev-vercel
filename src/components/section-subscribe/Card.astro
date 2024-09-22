@@ -20,7 +20,11 @@ const initialHref = getSubscribeUrl(bottles, 1);
 const backgroundColor = getSubscriptionTypeColor(type);
 ---
 
-<div class:list={['card', 'js-card']} data-bottles={bottles} data-intersect>
+<div
+  class:list={['card', `card--${type}`, 'js-card']}
+  data-bottles={bottles}
+  data-intersect
+>
   <div class="content">
     <h3 class="title heading">{title}</h3>
     <p class="description" set:html={description} />
@@ -105,9 +109,20 @@ const backgroundColor = getSubscriptionTypeColor(type);
   .radiogroup {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    background-color: #969ab7;
     border-radius: 8px;
     padding: 4px;
+  }
+
+  .card--one .radiogroup {
+    background-color: hsl(233, 19%, 65%);
+  }
+
+  .card--two .radiogroup {
+    background-color: #c98286;
+  }
+
+  .card--special .radiogroup {
+    background-color: #9e9485;
   }
 
   input.radio-input:checked ~ .radio-inner,
@@ -154,6 +169,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
   .footer {
     display: grid;
     gap: 16px;
+    margin-top: auto;
   }
 
   .title {
