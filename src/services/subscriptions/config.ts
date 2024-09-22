@@ -1,4 +1,14 @@
-import type { SubscriptionType } from "src/types/subscription";
+import type { SubscriptionType } from "src/services/subscriptions/types";
+
+export const getSubscriptionTypeColor = (type: SubscriptionType) => {
+  const mapper: Record<SubscriptionType, string> = {
+    one: "#b6b9cf",
+    two: "#e59fa3",
+    special: "#b6ad9f",
+  };
+
+  return mapper[type];
+};
 
 export const getSubscriptionTypeText = (type: SubscriptionType) => {
   const mapper: Record<SubscriptionType, { mobile: string; desktop: string }> =

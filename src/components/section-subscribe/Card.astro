@@ -3,7 +3,8 @@ import { getPrices } from 'src/services/subscriptions/utils';
 import Button from '../Button.astro';
 import { benefitsMap, bottlesMap } from './config';
 import { getSubscribeUrl } from 'src/utils/url';
-import type { SubscriptionType } from 'src/types/subscription';
+import type { SubscriptionType } from 'src/services/subscriptions/types';
+import { getSubscriptionTypeColor } from 'src/services/subscriptions/config';
 
 export interface CardProps {
   type: SubscriptionType;
@@ -16,9 +17,10 @@ const benefits = benefitsMap[type];
 const bottles = bottlesMap[type];
 const initialPrice = getPrices(bottles, 1).sum;
 const initialHref = getSubscribeUrl(bottles, 1);
+const backgroundColor = getSubscriptionTypeColor(type);
 ---
 
-<div class:list={['card', 'js-card', `card--${type}`]} data-bottles={bottles} data-intersect>
+<div class:list={['card', 'js-card']} data-bottles={bottles} data-intersect>
   <div class="content">
     <h3 class="title heading">{title}</h3>
     <p class="description" set:html={description} />
@@ -99,7 +101,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
   </div>
 </div>
 
-<style>
+<style define:vars={{ 'card-background-color': backgroundColor }}>
   .radiogroup {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -146,6 +148,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
     gap: 24px;
     padding: 20px 16px 16px;
     color: #1a1a1f;
+    background-color: var(--card-background-color);
   }
 
   .footer {
@@ -166,18 +169,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
   .content {
     display: grid;
     gap: 8px;
-  }
-
-  .card--one {
-    background-color: #b6b9cf;
-  }
-
-  .card--two {
-    background-color: #e59fa3;
-  }
-
-  .card--special {
-    background-color: #b6ad9f;
+    padding-inline-end: 28px;
   }
 
   .button {
@@ -191,7 +183,6 @@ const initialHref = getSubscribeUrl(bottles, 1);
   .benefits {
     display: grid;
     gap: 10px;
-    padding-inline-end: 28px;
   }
 
   .benefits-item {
@@ -227,7 +218,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
   }
 
   @media screen and (min-width: 539px) and (max-width: 1023px) {
-    .benefits {
+    .content {
       padding-inline-end: 0;
     }
   }
@@ -235,7 +226,7 @@ const initialHref = getSubscribeUrl(bottles, 1);
 
 <script>
   import { getSubscribeUrl } from 'src/utils/url';
-import { getPrices } from '../../services/subscriptions/utils';
+  import { getPrices } from '../../services/subscriptions/utils';
 
   const cards = document.querySelectorAll('.js-card')!;
   cards.forEach((card) => {

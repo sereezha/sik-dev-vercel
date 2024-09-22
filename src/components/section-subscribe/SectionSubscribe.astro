@@ -4,24 +4,22 @@ import Container from '../Container.astro';
 import Card from './Card.astro';
 import { type CardProps } from './Card.astro';
 import { AnchorSections } from 'src/config';
+import { getDescription } from 'src/services/subscriptions/config';
 
 const cards: CardProps[] = [
   {
-    title: 'Одна',
-    description:
-      'Вам приїде одна хороша пляшка вина, яку ретельно підбере <span class="wh-nowrap">Рома Ремеєв</span>. Всередині коробки буде: ',
+    title: 'Одну',
+    description: 'Всередині коробки буде: ',
     type: 'one',
   },
   {
     title: 'Дві',
-    description:
-      'Вам приїде одна хороша пляшка вина та одна дуже хорошa пляшка, які ретельно підбере <span class="wh-nowrap">Рома Ремеєв</span>. Всередині коробки будуть: ',
+    description: 'Всередині коробки будуть: ',
     type: 'two',
   },
   {
     title: 'Одну, але рідкісну',
-    description:
-      'Вам приїде пляшка вина, яку ми привеземо з Європи та яка ніколи не продавалась в Україні. Всередині коробки буде: ',
+    description: 'Всередині коробки буде: ',
     type: 'special',
   },
 ];
@@ -39,7 +37,7 @@ const cards: CardProps[] = [
           cards.map((card) => (
             <Card
               title={card.title}
-              description={card.description}
+              description={`${getDescription(card.type)} ${card.description}`}
               type={card.type}
             />
           ))

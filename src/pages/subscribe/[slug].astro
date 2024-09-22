@@ -4,16 +4,16 @@ import Link from '@components/Link.astro';
 import Paragraph from '@components/Paragraph.astro';
 import SectionTitle from '@components/section/SectionTitle.astro';
 import FormLayout from 'src/layouts/FormLayout.astro';
-import type { SubscriptionType } from 'src/types/subscription';
+import type { SubscriptionType } from 'src/services/subscriptions/types';
 import {
   getSubscriptionTypeText,
   getMonthsText,
   getDescription,
   pages,
   getMonthsTextDescription,
-} from './config';
+  getSubscriptionTypeColor,
+} from '../../services/subscriptions/config';
 import Form from '../../components/Form.astro';
-import { getPrices } from 'src/services/subscriptions/utils';
 
 export async function getStaticPaths() {
   return pages.map(({ slug, type, bottles, months }) => {
@@ -25,16 +25,6 @@ export async function getStaticPaths() {
 }
 
 const { type, bottles, months } = Astro.props;
-
-const getSubscriptionTypeColor = (type: SubscriptionType) => {
-  const mapper: Record<SubscriptionType, string> = {
-    one: '#b6b9cf',
-    two: '#e59fa3',
-    special: '#b6ad9f',
-  };
-
-  return mapper[type];
-};
 
 const monthsText = `${months} ${getMonthsText(months)}`;
 const monthsTextDescription = `${months} ${getMonthsTextDescription(months)}`;
@@ -66,7 +56,9 @@ const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
           <div class="checkout-card checkout-card-desktop">
             <h3 class="checkout-card-title eb-garamond-font">{monthsText}</h3>
             <p class="description">
-              Сплачуєте один раз, а отримуєте різні вина протягом {monthsTextDescription}.
+              Сплачуєте один раз, а отримуєте різні вина протягом {
+                monthsTextDescription
+              }.
             </p>
           </div>
           <div class="checkout-desktop-link">
@@ -90,7 +82,7 @@ const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
 
 <style
   define:vars={{
-    'subscription-type': getSubscriptionTypeColor(type as SubscriptionType),
+    'subscription-type': getSubscriptionTypeColor(type),
   }}
 >
   .checkout-card-title {
