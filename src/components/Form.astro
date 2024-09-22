@@ -2,6 +2,8 @@
 import Button from '@components/Button.astro';
 import { getPrices } from '../services/subscriptions/utils';
 import Input from './input/Input.astro';
+import Inputmask from 'inputmask';
+import InputPhone from './input/InputPhone.astro';
 
 interface Props {
   months: number;
@@ -13,7 +15,7 @@ const { months, bottles } = Astro.props;
 
 <form class="form">
   <div class="inputs">
-    <Input type="text" inputmode="tel" label="Телефон" id="phone-field" />
+    <InputPhone id="phone-field" />
     <Input type="email" inputmode="email" label="Email" id="email-field" />
   </div>
   <div class="buttons">
@@ -52,3 +54,12 @@ const { months, bottles } = Astro.props;
     }
   }
 </style>
+
+<script>
+  const input = document.querySelector('#phone-field');
+  input!.addEventListener('input', (e) => {
+    if (input.inputmask) {
+      console.log(input.inputmask.unmaskedvalue());
+    }
+  });
+</script>

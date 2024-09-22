@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Input from './Input.astro';
+
+interface Props extends HTMLAttributes<'input'> {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<Input
+  id={id}
+  type="text"
+  inputmode="tel"
+  label="Телефон"
+  placeholder="+38 (___) ___-__-__"
+  data-phone-input
+/>
+
+<script>
+  import Inputmask from 'inputmask';
+  const phoneInputs = document.querySelectorAll('[data-phone-input]');
+  Inputmask({ mask: '+38 (999) 999-99-99' }).mask(
+    Array.prototype.slice.call(phoneInputs)
+  );
+</script>

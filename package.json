@@ -32,11 +32,13 @@
     "a11y-dialog": "^8.1.1",
     "astro": "^4.15.3",
     "astro-icon": "^1.1.1",
+    "inputmask": "^5.0.9",
     "make-plural": "^7.4.0",
     "tua-body-scroll-lock": "^1.5.1",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@types/inputmask": "^5.0.7",
     "@types/pluralize": "^0.0.33",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "autoprefixer": "^10.4.20",
