@@ -1,7 +1,7 @@
 ---
 import { getPrices } from 'src/services/subscriptions/utils';
 import Button from '../Button.astro';
-import { benefitsMap, bottlesMap } from './config';
+import { bottlesMap, getBenefitsList } from './config';
 import { getSubscribeUrl } from 'src/utils/url';
 import type { SubscriptionType } from 'src/services/subscriptions/types';
 import { getSubscriptionTypeColor } from 'src/services/subscriptions/config';
@@ -13,7 +13,7 @@ export interface CardProps {
 }
 
 const { type, title, description } = Astro.props as CardProps;
-const benefits = benefitsMap[type];
+const benefits = getBenefitsList(type);
 const bottles = bottlesMap[type];
 const initialPrice = getPrices(bottles, 1).sum;
 const initialHref = getSubscribeUrl(bottles, 1);
