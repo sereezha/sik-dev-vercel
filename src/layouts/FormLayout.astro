@@ -14,6 +14,12 @@ import GeneralLayout from './GeneralLayout.astro';
   .content {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 24px;
+    gap: 44px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .content {
+      gap: 40px;
+    }
   }
 </style>

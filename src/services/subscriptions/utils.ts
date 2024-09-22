@@ -1,5 +1,4 @@
 export const getPrices = (bottles: number | string, months: number) => {
-  console.log('GET PRICES', bottles, months);
   const bottlesMap: Record<number | string, Record<number, number>> = {
     1: {
       1: 1900,

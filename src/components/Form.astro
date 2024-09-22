@@ -1,6 +1,7 @@
 ---
 import Button from '@components/Button.astro';
 import { getPrices } from '../services/subscriptions/utils';
+import Input from './input/Input.astro';
 
 interface Props {
   months: number;
@@ -12,7 +13,8 @@ const { months, bottles } = Astro.props;
 
 <form class="form">
   <div class="inputs">
-    <input type="text" /><input type="text" />
+    <Input type="text" inputmode="tel" label="Телефон" id="phone-field" />
+    <Input type="email" inputmode="email" label="Email" id="email-field" />
   </div>
   <div class="buttons">
     <Button type="submit"
@@ -33,14 +35,20 @@ const { months, bottles } = Astro.props;
   }
 
   .buttons {
-    display: flex;
-    justify-content: end;
+    --button-width: 100%;
   }
 
   @media screen and (min-width: 768px) {
     .inputs {
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+    }
+
+    .buttons {
+      --button-width: auto;
+
+      display: flex;
+      justify-content: end;
     }
   }
 </style>

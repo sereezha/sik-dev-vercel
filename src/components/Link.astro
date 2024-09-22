@@ -27,6 +27,7 @@ const Tag = isInactive ? 'span' : 'a';
     {
       'link--with-icon': withIcon,
       'link--with-border': withBorder,
+      'link--inactive': isInactive,
     },
   ]}
   href={href}
@@ -57,6 +58,10 @@ const Tag = isInactive ? 'span' : 'a';
 
   .link--with-icon {
     gap: 4px;
+  }
+
+  .link--inactive {
+    pointer-events: none;
   }
 
   .link--with-border {

@@ -1,9 +1,11 @@
 ---
 import Link from '@components/Link.astro';
 import Header from './Header.astro';
+import { Icon } from 'astro-icon/components';
+import Logo from '@components/Logo.astro';
 ---
 
-<Header>
+<Header className="form-header">
   <Fragment slot="links">
     <Link href="/" withBorder={false} withIcon={false}>на головну</Link>
     <span>→</span>
@@ -15,4 +17,21 @@ import Header from './Header.astro';
       withIcon={false}>оплата</Link
     >
   </Fragment>
+  <div class="logo" slot="logo">
+    <Logo />
+  </div>
 </Header>
+
+<style>
+  .form-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+  }
+
+  @media screen and (max-width: 767px) {
+    .form-header .logo {
+      display: none;
+    }
+  }
+</style>

@@ -49,6 +49,7 @@
   --ripe-orange: #df831e;
   --main-white: #fcfbfa;
   --main-black: #1a1a1f;
+  --color-error: #d0545b;
 
   --outline-color: var(--main-white);
   --outline-width: 1px;
@@ -83,6 +84,7 @@ body {
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100vh;
+  min-height: 100dvh;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   background-color: #1a1a1f;

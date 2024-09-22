@@ -1,0 +1,84 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'input'> {
+  label: string;
+  error?: string;
+  id: string;
+}
+
+const {
+  label,
+  placeholder,
+  type = 'text',
+  error,
+  id,
+  ...otherProps
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'wrapper',
+    {
+      'has-error': error,
+    },
+  ]}
+>
+  <div class="header">
+    <label class="label" for={id}>{label}</label>
+    <span class="error" id={`${id}-error`}>{error}</span>
+  </div>
+  <input
+    class:list={['input']}
+    id={id}
+    type={type}
+    placeholder={placeholder}
+    {...otherProps}
+  />
+</div>
+
+<style>
+  .wrapper {
+    display: grid;
+    gap: 8px;
+  }
+
+  .wrapper.has-error .input {
+    border-color: var(--color-error);
+  }
+
+  .header {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto 1fr;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 1.84;
+  }
+
+  .label {
+    color: #6f6f72;
+  }
+
+  .error {
+    color: var(--color-error);
+    justify-self: end;
+  }
+
+  .input {
+    appearance: none;
+    padding: 15px;
+    border: 1px solid #cccbca;
+    background-color: transparent;
+    border-radius: 1px;
+    transition: border-color 0.3s;
+    font-size: 17px;
+    line-height: 1.41;
+    color: #cccbca;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+</style>

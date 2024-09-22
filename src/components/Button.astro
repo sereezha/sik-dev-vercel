@@ -60,9 +60,11 @@ const Tag = href ? 'a' : 'button';
     --button-outline-width: var(--outline-width, 1px);
     --button-outline-offset: var(--outline-offset, 2px);
     --button-outline-color: var(--outline-color, var(--main-white));
+    --_button-width: var(--button-width, auto);
 
     appearance: none;
     display: inline-flex;
+    justify-content: center;
     text-decoration: none;
     font-size: 21px;
     font-weight: 600;
@@ -80,6 +82,7 @@ const Tag = href ? 'a' : 'button';
     transition-duration: 0.2s;
     transition-property: background-color, color;
     position: relative;
+    width: var(--_button-width);
   }
 
   .button:hover {
@@ -94,7 +97,6 @@ const Tag = href ? 'a' : 'button';
 
   .button[data-full-width] {
     display: flex;
-    justify-content: center;
     width: 100%;
   }
 
