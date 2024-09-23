@@ -1,17 +1,29 @@
 ---
 import Link from '@components/Link.astro';
 import HeaderLink from './HeaderLink.astro';
-import BaseHeader from './BaseHeader.astro';
+import BaseHeader, { type IHeaderLink } from './BaseHeader.astro';
 import { AnchorLinks } from 'src/config';
+const links: IHeaderLink[] = [
+  {
+    href: AnchorLinks.howItWorks,
+    text: 'Як це працює',
+  },
+  {
+    href: AnchorLinks.whatsInside,
+    text: 'Що всередині',
+  },
+  {
+    href: AnchorLinks.subscribe,
+    text: 'Яке вино',
+  },
+  {
+    href: AnchorLinks.forWho,
+    text: 'Для кого',
+  },
+];
 ---
 
-<BaseHeader className="header" hasMobileView>
-  <Fragment slot="links">
-    <HeaderLink data-header-link href={AnchorLinks.howItWorks}>Як це працює</HeaderLink>
-    <HeaderLink data-header-link href={AnchorLinks.whatsInside}>Що всередині</HeaderLink>
-    <HeaderLink data-header-link href={AnchorLinks.subscribe}>Яке Вино</HeaderLink>
-    <HeaderLink data-header-link href={AnchorLinks.forWho}>Для кого</HeaderLink>
-  </Fragment>
+<BaseHeader className="header" hasMobileView links={links}>
   <div slot="actions">
     <Link href={AnchorLinks.subscribe} isAnchor withIcon>Підписатись</Link>
   </div>

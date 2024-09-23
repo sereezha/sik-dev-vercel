@@ -3,12 +3,20 @@ import ButtonLink from '@components/ButtonLink.astro';
 import HeaderLink from './HeaderLink.astro';
 import { SocialLinks } from 'src/config';
 
+export interface IHeaderLink {
+  href?: string;
+  text: string;
+  tag?: string;
+  props?: Record<string, any>;
+}
+
 interface Props {
   className?: string;
   hasMobileView?: boolean;
+  links: IHeaderLink[];
 }
 
-const { className, hasMobileView } = Astro.props;
+const { className, hasMobileView, links } = Astro.props;
 ---
 
 <header
@@ -34,7 +42,21 @@ const { className, hasMobileView } = Astro.props;
   }
   <nav class="main-header-links-wrapper">
     <div class="main-header-links">
-      <slot name="links" />
+      {
+        links.map((link) => {
+          const isLink = !!link.href;
+          const Tag = isLink ? HeaderLink : (link.tag ?? 'span');
+          const otherProps =
+            isLink && !link?.props?.isInactive
+              ? { href: link.href, 'data-header-link': true }
+              : {};
+          return (
+            <Tag {...link.props} {...otherProps}>
+              {link.text}
+            </Tag>
+          );
+        })
+      }
     </div>
   </nav>
 
@@ -49,7 +71,11 @@ const { className, hasMobileView } = Astro.props;
           Закрити
         </ButtonLink>
         <div class="mobile-nav-links">
-          <slot name="links" />
+          {links.map((link) => (
+            <a class="mobile-nav-link heading-font" data-header-link href={link.href}>
+              {link.text}
+            </a>
+          ))}
         </div>
         <ul role="list" class="mobile-nav-socials">
           <li>
@@ -105,14 +131,10 @@ const { className, hasMobileView } = Astro.props;
     display: none;
   }
 
-  .mobile-nav-links > * {
-    font-size: 40px !important;
-    line-height: 1 !important;
-    color: var(--main-white) !important;
-    font-family: var(--font-family-secondary) !important;
-    font-style: italic !important;
-    font-weight: 400 !important;
-    text-transform: initial !important;
+  .mobile-nav-link {
+    font-size: 40px;
+    line-height: 1;
+    color: var(--main-white);
   }
 
   .mobile-nav-socials[role='list'] {

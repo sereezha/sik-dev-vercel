@@ -1,23 +1,30 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import BaseHeader from './BaseHeader.astro';
+import BaseHeader, { type IHeaderLink } from './BaseHeader.astro';
 import Logo from '@components/Logo.astro';
 import { Routes } from 'src/config';
+const links: IHeaderLink[] = [
+  {
+    href: Routes.home,
+    text: 'на головну',
+  },
+  {
+    text: '→',
+    tag: 'span',
+    props: {
+      class: 'c-secondary',
+    },
+  },
+  {
+    href: Routes.subscribe,
+    text: 'оплата',
+    props: {
+      isInactive: true,
+    },
+  },
+];
 ---
 
-<BaseHeader className="form-header">
-  <Fragment slot="links">
-    <HeaderLink href={Routes.home} withIcon={false}
-      >на головну</HeaderLink
-    >
-    <span class="c-secondary">→</span>
-    <HeaderLink
-      aria-current="page"
-      isInactive
-      href="/subscribe"
-      withIcon={false}>оплата</HeaderLink
-    >
-  </Fragment>
+<BaseHeader className="form-header" links={links}>
   <div class="logo" slot="logo">
     <Logo />
   </div>

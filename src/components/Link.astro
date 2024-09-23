@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
 
 export interface LinkProps extends HTMLAttributes<'a'> {
-  href: string;
+  href?: string;
   isAnchor?: boolean;
   withIcon?: boolean;
   withBorder?: boolean;
