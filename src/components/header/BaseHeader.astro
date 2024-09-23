@@ -107,9 +107,10 @@ const { className, hasMobileView } = Astro.props;
 
   .mobile-nav-links > * {
     font-size: 40px !important;
-    line-height: 1;
-    color: var(--main-white);
-    font-family: var(--font-family-secondary);
+    line-height: 1 !important;
+    color: var(--main-white) !important;
+    font-family: var(--font-family-secondary) !important;
+    text-transform: initial !important;
   }
 
   .mobile-nav-socials[role='list'] {
