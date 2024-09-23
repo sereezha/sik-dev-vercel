@@ -64,9 +64,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
             </p>
           </div>
           <div class="checkout-desktop-link">
-            <Link href={editLink}
-              >редагувати</Link
-            >
+            <Link data-checkout-edit href={editLink}>редагувати</Link>
           </div>
         </div>
       </div>
@@ -80,7 +78,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
         >{subscriptionTypeText.desktop}</span
       > · {monthsText}
     </div>
-    <Link href={editLink}>редагувати</Link>
+    <Link data-checkout-edit href={editLink}>редагувати</Link>
   </div>
 </FormLayout>
 
@@ -195,3 +193,26 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
     }
   }
 </style>
+
+<script>
+  const editButtons = document.querySelectorAll('[data-checkout-edit]')!;
+  editButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      const form = document.querySelector(
+        '#subscribe-form'
+      )! as HTMLFormElement;
+      const formData = new FormData(form);
+      const phoneEl = form.querySelector('#phone-field')! as HTMLInputElement;
+      let phoneValue = phoneEl.value;
+      if (phoneEl.inputmask) {
+        phoneValue = phoneEl.inputmask.unmaskedvalue();
+        formData.append('phone', phoneValue);
+      }
+
+      sessionStorage.setItem(
+        'checkout',
+        JSON.stringify(Object.fromEntries(formData))
+      );
+    });
+  });
+</script>

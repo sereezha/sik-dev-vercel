@@ -16,6 +16,7 @@ const {
   withIcon = false,
   withBorder = true,
   isInactive = false,
+  ...otherProps
 } = Astro.props;
 const icon = isAnchor ? '↓' : '↗';
 const Tag = isInactive ? 'span' : 'a';
@@ -31,6 +32,7 @@ const Tag = isInactive ? 'span' : 'a';
     },
   ]}
   href={href}
+  {...otherProps}
 >
   <span class="text">
     <slot />
