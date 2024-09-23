@@ -1,33 +1,171 @@
 ---
+import ButtonLink from '@components/ButtonLink.astro';
+import HeaderLink from './HeaderLink.astro';
+import { SocialLinks } from 'src/config';
+
 interface Props {
   className?: string;
+  hasMobileView?: boolean;
 }
 
-const { className } = Astro.props;
+const { className, hasMobileView } = Astro.props;
 ---
 
-<header class:list={['header', className]}>
-  <nav class="links">
-    <slot name="links" />
+<header
+  class:list={[
+    'main-header',
+    className,
+    {
+      'main-header--with-mobile-view': hasMobileView,
+    },
+  ]}
+>
+  {
+    hasMobileView && (
+      <ButtonLink
+        aria-controls="nav-mobile-menu"
+        aria-expanded="false"
+        class="mobile-nav-open-button js-nav-button"
+      >
+        Меню
+      </ButtonLink>
+    )
+  }
+  <nav class="main-header-links-wrapper">
+    <div class="main-header-links">
+      <slot name="links" />
+    </div>
   </nav>
+
+  {
+    hasMobileView && (
+      <nav class="mobile-nav js-mobile-nav" id="nav-mobile-menu">
+        <ButtonLink
+          class="mobile-nav-close-button js-nav-close-button"
+          aria-controls="nav-mobile-menu"
+        >
+          Закрити
+        </ButtonLink>
+        <div class="mobile-nav-links">
+          <slot name="links" />
+        </div>
+        <ul role="list" class="mobile-nav-socials">
+          <li>
+            <HeaderLink href={SocialLinks.instagram}>Інстаграм</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink href={SocialLinks.telegram}>Телеграм</HeaderLink>
+          </li>
+        </ul>
+      </nav>
+    )
+  }
   <slot name="logo" />
   <slot name="actions" />
 </header>
 
-<style>
+<style is:global>
   :root {
     --header-padding-inline: 24px;
     --header-padding-block: 16px;
+    --header-padding: var(--header-padding-block) var(--header-padding-inline);
   }
 
-  .header {
+  .main-header {
     position: relative;
-    padding: var(--header-padding-block) var(--header-padding-inline);
+    padding: var(--header-padding);
   }
 
-  .links {
+  .main-header-links {
     display: flex;
     align-items: center;
     gap: 16px;
   }
+
+  .mobile-nav-open-button {
+    display: none;
+  }
+
+  .mobile-nav {
+    --mobile-nav-gap: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    gap: var(--mobile-nav-gap);
+    z-index: 9999;
+    justify-items: start;
+    padding: var(--header-padding);
+    background-color: var(--main-black);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    display: none;
+  }
+
+  .mobile-nav-links > * {
+    font-size: 40px !important;
+    line-height: 1;
+    color: var(--main-white);
+    font-family: var(--font-family-secondary);
+  }
+
+  .mobile-nav-socials[role='list'] {
+    display: flex;
+    gap: 18px;
+    padding-top: calc(120px - var(--mobile-nav-gap));
+  }
+
+  @media screen and (max-width: 767px) {
+    .mobile-nav-open-button {
+      display: block;
+    }
+
+    .main-header--with-mobile-view .main-header-links-wrapper {
+      display: none;
+    }
+
+    .mobile-nav {
+      display: grid;
+    }
+
+    .mobile-nav-links {
+      display: grid;
+      gap: 24px;
+    }
+
+    .mobile-nav.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .main-header--with-mobile-view .mobile-nav-open-button {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  const menuButton = document.querySelector('.js-nav-button')!;
+  const headerLinks = document.querySelectorAll('[data-header-link]')!;
+  const menuCloseButton = document.querySelector('.js-nav-close-button')!;
+  const mobileNav = document.querySelector('.js-mobile-nav')!;
+
+  const handleCloseMobileNav = () => {
+    mobileNav.classList.remove('is-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  };
+
+  menuButton.addEventListener('click', () => {
+    mobileNav.classList.add('is-open');
+    menuButton.setAttribute('aria-expanded', 'true');
+  });
+
+  menuCloseButton.addEventListener('click', handleCloseMobileNav);
+
+  headerLinks.forEach((link) => {
+    link.addEventListener('click', handleCloseMobileNav);
+  });
+</script>

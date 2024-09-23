@@ -58,6 +58,8 @@
   --outline-color: var(--main-white);
   --outline-width: 1px;
   --outline-offset: 2px;
+
+  --font-family-secondary: "EB Garamond", serif;
 }
 
 *,

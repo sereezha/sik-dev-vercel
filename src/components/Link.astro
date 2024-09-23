@@ -40,7 +40,7 @@ const Tag = isInactive ? 'span' : 'a';
   {withIcon && <span class="icon">{icon}</span>}
 </Tag>
 
-<style>
+<style is:global>
   .link {
     --link-outline-offset: 7px;
     --_link-color: var(--link-color, var(--main-white));

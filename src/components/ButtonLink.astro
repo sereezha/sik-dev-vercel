@@ -1,0 +1,21 @@
+---
+const { type = 'button', class: className, ...props } = Astro.props;
+---
+
+<button {...props} type={type} class:list={[
+  'link',
+  'button-link',
+  className
+]}>
+  <slot />
+</button>
+
+<style>
+  .button-link {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+</style>

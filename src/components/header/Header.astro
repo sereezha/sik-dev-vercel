@@ -5,12 +5,12 @@ import BaseHeader from './BaseHeader.astro';
 import { AnchorLinks } from 'src/config';
 ---
 
-<BaseHeader className="header">
+<BaseHeader className="header" hasMobileView>
   <Fragment slot="links">
-    <HeaderLink href={AnchorLinks.howItWorks}>Як це працює</HeaderLink>
-    <HeaderLink href={AnchorLinks.whatsInside}>Що всередині</HeaderLink>
-    <HeaderLink href={AnchorLinks.whatWine}>Яке Вино</HeaderLink>
-    <HeaderLink href={AnchorLinks.forWho}>Для кого</HeaderLink>
+    <HeaderLink data-header-link href={AnchorLinks.howItWorks}>Як це працює</HeaderLink>
+    <HeaderLink data-header-link href={AnchorLinks.whatsInside}>Що всередині</HeaderLink>
+    <HeaderLink data-header-link href={AnchorLinks.subscribe}>Яке Вино</HeaderLink>
+    <HeaderLink data-header-link href={AnchorLinks.forWho}>Для кого</HeaderLink>
   </Fragment>
   <div slot="actions">
     <Link href={AnchorLinks.subscribe} isAnchor withIcon>Підписатись</Link>
@@ -22,6 +22,7 @@ import { AnchorLinks } from 'src/config';
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 2000;
     display: flex;
     justify-content: space-between;
     gap: 12px;
