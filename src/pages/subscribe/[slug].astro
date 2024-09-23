@@ -64,7 +64,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
             </p>
           </div>
           <div class="checkout-desktop-link">
-            <Link data-checkout-edit href={editLink}>редагувати</Link>
+            <Link data-js-checkout-edit href={editLink}>редагувати</Link>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
         >{subscriptionTypeText.desktop}</span
       > · {monthsText}
     </div>
-    <Link data-checkout-edit href={editLink}>редагувати</Link>
+    <Link data-js-checkout-edit href={editLink}>редагувати</Link>
   </div>
 </FormLayout>
 
@@ -197,11 +197,11 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 <script>
   import { SessionStorageKeys } from 'src/constants/storage';
 
-  const editButtons = document.querySelectorAll('[data-checkout-edit]')!;
+  const editButtons = document.querySelectorAll('[data-js-checkout-edit]')!;
   editButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const form = document.querySelector(
-        '#subscribe-form'
+        '[data-js-subscribe-form]'
       )! as HTMLFormElement;
       const formData = new FormData(form);
       const phoneEl = form.querySelector('#phone-field')! as HTMLInputElement;

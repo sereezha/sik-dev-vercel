@@ -12,7 +12,7 @@ interface Props {
 const { months, bottles } = Astro.props;
 ---
 
-<form class="form" id="subscribe-form" novalidate>
+<form class="form" id="subscribe-form" novalidate data-js-subscribe-form>
   <div class="inputs">
     <InputPhone name="phone" id="phone-field" />
     <Input
@@ -69,7 +69,7 @@ const { months, bottles } = Astro.props;
   import { SessionStorageKeys } from 'src/constants/storage';
   import { ModalIds } from 'src/constants/modals';
 
-  const form = document.querySelector('#subscribe-form')! as HTMLFormElement;
+  const form = document.querySelector('[data-js-subscribe-form]')! as HTMLFormElement;
   const submitButton = form.querySelector('#form-submit-button')!;
 
   const setFormFieldValue = (selector: string, value: string) => {
