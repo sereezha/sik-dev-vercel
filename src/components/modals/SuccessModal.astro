@@ -2,12 +2,13 @@
 import { Routes } from 'src/config';
 import Button from '../Button.astro';
 import Modal from '../Modal.astro';
+import { ModalIds } from 'src/constants/modals';
 ---
 
 <Modal
   type="success"
   showCloseButton
-  id="form-success-modal"
+  id={ModalIds.SUCCESS_MODAL}
   description="Дякуємо! Ми дуже раді, що ви замовили підписку та найближчим часом звʼяжемось з вами, щоб підтвердити замовлення та дізнатись дані для відправки."
 >
   <Fragment slot="title">Замовлення успішно прийняте!</Fragment>
@@ -17,15 +18,17 @@ import Modal from '../Modal.astro';
 </Modal>
 
 <script>
+import { ModalIds } from "src/constants/modals";
+
   document.addEventListener('DOMContentLoaded', () => {
-    const successModal = document.getElementById('form-success-modal');
+    const successModal = document.getElementById(ModalIds.SUCCESS_MODAL);
 
     successModal?.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
       const action = target.getAttribute('data-action');
 
       if (action === 'close') {
-        window.modalController.hide('form-success-modal');
+        window.modalController.hide(ModalIds.SUCCESS_MODAL);
       }
     });
   });
