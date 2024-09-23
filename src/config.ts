@@ -9,10 +9,18 @@ export const SocialLinks = {
 
 export const AnchorSections = {
   subscribe: "subscribe",
+  howItWorks: "how-it-works",
+  whatsInside: "whats-inside",
+  whatWine: "what-wine",
+  forWho: "for-who",
 };
 
 export const AnchorLinks = {
   subscribe: `#${AnchorSections.subscribe}`,
+  howItWorks: `#${AnchorSections.howItWorks}`,
+  whatsInside: `#${AnchorSections.whatsInside}`,
+  whatWine: `#${AnchorSections.whatWine}`,
+  forWho: `#${AnchorSections.forWho}`,
 };
 
 export const Metadata: AstroSeoProps = {

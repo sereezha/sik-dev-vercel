@@ -1,0 +1,9 @@
+---
+import Link, { type LinkProps} from '@components/Link.astro';
+interface Props extends LinkProps {}
+const props = Astro.props as Props;
+---
+
+<Link {...props} withBorder={false}>
+  <slot />
+</Link>

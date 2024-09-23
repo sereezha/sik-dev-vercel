@@ -1,29 +1,27 @@
 ---
-import Link from '@components/Link.astro';
-import Header from './Header.astro';
-import { Icon } from 'astro-icon/components';
+import HeaderLink from './HeaderLink.astro';
+import BaseHeader from './BaseHeader.astro';
 import Logo from '@components/Logo.astro';
 import { Routes } from 'src/config';
 ---
 
-<Header className="form-header">
+<BaseHeader className="form-header">
   <Fragment slot="links">
-    <Link href={Routes.home} withBorder={false} withIcon={false}
-      >на головну</Link
+    <HeaderLink href={Routes.home} withIcon={false}
+      >на головну</HeaderLink
     >
     <span class="c-secondary">→</span>
-    <Link
+    <HeaderLink
       aria-current="page"
       isInactive
       href="/subscribe"
-      withBorder={false}
-      withIcon={false}>оплата</Link
+      withIcon={false}>оплата</HeaderLink
     >
   </Fragment>
   <div class="logo" slot="logo">
     <Logo />
   </div>
-</Header>
+</BaseHeader>
 
 <style>
   .form-header {

@@ -5,9 +5,10 @@ import Paragraph from '@components/Paragraph.astro';
 import Paragraphs from '@components/Paragraphs.astro';
 import { Picture } from 'astro:assets';
 import RomaImage from '@assets/img/roma.png';
+import { AnchorSections } from 'src/config';
 ---
 
-<Section data-intersect>
+<Section data-intersect id={AnchorSections.whatsInside}>
   <Fragment slot="section-subtitle">Що всередині</Fragment>
   <Fragment slot="section-title">Що за пляшки на мене чекають?</Fragment>
   <Paragraphs>

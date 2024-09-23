@@ -1,27 +1,29 @@
 ---
-interface Props {
-  className?: string;
-}
-
-const { className } = Astro.props;
+import Link from '@components/Link.astro';
+import HeaderLink from './HeaderLink.astro';
+import BaseHeader from './BaseHeader.astro';
+import { AnchorLinks } from 'src/config';
 ---
 
-<header class:list={['header', className]}>
-  <div class="links">
-    <slot name="links" />
+<BaseHeader className="header">
+  <Fragment slot="links">
+    <HeaderLink href={AnchorLinks.howItWorks}>Як це працює</HeaderLink>
+    <HeaderLink href={AnchorLinks.whatsInside}>Що всередині</HeaderLink>
+    <HeaderLink href={AnchorLinks.whatWine}>Яке Вино</HeaderLink>
+    <HeaderLink href={AnchorLinks.forWho}>Для кого</HeaderLink>
+  </Fragment>
+  <div slot="actions">
+    <Link href={AnchorLinks.subscribe} isAnchor withIcon>Підписатись</Link>
   </div>
-  <slot name="logo" />
-</header>
+</BaseHeader>
 
 <style>
   .header {
-    position: relative;
-    padding: 16px 24px;
-  }
-
-  .links {
+    position: sticky;
+    top: 0;
+    left: 0;
     display: flex;
-    align-items: center;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 12px;
   }
 </style>

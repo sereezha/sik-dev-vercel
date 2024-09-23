@@ -3,7 +3,9 @@ import Logo from './Logo.astro';
 ---
 
 <section class="hero">
-  <Logo />
+  <div class="logo">
+    <Logo />
+  </div>
 </section>
 
 <style>
@@ -25,6 +27,10 @@ import Logo from './Logo.astro';
   @media screen and (min-width: 1024px) {
     .hero {
       padding-block-start: 16px;
+    }
+
+    .logo {
+      display: none;
     }
   }
 </style>

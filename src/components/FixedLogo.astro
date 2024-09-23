@@ -1,0 +1,50 @@
+---
+import Logo from './Logo.astro';
+---
+
+<div class="fixed-logo js-fixed-logo">
+  <Logo />
+</div>
+
+<style>
+  .fixed-logo {
+    position: fixed;
+    top: var(--header-padding-block);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 93px;
+    height: 60px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media screen and (max-width: 1023px) {
+    .fixed-logo {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const fixedLogo = document.querySelector('.js-fixed-logo')!;
+  let scrollPosition = window.scrollY;
+
+  const watchLogo = () => {
+    if (scrollPosition < window.scrollY) {
+      fixedLogo.classList.remove('is-visible');
+    } else {
+      fixedLogo.classList.add('is-visible');
+    }
+    scrollPosition = window.scrollY;
+  };
+
+  watchLogo();
+  window.addEventListener('scroll', watchLogo);
+</script>

@@ -6,10 +6,10 @@ import img from '@assets/img/image-test.jpg';
 import Paragraphs from './Paragraphs.astro';
 import Paragraph from './Paragraph.astro';
 import Link from './Link.astro';
-import { SocialLinks } from '../config';
+import { AnchorSections, SocialLinks } from '../config';
 ---
 
-<section class="section">
+<section class="section" id={AnchorSections.forWho}>
   <div class="img-desktop-wrapper">
     <Image class="img-desktop" src={img} alt="" />
   </div>
