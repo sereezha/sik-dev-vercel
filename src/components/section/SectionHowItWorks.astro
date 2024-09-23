@@ -19,18 +19,18 @@ import { AnchorLinks } from 'src/config';
       підписку. Доступ до цих відео мають лише підписники. Казали ж, як Netflix!
     </Paragraph>
   </Paragraphs>
-  <div class="button">
+  <div class="button-wrapper">
     <Button href={AnchorLinks.subscribe}>Підписатись</Button>
   </div>
 </Section>
 
 <style>
-  .button {
+  .button-wrapper {
     margin-block-start: 32px;
   }
 
   @media screen and (min-width: 1024px) {
-    .button {
+    .button-wrapper {
       margin-block-start: 40px;
     }
   }

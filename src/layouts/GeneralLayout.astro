@@ -10,6 +10,7 @@ import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/Faceb
 import Favicons from '@components/head/Favicons.astro';
 import SuccessModal from '@components/modals/SuccessModal.astro';
 import ErrorModal from '@components/modals/ErrorModal.astro';
+import { LocalStorageKeys } from 'src/constants/storage';
 
 interface Props {
   title?: string;
@@ -38,9 +39,7 @@ const { pageThemeColor } = Astro.props;
       <SuccessModal />
       <ErrorModal />
     </div>
-    <script is:inline>
-import { LocalStorageKeys } from "src/constants/storage";
-
+    <script is:inline define:vars={{ LocalStorageKeys }}>
       const adultModal = document.getElementById('adult-modal');
       const isInStorage = localStorage.getItem(LocalStorageKeys.ADULT_MODAL);
       if (isInStorage) {
