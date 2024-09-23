@@ -30,7 +30,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
           <h2 class="description heading">
             <slot name="description" />
           </h2>
-          <div class="button">
+          <div class="button-wrapper">
             <Button href={link.href}>{link.text}</Button>
           </div>
         </div>
@@ -81,7 +81,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     line-height: 1.14;
   }
 
-  .button {
+  .button-wrapper {
     margin-top: 40px;
   }
 
@@ -101,7 +101,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
       line-height: 1;
     }
 
-    .button {
+    .button-wrapper {
       margin-top: 48px;
     }
   }
