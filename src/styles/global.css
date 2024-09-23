@@ -52,6 +52,7 @@
   --main-black: #1a1a1f;
   --main-error: #b06a6a;
   --color-secondary: #707073;
+  --color-light-gray: #cccbca;
   --color-error: #d0545b;
 
   --outline-color: var(--main-white);
