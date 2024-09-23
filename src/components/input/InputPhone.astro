@@ -15,12 +15,12 @@ const { id } = Astro.props;
   inputmode="tel"
   label="Телефон"
   placeholder="+38 (___) ___-__-__"
-  data-phone-input
+  data-js-phone-input
 />
 
 <script>
   import Inputmask from 'inputmask';
-  const phoneInputs = document.querySelectorAll('[data-phone-input]');
+  const phoneInputs = document.querySelectorAll('[data-js-phone-input]');
   Inputmask({ mask: '+38 (999) 999-99-99' }).mask(
     Array.prototype.slice.call(phoneInputs)
   );

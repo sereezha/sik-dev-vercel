@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 ---
 
-<div class="fixed-logo js-fixed-logo">
+<div class="fixed-logo" data-js-fixed-logo>
   <Logo />
 </div>
 
@@ -33,7 +33,7 @@ import Logo from './Logo.astro';
 </style>
 
 <script>
-  const fixedLogo = document.querySelector('.js-fixed-logo')!;
+  const fixedLogo = document.querySelector('[data-js-fixed-logo]')!;
   let scrollPosition = window.scrollY;
 
   const watchLogo = () => {

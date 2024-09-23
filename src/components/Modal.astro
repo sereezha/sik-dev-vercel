@@ -24,6 +24,7 @@ const titleId = `${id}-title`;
 <div
   class={`dialog-container dialog-container--${type}`}
   id={id}
+  data-js-modal-container
   aria-labelledby={titleId}
   data-show-on-mount={showOnMount.toString()}
   data-a11y-dialog={id}
@@ -94,7 +95,7 @@ const titleId = `${id}-title`;
   }
 
   .dialog-container {
-    z-index: 999;
+    z-index: 1000;
     display: flex;
   }
 
@@ -179,7 +180,7 @@ const titleId = `${id}-title`;
     }
 
     private initializeDialogs() {
-      document.querySelectorAll('.dialog-container').forEach((container) => {
+      document.querySelectorAll('[data-js-modal-container]').forEach((container) => {
         const id = container.id;
         const showOnMount =
           container.getAttribute('data-show-on-mount') === 'true';

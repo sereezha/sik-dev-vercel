@@ -21,7 +21,8 @@ const backgroundColor = getSubscriptionTypeColor(type);
 ---
 
 <div
-  class:list={['card', `card--${type}`, 'js-card']}
+  class:list={['card', `card--${type}`]}
+  data-js-subscribe-card
   data-bottles={bottles}
   data-intersect
 >
@@ -53,7 +54,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
   <div class="footer">
     <form>
       <div class="radiogroup">
-        <label class="radio-item js-radio-item"
+        <label class="radio-item" data-js-radio-item
           ><input
             value="1"
             name="months"
@@ -61,7 +62,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
             class="radio-input visually-hidden"
             checked=""
           /><span class="radio-inner js-month">місяць</span></label
-        ><label class="radio-item js-radio-item"
+        ><label class="radio-item" data-js-radio-item
           ><input
             value="3"
             name="months"
@@ -74,7 +75,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
               ></span
             ></span
           ></label
-        ><label class="radio-item js-radio-item"
+        ><label class="radio-item" data-js-radio-item
           ><input
             value="6"
             name="months"
@@ -83,7 +84,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
           /><span class="radio-inner"
             ><span class="radio-inner__text">пів року</span></span
           ></label
-        ><label class="radio-item js-radio-item"
+        ><label class="radio-item" data-js-radio-item
           ><input
             value="12"
             name="months"
@@ -95,10 +96,10 @@ const backgroundColor = getSubscriptionTypeColor(type);
         >
       </div>
     </form>
-    <Button className="js-button" href={initialHref} fullWidth
+    <Button data-js-subscribe-button href={initialHref} fullWidth
       ><div class="button">
         Підписатись <span class="price"
-          ><span class="js-price">{initialPrice}</span> ₴</span
+          ><span data-js-subscribe-price>{initialPrice}</span> ₴</span
         >
       </div></Button
     >
@@ -244,12 +245,12 @@ const backgroundColor = getSubscriptionTypeColor(type);
   import { getSubscribeUrl } from 'src/utils/url';
   import { getPrices } from '../../services/subscriptions/utils';
 
-  const cards = document.querySelectorAll('.js-card')!;
+  const cards = document.querySelectorAll('[data-js-subscribe-card]')!;
   cards.forEach((card) => {
     const bottles = card.getAttribute('data-bottles')!;
-    const radioItems = card.querySelectorAll('.js-radio-item');
-    const price = card.querySelector('.js-price')!;
-    const button = card.querySelector('.js-button')! as HTMLAnchorElement;
+    const radioItems = card.querySelectorAll('[data-js-radio-item]');
+    const price = card.querySelector('[data-js-subscribe-price]')!;
+    const button = card.querySelector('[data-js-subscribe-button]')! as HTMLAnchorElement;
     radioItems.forEach((item) => {
       item.addEventListener('change', (e) => {
         const { value } = e.target as HTMLInputElement;

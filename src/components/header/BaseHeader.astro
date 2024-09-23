@@ -25,7 +25,8 @@ const { className, hasMobileView } = Astro.props;
       <ButtonLink
         aria-controls="nav-mobile-menu"
         aria-expanded="false"
-        class="mobile-nav-open-button js-nav-button"
+        class="mobile-nav-open-button"
+        data-js-mobile-nav-open-button
       >
         Меню
       </ButtonLink>
@@ -39,9 +40,10 @@ const { className, hasMobileView } = Astro.props;
 
   {
     hasMobileView && (
-      <nav class="mobile-nav js-mobile-nav" id="nav-mobile-menu">
+      <nav class="mobile-nav" data-js-mobile-nav id="nav-mobile-menu">
         <ButtonLink
-          class="mobile-nav-close-button js-nav-close-button"
+          class="mobile-nav-close-button"
+          data-js-mobile-nav-close-button
           aria-controls="nav-mobile-menu"
         >
           Закрити
@@ -93,7 +95,7 @@ const { className, hasMobileView } = Astro.props;
     left: 0;
     width: 100%;
     gap: var(--mobile-nav-gap);
-    z-index: 9999;
+    z-index: 999;
     justify-items: start;
     padding: var(--header-padding);
     background-color: var(--main-black);
@@ -148,10 +150,14 @@ const { className, hasMobileView } = Astro.props;
 </style>
 
 <script>
-  const menuButton = document.querySelector('.js-nav-button')!;
+  const menuButton = document.querySelector(
+    '[data-js-mobile-nav-open-button]'
+  )!;
   const headerLinks = document.querySelectorAll('[data-header-link]')!;
-  const menuCloseButton = document.querySelector('.js-nav-close-button')!;
-  const mobileNav = document.querySelector('.js-mobile-nav')!;
+  const menuCloseButton = document.querySelector(
+    '[data-js-mobile-nav-close-button]'
+  )!;
+  const mobileNav = document.querySelector('[data-js-mobile-nav]')!;
 
   const handleCloseMobileNav = () => {
     mobileNav.classList.remove('is-open');

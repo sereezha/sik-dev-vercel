@@ -1,9 +1,10 @@
 ---
+import { ModalIds } from 'src/constants/modals';
 import Button from '../Button.astro';
 import Modal from '../Modal.astro';
 ---
 
-<Modal type="info" showOnMount id="adult-modal">
+<Modal type="info" showOnMount id={ModalIds.ADULT_MODAL}>
   <Fragment slot="title">
     Будь ласка, підтвердіть, <span class="wh-nowrap">що вам</span> 18+ років для
     перегляду сайту.
@@ -17,23 +18,26 @@ import Modal from '../Modal.astro';
 </Modal>
 
 <script>
-import { LocalStorageKeys } from "src/constants/storage";
+  import { LocalStorageKeys } from 'src/constants/storage';
+  import { ModalIds } from 'src/constants/modals';
+
+  const id = ModalIds.ADULT_MODAL;
 
   document.addEventListener('DOMContentLoaded', () => {
-    const adultModal = document.getElementById('adult-modal');
+    const adultModal = document.getElementById(id);
 
     adultModal?.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
       const action = target.getAttribute('data-action');
       if (!action) return;
 
-      const title = adultModal.querySelector('#adult-modal-title')!;
+      const title = adultModal.querySelector(`#${id}-title`)!;
 
       if (action === 'under-18') {
         title.textContent =
           'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
       } else {
-        window.modalController.destroy('adult-modal');
+        window.modalController.destroy(id);
         localStorage.setItem(LocalStorageKeys.ADULT_MODAL, 'true');
       }
     });
