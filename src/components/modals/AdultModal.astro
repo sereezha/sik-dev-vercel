@@ -17,6 +17,8 @@ import Modal from '../Modal.astro';
 </Modal>
 
 <script>
+import { LocalStorageKeys } from "src/constants/storage";
+
   document.addEventListener('DOMContentLoaded', () => {
     const adultModal = document.getElementById('adult-modal');
 
@@ -32,7 +34,7 @@ import Modal from '../Modal.astro';
           'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
       } else {
         window.modalController.destroy('adult-modal');
-        localStorage.setItem('adult-modal', 'true');
+        localStorage.setItem(LocalStorageKeys.ADULT_MODAL, 'true');
       }
     });
   });

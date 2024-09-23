@@ -66,6 +66,7 @@ const { months, bottles } = Astro.props;
   import { actions } from 'astro:actions';
   import type { FormData, ValidationResult } from 'src/utils/form';
   import { validateForm } from '../utils/form';
+import { SessionStorageKeys } from 'src/constants/storage';
 
   const form = document.querySelector('#subscribe-form')! as HTMLFormElement;
   const submitButton = form.querySelector('#form-submit-button')!;
@@ -78,7 +79,7 @@ const { months, bottles } = Astro.props;
   };
 
   const initForm = () => {
-    const checkout = JSON.parse(sessionStorage.getItem('checkout') || '{}');
+    const checkout = JSON.parse(sessionStorage.getItem(SessionStorageKeys.CHECKOUT) || '{}');
 
     setFormFieldValue('#phone-field', checkout.phone);
     setFormFieldValue('#email-field', checkout.email);

@@ -39,8 +39,10 @@ const { pageThemeColor } = Astro.props;
       <ErrorModal />
     </div>
     <script is:inline>
+import { LocalStorageKeys } from "src/constants/storage";
+
       const adultModal = document.getElementById('adult-modal');
-      const isInStorage = localStorage.getItem('adult-modal');
+      const isInStorage = localStorage.getItem(LocalStorageKeys.ADULT_MODAL);
       if (isInStorage) {
         adultModal?.remove();
       } else {
