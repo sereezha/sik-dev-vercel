@@ -11,15 +11,12 @@ const { Tag = 'h2', className } = Astro.props;
   <slot />
 </Tag>
 
-<style>
+<style lang="scss">
   .section-title {
     font-size: 40px;
     line-height: 1;
     color: var(--main-white);
-  }
-
-  @media screen and (min-width: 768px) {
-    .section-title {
+    @media screen and (min-width: 768px) {
       font-size: 56px;
       line-height: 0.87;
     }

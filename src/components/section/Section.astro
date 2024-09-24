@@ -29,32 +29,28 @@ const { class: className, id, labelledby, ...props } = Astro.props;
   </Container>
 </section>
 
-<style>
+<style lang="scss">
   .section {
     padding-block: 40px;
+
+    @media screen and (min-width: 1024px) {
+      padding-block: 60px;
+    }
   }
 
   .wrapper {
     display: grid;
     gap: 40px;
-  }
 
-  @media screen and (min-width: 768px) {
-    .wrapper {
+    @media screen and (min-width: 768px) {
       gap: 64px;
     }
-  }
 
-  @media screen and (min-width: 1024px) {
-    .wrapper {
+    @media screen and (min-width: 1024px) {
       display: grid;
       grid-template-columns: 463px minmax(300px, 537px);
       align-items: start;
       justify-content: space-between;
-    }
-
-    .section {
-      padding-block: 60px;
     }
   }
 </style>

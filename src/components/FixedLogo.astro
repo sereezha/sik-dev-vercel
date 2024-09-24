@@ -6,7 +6,7 @@ import Logo from './Logo.astro';
   <Logo />
 </div>
 
-<style>
+<style lang="scss">
   .fixed-logo {
     position: fixed;
     top: var(--header-padding-block);
@@ -18,17 +18,15 @@ import Logo from './Logo.astro';
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
+
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 
   .is-visible {
     opacity: 1;
     pointer-events: auto;
-  }
-
-  @media screen and (max-width: 1023px) {
-    .fixed-logo {
-      display: none;
-    }
   }
 </style>
 

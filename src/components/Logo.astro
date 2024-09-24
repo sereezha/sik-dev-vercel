@@ -17,16 +17,16 @@ const props = isLink ? { href: '/' } : {};
   <span class="visually-hidden">Сік логотип</span>
 </Tag>
 
-<style>
+<style lang="scss">
   .logo {
     display: flex;
-  }
 
-  .logo--light {
-    color: var(--main-white);
-  }
+    &--light {
+      color: var(--main-white);
+    }
 
-  .logo--dark {
-    color: #1a1a1f;
+    &--dark {
+      color: var(--main-black);
+    }
   }
 </style>

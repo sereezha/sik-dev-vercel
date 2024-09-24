@@ -1,5 +1,5 @@
 import A11yDialog from "a11y-dialog";
-import { lock, unlock } from "tua-body-scroll-lock";
+import { lockBodyScroll, unlockBodyScroll } from "src/utils/dom";
 
 export class ModalController {
   private dialogs: Map<string, A11yDialog> = new Map();
@@ -30,10 +30,10 @@ export class ModalController {
           const dialog = new A11yDialog(container as HTMLElement);
           dialog
             .on("show", () => {
-              lock();
+              lockBodyScroll();
             })
             .on("hide", () => {
-              unlock();
+              unlockBodyScroll();
             });
           if (showOnMount) {
             dialog.show();

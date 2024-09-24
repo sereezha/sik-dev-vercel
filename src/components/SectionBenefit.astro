@@ -10,9 +10,13 @@ import Container from './Container.astro';
   </Container>
 </section>
 
-<style>
+<style lang="scss">
   .section {
     padding-block: 80px;
+
+    @media screen and (min-width: 768px) {
+      padding-block: 100px;
+    }
   }
 
   .title {
@@ -21,22 +25,14 @@ import Container from './Container.astro';
     padding-inline: 64px;
     margin-inline: auto;
     text-align: center;
-  }
 
-  @media screen and (min-width: 768px) {
-    .title {
+    @media screen and (min-width: 768px) {
       font-size: 56px;
       line-height: 0.85;
       padding: 0;
     }
 
-    .section {
-      padding-block: 100px;
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .title {
+    @media screen and (min-width: 1024px) {
       font-size: 80px;
       line-height: 1;
     }

@@ -9,35 +9,36 @@ interface Props extends HTMLAttributes<'div'> {
 const { align = 'start' } = Astro.props;
 ---
 
-<div class:list={['section-intro', `section-intro--align-${align}`]} data-intersect>
+<div
+  class:list={['section-intro', `section-intro--align-${align}`]}
+  data-intersect
+>
   <SectionSubtitle><slot name="section-subtitle" /></SectionSubtitle>
   <SectionTitle><slot name="section-title" /></SectionTitle>
 </div>
 
-<style>
+<style lang="scss">
   .section-intro {
     display: grid;
     gap: 8px;
     max-width: 463px;
     width: 100%;
-  }
 
-  .section-intro--align-start {
-    text-align: start;
-  }
+    &--align-start {
+      text-align: start;
+    }
 
-  .section-intro--align-center {
-    text-align: center;
-    margin-inline: auto;
-  }
+    &--align-center {
+      text-align: center;
+      margin-inline: auto;
+    }
 
-  .section-intro--align-end {
-    text-align: end;
-    margin-inline-start: auto;
-  }
+    &--align-end {
+      text-align: end;
+      margin-inline-start: auto;
+    }
 
-  @media screen and (min-width: 768px) {
-    .section-intro {
+    @media screen and (min-width: 768px) {
       gap: 16px;
     }
   }

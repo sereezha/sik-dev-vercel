@@ -6,7 +6,7 @@ import LogoWithText from '@components/LogoWithText.astro';
   <LogoWithText />
 </section>
 
-<style>
+<style lang="scss">
   .section {
     --padding-top: 80px;
     --padding-bottom: 120px;
@@ -18,19 +18,17 @@ import LogoWithText from '@components/LogoWithText.astro';
     padding-block: var(--padding-top)
       calc(var(--padding-bottom) - var(--footer-block-padding));
     text-align: center;
-  }
 
-  .logo-text {
-    width: 45px;
-    height: 20px;
-  }
-
-  @media screen and (min-width: 768px) {
-    .section {
+    @media screen and (min-width: 768px) {
       --padding-top: 100px;
       --padding-bottom: 240px;
 
       gap: 24px;
     }
+  }
+
+  .logo-text {
+    width: 45px;
+    height: 20px;
   }
 </style>

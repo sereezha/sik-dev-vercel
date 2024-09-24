@@ -47,43 +47,36 @@ const cards: CardProps[] = [
   </Container>
 </section>
 
-<style>
+<style lang="scss">
   .section {
     padding-block: 60px;
+
+    @media screen and (min-width: 768px) {
+      padding-block: 100px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding-block: 80px 100px;
+    }
   }
 
   .wrapper {
     display: grid;
     gap: 40px;
+
+    @media screen and (min-width: 768px) {
+      gap: 60px;
+    }
   }
 
   .cards {
     display: grid;
     gap: 16px;
-  }
 
-  @media screen and (min-width: 768px) {
-    .section {
-      padding-block: 100px;
-    }
-
-    .wrapper {
-      gap: 60px;
-    }
-
-    .cards {
-      display: grid;
+    @media screen and (min-width: 768px) {
       gap: 40px;
     }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .section {
-      padding-block: 80px 100px;
-    }
-
-    .cards {
-      display: grid;
+    @media screen and (min-width: 1024px) {
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     }
   }

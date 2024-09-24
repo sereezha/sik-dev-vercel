@@ -179,7 +179,7 @@ const { className, hasMobileView, links } = Astro.props;
 </style>
 
 <script>
-  import { lock, unlock } from 'tua-body-scroll-lock';
+  import { lockBodyScroll, unlockBodyScroll } from 'src/utils/dom';
 
   const menuButton = document.querySelector(
     '[data-js-mobile-nav-open-button]'
@@ -193,13 +193,13 @@ const { className, hasMobileView, links } = Astro.props;
   const handleCloseMobileNav = () => {
     mobileNav.classList.remove('is-open');
     menuButton.setAttribute('aria-expanded', 'false');
-    unlock();
+    unlockBodyScroll();
   };
 
   menuButton.addEventListener('click', () => {
     mobileNav.classList.add('is-open');
     menuButton.setAttribute('aria-expanded', 'true');
-    lock();
+    lockBodyScroll();
   });
 
   menuCloseButton.addEventListener('click', handleCloseMobileNav);

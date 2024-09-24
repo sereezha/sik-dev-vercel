@@ -2,6 +2,7 @@
 import BaseHeader, { type IHeaderLink } from './BaseHeader.astro';
 import Logo from '@components/Logo.astro';
 import { Routes } from 'src/config';
+
 const links: IHeaderLink[] = [
   {
     href: Routes.home,
@@ -30,20 +31,17 @@ const links: IHeaderLink[] = [
   </div>
 </BaseHeader>
 
-<style>
+<style lang="scss">
   .form-header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: start;
-  }
-
-  @media screen and (max-width: 767px) {
-    .form-header {
+    @media screen and (max-width: 767px) {
       grid-template-columns: 1fr;
-    }
 
-    .form-header .logo {
-      display: none;
+      .logo {
+        display: none;
+      }
     }
   }
 </style>

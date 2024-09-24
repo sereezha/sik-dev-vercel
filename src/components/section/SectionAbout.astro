@@ -38,21 +38,19 @@ import { AnchorSections } from 'src/config';
   </figure>
 </Section>
 
-<style>
+<style lang="scss">
   .roma {
     display: grid;
     gap: 8px;
     margin-block-start: 40px;
     color: var(--color-light-gray);
+
+    @media screen and (min-width: 1024px) {
+      margin-block-start: 66px;
+    }
   }
 
   .roma-image {
     border-radius: 50%;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .roma {
-      margin-block-start: 66px;
-    }
   }
 </style>

@@ -8,24 +8,22 @@ import Logo from '@components/Logo.astro';
 </div>
 <Icon class="logo-text" name="logo-text" />
 
-<style>
-  .logo-text {
-    width: 45px;
-    height: 20px;
-  }
-
+<style lang="scss">
   .logo {
     width: 93px;
     height: 60px;
-  }
 
-  @media screen and (min-width: 1024px) {
-    .logo {
+    @media screen and (min-width: 1024px) {
       width: 186px;
       height: 120px;
     }
+  }
 
-    .logo-text {
+  .logo-text {
+    width: 45px;
+    height: 20px;
+
+    @media screen and (min-width: 1024px) {
       width: 88px;
       height: 40px;
     }
