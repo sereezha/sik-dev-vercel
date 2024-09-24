@@ -40,7 +40,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
   </div>
 </GeneralLayout>
 
-<style>
+<style lang="scss">
   .error-page {
     --error-page-gap: 16px;
 
@@ -49,6 +49,26 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     gap: var(--error-page-gap);
     min-height: 100vh;
     min-height: 100dvh;
+
+    &--404 {
+      background-color: #e59fa3;
+    }
+
+    &--500 {
+      background-color: #b6b9cf;
+    }
+
+    @media screen and (min-width: 768px) {
+      --error-page-gap: 64px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      --error-page-gap: 54px;
+    }
+
+    @media screen and (max-height: 700px) {
+      --error-page-gap: 12px;
+    }
   }
 
   .wrapper {
@@ -59,18 +79,22 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     color: #1a1a1f;
   }
 
-  .error-page--404 {
-    background-color: #e59fa3;
-  }
-
-  .error-page--500 {
-    background-color: #b6b9cf;
-  }
-
   .title {
     margin-bottom: 8px;
     font-size: 160px;
     line-height: 1;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+      font-size: 320px;
+      line-height: 0.84;
+    }
+
+    @media screen and (min-width: 1024px) {
+      margin-bottom: 32px;
+      font-size: 360px;
+      line-height: 0.77;
+    }
   }
 
   .description {
@@ -79,48 +103,18 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     margin-inline: auto;
     font-size: 28px;
     line-height: 1.14;
+
+    @media screen and (min-width: 768px) {
+      font-size: 40px;
+      line-height: 1;
+    }
   }
 
   .button-wrapper {
     margin-top: 40px;
-  }
 
-  @media screen and (min-width: 768px) {
-    .error-page {
-      --error-page-gap: 64px;
-    }
-
-    .title {
-      margin-bottom: 24px;
-      font-size: 320px;
-      line-height: 0.84;
-    }
-
-    .description {
-      font-size: 40px;
-      line-height: 1;
-    }
-
-    .button-wrapper {
+    @media screen and (min-width: 768px) {
       margin-top: 48px;
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .error-page {
-      --error-page-gap: 54px;
-    }
-
-    .title {
-      margin-bottom: 32px;
-      font-size: 360px;
-      line-height: 0.77;
-    }
-  }
-
-  @media screen and (max-height: 700px) {
-    .error-page {
-      --error-page-gap: 12px;
     }
   }
 </style>

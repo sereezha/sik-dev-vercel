@@ -10,15 +10,13 @@ import GeneralLayout from './GeneralLayout.astro';
   </div>
 </GeneralLayout>
 
-<style>
+<style lang="scss">
   .content {
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 44px;
-  }
 
-  @media screen and (min-width: 768px) {
-    .content {
+    @media screen and (min-width: 768px) {
       gap: 40px;
     }
   }
