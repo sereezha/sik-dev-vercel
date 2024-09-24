@@ -2,8 +2,12 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/serverless";
 import icon from "astro-icon";
-
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 import partytown from "@astrojs/partytown";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   site: "https://hovorovskyi.com",
@@ -26,5 +30,20 @@ export default defineConfig({
   ],
   devToolbar: {
     enabled: true,
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "@": `${path.resolve(__dirname, "src")}/`,
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // path to your scss variables
+          additionalData: `@import "@styles/breakpoints.scss";`,
+        },
+      },
+    },
   },
 });

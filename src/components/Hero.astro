@@ -17,14 +17,14 @@ import Logo from './Logo.astro';
     height: 100dvh;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet-min) {
     .hero {
       padding-block-start: 48px;
       align-items: start;
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: $bp-desktop-min) {
     .hero {
       padding-block-start: 16px;
     }

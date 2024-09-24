@@ -96,7 +96,7 @@ const { className, hasMobileView, links } = Astro.props;
   <slot name="actions" />
 </header>
 
-<style is:global>
+<style is:global lang="scss">
   :root {
     --header-padding-inline: 24px;
     --header-padding-block: 16px;
@@ -147,7 +147,7 @@ const { className, hasMobileView, links } = Astro.props;
     padding-top: calc(120px - var(--mobile-nav-gap));
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: $bp-tablet-max) {
     .mobile-nav-open-button {
       display: block;
     }
@@ -171,7 +171,7 @@ const { className, hasMobileView, links } = Astro.props;
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet-min) {
     .main-header--with-mobile-view .mobile-nav-open-button {
       display: none;
     }

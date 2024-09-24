@@ -58,11 +58,11 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
       background-color: #b6b9cf;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       --error-page-gap: 64px;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       --error-page-gap: 54px;
     }
 
@@ -84,13 +84,13 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     font-size: 160px;
     line-height: 1;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       margin-bottom: 24px;
       font-size: 320px;
       line-height: 0.84;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       margin-bottom: 32px;
       font-size: 360px;
       line-height: 0.77;
@@ -104,7 +104,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
     font-size: 28px;
     line-height: 1.14;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       font-size: 40px;
       line-height: 1;
     }
@@ -113,7 +113,7 @@ const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
   .button-wrapper {
     margin-top: 40px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       margin-top: 48px;
     }
   }

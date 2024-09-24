@@ -42,7 +42,7 @@ const { months, bottles } = Astro.props;
     display: grid;
     gap: 16px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
@@ -51,7 +51,7 @@ const { months, bottles } = Astro.props;
   .buttons {
     --button-width: 100%;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       --button-width: auto;
 
       display: flex;

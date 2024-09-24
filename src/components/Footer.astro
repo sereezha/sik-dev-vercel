@@ -99,7 +99,7 @@ const { shouldShowLinks = true }: Props = Astro.props;
     line-height: 2;
     font-weight: 400;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       grid-template-areas: 'copyright links-list right';
       grid-template-columns: 1fr auto 1fr;
       font-size: 13px;
@@ -113,7 +113,7 @@ const { shouldShowLinks = true }: Props = Astro.props;
     text-transform: uppercase;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet-min) {
     .copyright {
       justify-self: start;
     }
@@ -127,9 +127,3 @@ const { shouldShowLinks = true }: Props = Astro.props;
     }
   }
 </style>
-
-<script is:inline>
-  document.getElementById('test-event-button').addEventListener('click', () => {
-    window.gtag('event', 'signin');
-  });
-</script>

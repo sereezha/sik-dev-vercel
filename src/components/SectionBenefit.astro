@@ -14,7 +14,7 @@ import Container from './Container.astro';
   .section {
     padding-block: 80px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       padding-block: 100px;
     }
   }
@@ -26,13 +26,13 @@ import Container from './Container.astro';
     margin-inline: auto;
     text-align: center;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       font-size: 56px;
       line-height: 0.85;
       padding: 0;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       font-size: 80px;
       line-height: 1;
     }

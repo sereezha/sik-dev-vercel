@@ -122,7 +122,7 @@ const titleId = `${id}-title`;
     position: relative;
     max-width: calc(720px + 2 * var(--padding-inline));
     width: 100%;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       --padding-inline: 40px;
     }
   }
@@ -140,7 +140,7 @@ const titleId = `${id}-title`;
     line-height: 1.14;
     max-width: 660px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       font-size: 56px;
       line-height: 0.85;
     }
@@ -151,7 +151,7 @@ const titleId = `${id}-title`;
     gap: 8px;
     margin-top: auto;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: auto;

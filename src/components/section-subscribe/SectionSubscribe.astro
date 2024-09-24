@@ -51,11 +51,11 @@ const cards: CardProps[] = [
   .section {
     padding-block: 60px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       padding-block: 100px;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       padding-block: 80px 100px;
     }
   }
@@ -64,7 +64,7 @@ const cards: CardProps[] = [
     display: grid;
     gap: 40px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       gap: 60px;
     }
   }
@@ -73,10 +73,10 @@ const cards: CardProps[] = [
     display: grid;
     gap: 16px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       gap: 40px;
     }
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     }
   }

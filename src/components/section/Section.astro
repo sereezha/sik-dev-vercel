@@ -33,7 +33,7 @@ const { class: className, id, labelledby, ...props } = Astro.props;
   .section {
     padding-block: 40px;
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       padding-block: 60px;
     }
   }
@@ -42,11 +42,11 @@ const { class: className, id, labelledby, ...props } = Astro.props;
     display: grid;
     gap: 40px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       gap: 64px;
     }
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $bp-desktop-min) {
       display: grid;
       grid-template-columns: 463px minmax(300px, 537px);
       align-items: start;

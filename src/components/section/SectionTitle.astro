@@ -16,7 +16,7 @@ const { Tag = 'h2', className } = Astro.props;
     font-size: 40px;
     line-height: 1;
     color: var(--main-white);
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $bp-tablet-min) {
       font-size: 56px;
       line-height: 0.87;
     }

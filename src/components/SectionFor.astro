@@ -83,7 +83,7 @@ import { AnchorSections, SocialLinks } from '../config';
   </Container>
 </section>
 
-<style>
+<style lang="scss">
   .grid {
     --grid-border-width: 1px;
     --grid-border-color: #6f6f72;
@@ -151,13 +151,13 @@ import { AnchorSections, SocialLinks } from '../config';
     margin-top: 80px;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: $bp-tablet-max) {
     .img-desktop-wrapper {
       max-height: 480px;
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet-min) {
     .section {
       padding-block: 100px;
     }

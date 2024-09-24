@@ -154,7 +154,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet-min) {
     .main-content {
       gap: 24px;
     }
@@ -177,7 +177,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: $bp-desktop-min) {
     .wrapper {
       grid-template-columns: minmax(350px, 784px) minmax(300px, 440px);
       justify-content: space-between;
