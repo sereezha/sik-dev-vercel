@@ -2,12 +2,13 @@
 export interface SectionTitleProps {
   Tag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
+  id?: string;
 }
 
-const { Tag = 'h2', className } = Astro.props;
+const { Tag = 'h2', className, id } = Astro.props;
 ---
 
-<Tag class:list={['section-title', 'heading', className]}>
+<Tag class:list={['section-title', 'heading', className]} id={id}>
   <slot />
 </Tag>
 

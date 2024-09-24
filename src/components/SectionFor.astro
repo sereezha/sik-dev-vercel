@@ -9,7 +9,7 @@ import Link from './Link.astro';
 import { AnchorSections, SocialLinks } from '../config';
 ---
 
-<section class="section" id={AnchorSections.forWho}>
+<section class="section" id={AnchorSections.forWho} aria-labelledby="section-for-who-title">
   <div class="img-desktop-wrapper">
     <Image class="img-desktop" src={img} alt="" />
   </div>
@@ -17,7 +17,7 @@ import { AnchorSections, SocialLinks } from '../config';
     <div class="wrapper" data-intersect>
       <div class="content">
         <div class="intro">
-          <SectionIntro align="center">
+          <SectionIntro align="center" titleId="section-for-who-title">
             <Fragment slot="section-subtitle">Тут Якийсь Текст</Fragment>
             <Fragment slot="section-title">Для кого це?</Fragment>
           </SectionIntro>

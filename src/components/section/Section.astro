@@ -7,18 +7,18 @@ import type { HTMLAttributes } from 'astro/types';
 interface Props extends HTMLAttributes<'section'> {
   title?: astroHTML.JSX.Element | string;
   id?: string;
-  labelledby?: string;
   titleTag?: SectionTitleProps['Tag'];
   class?: string;
+  titleId?: string;
 }
 
-const { class: className, id, labelledby, ...props } = Astro.props;
+const { class: className, id, titleId, ...props } = Astro.props;
 ---
 
-<section class:list={['section', className]} id={id} {...props}>
+<section class:list={['section', className]} id={id} aria-labelledby={titleId} {...props}>
   <Container>
     <div class="wrapper">
-      <SectionIntro>
+      <SectionIntro titleId={titleId}>
         <slot slot="section-subtitle" name="section-subtitle" />
         <slot slot="section-title" name="section-title" />
       </SectionIntro>

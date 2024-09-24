@@ -4,9 +4,10 @@ import SectionSubtitle from './SectionSubtitle.astro';
 import type { HTMLAttributes } from 'astro/types';
 interface Props extends HTMLAttributes<'div'> {
   align?: 'center' | 'start' | 'end';
+  titleId?: string;
 }
 
-const { align = 'start' } = Astro.props;
+const { align = 'start', titleId } = Astro.props;
 ---
 
 <div
@@ -14,7 +15,7 @@ const { align = 'start' } = Astro.props;
   data-intersect
 >
   <SectionSubtitle><slot name="section-subtitle" /></SectionSubtitle>
-  <SectionTitle><slot name="section-title" /></SectionTitle>
+  <SectionTitle id={titleId}><slot name="section-title" /></SectionTitle>
 </div>
 
 <style lang="scss">
