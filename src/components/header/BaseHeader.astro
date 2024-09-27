@@ -191,6 +191,7 @@ const { className, hasMobileView, links } = Astro.props;
   const mobileNav = document.querySelector('[data-js-mobile-nav]')!;
 
   const handleCloseMobileNav = () => {
+    window.gtag('event', 'header_menu_links_click');
     mobileNav.classList.remove('is-open');
     menuButton.setAttribute('aria-expanded', 'false');
     unlockBodyScroll();
