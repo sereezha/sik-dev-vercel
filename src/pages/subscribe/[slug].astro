@@ -200,7 +200,7 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 
   const editButtons = document.querySelectorAll('[data-js-checkout-edit]')!;
   editButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
       const form = document.querySelector(
         '[data-js-subscribe-form]'
       )! as HTMLFormElement;
