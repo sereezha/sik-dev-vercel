@@ -106,7 +106,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
   </div>
 </div>
 
-<style define:vars={{ 'card-background-color': backgroundColor }}>
+<style lang="scss" define:vars={{ 'card-background-color': backgroundColor }}>
   .radiogroup {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -234,7 +234,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
     }
   }
 
-  @media screen and (min-width: 539px) and (max-width: $bp-desktop-max) {
+  @media screen and (min-width: 33.68rem) and (max-width: $bp-desktop-max) {
     .content {
       padding-inline-end: 0;
     }
