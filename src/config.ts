@@ -5,6 +5,7 @@ export const SITE_BASE_URL = "https://hovorovskyi.com";
 export const SocialLinks = {
   instagram: "https://www.instagram.com/sik.wine",
   telegram: "https://t.me/sikwine",
+  telegramGift: "https://t.me/sik_chat",
 };
 
 export const AnchorSections = {
