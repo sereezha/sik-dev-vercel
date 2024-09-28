@@ -9,7 +9,11 @@ import Link from './Link.astro';
 import { AnchorSections, SocialLinks } from '../config';
 ---
 
-<section class="section" id={AnchorSections.forWho} aria-labelledby="section-for-who-title">
+<section
+  class="section"
+  id={AnchorSections.forWho}
+  aria-labelledby="section-for-who-title"
+>
   <div class="img-desktop-wrapper" data-intersect>
     <Image class="img-desktop" src={img} alt="" />
   </div>
@@ -55,7 +59,7 @@ import { AnchorSections, SocialLinks } from '../config';
           <p>Коротко кажучи — для всіх, хто любить вино</p>
         </div>
       </div>
-      <div class="content" data-intersect>
+      <div class="content content--gift" data-intersect>
         <div class="intro">
           <SectionIntro align="center">
             <Fragment slot="section-subtitle">До речі</Fragment>
@@ -63,15 +67,16 @@ import { AnchorSections, SocialLinks } from '../config';
           </SectionIntro>
         </div>
         <Paragraphs>
-          <Paragraph>
-            Ви можете підписати на вино свою близьку людину! Уявіть, щомісяця
-            новий подарунок протягом трьох, шести або дванадцяти місяців. Цілий
-            рік подарунків!
-          </Paragraph>
-          <Paragraph>
+          <p>
+            Ви можете підписати на вино свою близьку людину! <br />Уявіть,
+            щомісяця новий подарунок протягом трьох, шести <span
+              class="wh-nowrap">або дванадцяти</span
+            > місяців. Цілий рік подарунків!
+          </p>
+          <p>
             Також, ми можемо зробити вам персональний подарунковий сертифікат —
             для цього натисніть на посилання нижче та напишіть нам в Телеграмі.
-          </Paragraph>
+          </p>
         </Paragraphs>
         <div class="footer">
           <Link withIcon href={SocialLinks.telegram}
@@ -127,6 +132,7 @@ import { AnchorSections, SocialLinks } from '../config';
     padding-block-start: 160px;
     max-width: 70rem;
     width: 100%;
+    margin-inline: auto;
   }
 
   .content {
@@ -135,8 +141,13 @@ import { AnchorSections, SocialLinks } from '../config';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* justify-content: start; */
     padding: var(--content-padding) 0;
+
+    &--gift {
+      max-width: 50rem;
+      width: 100%;
+      margin-inline: auto;
+    }
   }
 
   .content:first-child {
