@@ -68,8 +68,9 @@ import { AnchorSections, SocialLinks } from '../config';
         </div>
         <Paragraphs>
           <p>
-            Ви можете підписати на вино свою близьку людину! <br />Уявіть,
-            щомісяця новий подарунок протягом трьох, шести <span
+            Ви можете підписати на вино свою близьку людину! <br
+              class="section-for-br"
+            />Уявіть, щомісяця новий подарунок протягом трьох, шести <span
               class="wh-nowrap">або дванадцяти</span
             > місяців. Цілий рік подарунків!
           </p>
@@ -104,6 +105,12 @@ import { AnchorSections, SocialLinks } from '../config';
   .grid-item {
     padding: 16px 28px 32px 16px;
     border-bottom: var(--grid-border);
+  }
+
+  @media screen and (max-width: $bp-tablet-max) {
+    .section-for-br {
+      display: none;
+    }
   }
 
   .img-desktop-wrapper {
