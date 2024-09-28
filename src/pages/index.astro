@@ -8,6 +8,7 @@ import SectionBenefit from '@components/SectionBenefit.astro';
 import Hero from '@components/Hero.astro';
 import SectionFor from '@components/SectionFor.astro';
 import FixedLogo from '@components/FixedLogo.astro';
+import Footer from '@components/Footer.astro';
 ---
 
 <PageLayout title="sik">
@@ -19,8 +20,19 @@ import FixedLogo from '@components/FixedLogo.astro';
   <SectionSubscribe />
   <SectionFor />
   <SectionBenefit />
-  <SectionLogo />
+  <div class="last-block">
+    <SectionLogo />
+    <Footer />
+  </div>
 </PageLayout>
+
+<style>
+  .last-block {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+  }
+</style>
 
 <script>
   import { initIntersect } from '../utils/intersect';
