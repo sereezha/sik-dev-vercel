@@ -8,7 +8,12 @@ import RomaImage from '@assets/img/roma.png';
 import { AnchorSections } from 'src/config';
 ---
 
-<Section data-intersect id={AnchorSections.whatsInside} titleId="section-about-title">
+<Section
+  class="section-about"
+  data-intersect
+  id={AnchorSections.whatsInside}
+  titleId="section-about-title"
+>
   <Fragment slot="section-subtitle">Що всередині</Fragment>
   <Fragment slot="section-title">Що за пляшки на мене чекають?</Fragment>
   <Paragraphs>
@@ -39,6 +44,14 @@ import { AnchorSections } from 'src/config';
 </Section>
 
 <style lang="scss">
+  .section-about {
+    padding-block-start: 80px;
+
+    @media screen and (min-width: $bp-desktop-min) {
+      padding-block-start: 120px;
+    }
+  }
+
   .roma {
     display: grid;
     gap: 8px;
