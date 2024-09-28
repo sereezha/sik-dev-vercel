@@ -80,6 +80,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 62.5%;
 }
 
 html:focus-within {
@@ -97,7 +98,7 @@ body {
   color: #fcfbfa;
   font-family: "Scuto Sans", sans-serif;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 1.7rem;
   line-height: 1.41;
 }
 
