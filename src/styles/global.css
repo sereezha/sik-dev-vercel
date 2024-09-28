@@ -55,6 +55,7 @@
   --color-light-gray: #cccbca;
   --color-error: #d0545b;
 
+  --overlay-color: rgba(0, 0, 0, 0.67);
   --outline-color: var(--main-white);
   --outline-width: 1px;
   --outline-offset: 2px;
