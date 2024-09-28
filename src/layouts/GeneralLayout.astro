@@ -16,9 +16,10 @@ import { ModalIds } from 'src/constants/modals';
 interface Props {
   title?: string;
   pageThemeColor?: string;
+  isSmallPage?: boolean;
 }
 
-const { pageThemeColor } = Astro.props;
+const { pageThemeColor, isSmallPage = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,7 +32,7 @@ const { pageThemeColor } = Astro.props;
     <GoogleAnalytics />
     <!-- <FacebookAnalytics /> -->
   </head>
-  <body>
+  <body style={isSmallPage ? 'min-height: 100dvh;' : ''}>
     <!-- <FacebookAnalyticsNoScript /> -->
     <slot />
     <Toast />

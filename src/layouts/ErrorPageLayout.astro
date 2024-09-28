@@ -20,7 +20,7 @@ const { metaTitle, title, type = '404', link } = Astro.props;
 const pageThemeColor = type === '404' ? '#e59fa3' : '#b6b9cf';
 ---
 
-<GeneralLayout title={metaTitle} pageThemeColor={pageThemeColor}>
+<GeneralLayout isSmallPage title={metaTitle} pageThemeColor={pageThemeColor}>
   <div class:list={['error-page', `error-page--${type}`]}>
     <Container>
       <div class="wrapper">
