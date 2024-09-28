@@ -197,13 +197,15 @@ const { className, hasMobileView, links } = Astro.props;
     unlockBodyScroll();
   };
 
-  menuButton.addEventListener('click', () => {
-    mobileNav.classList.add('is-open');
-    menuButton.setAttribute('aria-expanded', 'true');
-    lockBodyScroll();
-  });
+  if (menuButton && menuCloseButton) {
+    menuButton.addEventListener('click', () => {
+      mobileNav.classList.add('is-open');
+      menuButton.setAttribute('aria-expanded', 'true');
+      lockBodyScroll();
+    });
 
-  menuCloseButton.addEventListener('click', handleCloseMobileNav);
+    menuCloseButton.addEventListener('click', handleCloseMobileNav);
+  }
 
   headerLinks.forEach((link) => {
     link.addEventListener('click', handleCloseMobileNav);
