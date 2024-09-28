@@ -101,13 +101,12 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 
   .wrapper {
     display: grid;
-    gap: 24px;
+    gap: 64px;
   }
 
   .main-content {
     display: grid;
     gap: 16px;
-    max-width: 72rem;
     width: 100%;
   }
 
@@ -183,6 +182,11 @@ const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
       grid-template-columns: minmax(350px, 784px) minmax(300px, 440px);
       justify-content: space-between;
       align-items: start;
+    }
+
+    .main-content {
+      max-width: 72rem;
+
     }
 
     .checkout-mobile {
