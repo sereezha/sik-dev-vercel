@@ -4,6 +4,7 @@ import foodPairIcon from "@assets/img/food-pair.png";
 import giftsIcon from "@assets/img/gifts.png";
 import bottle1Icon from "@assets/img/bottle-1.png";
 import bottle2Icon from "@assets/img/bottle-2.png";
+import bottleSpecialIcon from "@assets/img/bottle-special.png";
 
 export const bottlesMap = {
   one: 1,
@@ -40,7 +41,7 @@ export const getBenefitsList = (type: SubscriptionType) => {
     two: { title: "Дві пляшки вина", icon: bottle2Icon },
     special: {
       title: "Одна рідкісна пляшка",
-      icon: bottle1Icon,
+      icon: bottleSpecialIcon,
     },
   }[type];
 
