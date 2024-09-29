@@ -13,17 +13,23 @@ export const getPrices = (bottles: number | string, months: number) => {
       12: 55200,
     },
     special: {
-      1: 11000,
-      3: 32400,
-      6: 63000,
-      12: 120000,
+      1: 13000,
+      3: 37500,
+      6: 72000,
+      12: 138000,
     },
   };
+
+  const formatter = new Intl.NumberFormat("uk-UA", {
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
   const sum = bottlesMap[bottles][months];
   const month = sum / months;
   return {
-    sum,
+    sum: sum >= 10000 ? formatter.format(sum) : sum,
     month,
   };
 };

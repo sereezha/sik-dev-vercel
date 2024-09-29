@@ -242,12 +242,16 @@ const backgroundColor = getSubscriptionTypeColor(type);
     const bottles = card.getAttribute('data-bottles')!;
     const radioItems = card.querySelectorAll('[data-js-radio-item]');
     const price = card.querySelector('[data-js-subscribe-price]')!;
-    const button = card.querySelector('[data-js-subscribe-button]')! as HTMLAnchorElement;
+    const button = card.querySelector(
+      '[data-js-subscribe-button]'
+    )! as HTMLAnchorElement;
+
     radioItems.forEach((item) => {
       item.addEventListener('change', (e) => {
         const { value } = e.target as HTMLInputElement;
         button.href = getSubscribeUrl(bottles, Number(value));
-        price.textContent = getPrices(bottles, Number(value)).sum.toString();
+        const priceValue = getPrices(bottles, Number(value)).sum;
+        price.textContent = priceValue.toString();
       });
     });
   });
