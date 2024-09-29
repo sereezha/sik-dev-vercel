@@ -12,6 +12,10 @@ export const revealOnBackScroll = (element: Element) => {
   let scrollPosition = window.scrollY;
 
   const watchElement = () => {
+    if (element.classList.contains("is-scrolling")) {
+      return;
+    }
+
     if (scrollPosition < window.scrollY) {
       element.classList.remove("is-visible");
     } else {
@@ -22,4 +26,7 @@ export const revealOnBackScroll = (element: Element) => {
 
   watchElement();
   window.addEventListener("scroll", watchElement);
+  window.addEventListener("scrollend", () => {
+    element.classList.remove("is-scrolling");
+  });
 };

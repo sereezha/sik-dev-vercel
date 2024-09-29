@@ -228,6 +228,16 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
     menuCloseButton.addEventListener('click', handleCloseMobileNav);
   }
 
+  const mainHeader = document.querySelector('.main-header');
+
+  if (mainHeader) {
+    headerLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        document.querySelector('.main-header')!.classList.add('is-scrolling');
+      });
+    });
+  }
+
   if (mobileNav) {
     headerLinks.forEach((link) => {
       link.addEventListener('click', handleCloseMobileNav);

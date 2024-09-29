@@ -59,9 +59,6 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
     if (analyticElements.length > 0) {
       analyticElements.forEach((element) => {
         element.addEventListener('click', (e) => {
-          // if (element.tagName === 'A') {
-          //   e.preventDefault();
-          // }
           const value = element.getAttribute('data-analytics');
           const options = element.getAttribute('data-analytics-options');
           if (value) {
@@ -71,11 +68,6 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
               window.gtag('event', value);
             }
           }
-          // if (element.tagName === 'A') {
-          //   setTimeout(() => {
-          //     window.location.href = (element as HTMLAnchorElement).href;
-          //   }, 10);
-          // }
         });
       });
     }
