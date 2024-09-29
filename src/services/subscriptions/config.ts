@@ -1,5 +1,15 @@
 import type { SubscriptionType } from "src/services/subscriptions/types";
 
+export const getAnalyticsName = (type: SubscriptionType) => {
+  const mapper: Record<SubscriptionType, string> = {
+    one: "one_bottle_button_click",
+    two: "two_bottle_button_click",
+    special: "special_bottle_button_click",
+  };
+
+  return mapper[type];
+};
+
 export const getSubscriptionTypeColor = (type: SubscriptionType) => {
   const mapper: Record<SubscriptionType, string> = {
     one: "#b6b9cf",

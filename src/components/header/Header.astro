@@ -7,30 +7,50 @@ const links: IHeaderLink[] = [
   {
     href: AnchorLinks.howItWorks,
     text: 'Як це працює',
+    props: {
+      'data-analytics': 'header_link_click',
+      'data-analytics-options': '{"label": "Як це працює"}',
+    },
   },
   {
     href: AnchorLinks.whatsInside,
     text: 'Що всередині',
+    props: {
+      'data-analytics': 'header_link_click',
+      'data-analytics-options': '{"label": "Що всередині"}',
+    },
   },
   {
     href: AnchorLinks.subscribe,
     text: 'Ціни',
+    props: {
+      'data-analytics': 'header_link_click',
+      'data-analytics-options': '{"label": "Ціни"}',
+    },
   },
   {
     href: AnchorLinks.forWho,
     text: 'Для кого',
+    props: {
+      'data-analytics': 'header_link_click',
+      'data-analytics-options': '{"label": "Для кого"}',
+    },
   },
 ];
 ---
 
-<BaseHeader className="header is-visible" data-js-main-header hasMobileView links={links}>
+<BaseHeader
+  className="header is-visible"
+  data-js-main-header
+  hasMobileView
+  links={links}
+>
   <div slot="actions">
     <Link
       href={AnchorLinks.subscribe}
       isAnchor
       withIcon
-      data-analytics="header_link_subscribe_click"
-      >Підписатись</Link
+      data-analytics="header_link_subscribe_click">Підписатись</Link
     >
   </div>
 </BaseHeader>

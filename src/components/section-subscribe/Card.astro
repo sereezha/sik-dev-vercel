@@ -4,7 +4,10 @@ import Button from '../Button.astro';
 import { bottlesMap, getBenefitsList } from './config';
 import { getSubscribeUrl } from 'src/utils/url';
 import type { SubscriptionType } from 'src/services/subscriptions/types';
-import { getSubscriptionTypeColor } from 'src/services/subscriptions/config';
+import {
+  getSubscriptionTypeColor,
+  getAnalyticsName,
+} from 'src/services/subscriptions/config';
 import { Image } from 'astro:assets';
 
 export interface CardProps {
@@ -25,6 +28,8 @@ const backgroundColor = getSubscriptionTypeColor(type);
   class:list={['card', `card--${type}`]}
   data-js-subscribe-card
   data-bottles={bottles}
+  data-months="1"
+  data-type={type}
   data-intersect
 >
   <div class="content">
@@ -236,15 +241,29 @@ const backgroundColor = getSubscriptionTypeColor(type);
 <script>
   import { getSubscribeUrl } from 'src/utils/url';
   import { getPrices } from '../../services/subscriptions/utils';
+  import { getAnalyticsName } from 'src/services/subscriptions/config';
+  import type { SubscriptionType } from 'src/services/subscriptions/types';
 
   const cards = document.querySelectorAll('[data-js-subscribe-card]')!;
   cards.forEach((card) => {
     const bottles = card.getAttribute('data-bottles')!;
+    const type = card.getAttribute('data-type')! as SubscriptionType;
     const radioItems = card.querySelectorAll('[data-js-radio-item]');
     const price = card.querySelector('[data-js-subscribe-price]')!;
     const button = card.querySelector(
       '[data-js-subscribe-button]'
     )! as HTMLAnchorElement;
+
+    const subscribeCardButton = document.querySelector(
+      '[data-js-subscribe-button]'
+    )!;
+    subscribeCardButton.addEventListener('click', () => {
+      const analyticsName = getAnalyticsName(type);
+      window.gtag('event', analyticsName, {
+        price: price.textContent,
+        months: card.getAttribute('data-months'),
+      });
+    });
 
     radioItems.forEach((item) => {
       item.addEventListener('change', (e) => {
@@ -252,6 +271,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
         button.href = getSubscribeUrl(bottles, Number(value));
         const priceValue = getPrices(bottles, Number(value)).sum;
         price.textContent = priceValue.toString();
+        card.setAttribute('data-months', value);
       });
     });
   });

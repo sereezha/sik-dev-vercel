@@ -33,7 +33,7 @@ const descriptionText = getDescription(type as SubscriptionType);
 const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
 const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 const editLinkProps = {
-  href: 'editLink',
+  href: editLink,
   'data-analytics': 'checkout_edit_click',
   'data-js-checkout-edit': '',
 };
