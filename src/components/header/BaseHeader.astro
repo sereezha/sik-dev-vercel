@@ -53,7 +53,7 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
               ? { href: link.href, 'data-header-link': true }
               : {};
           return (
-            <Tag {...link.props} {...otherProps}>
+            <Tag {...link.props} {...otherProps} data-analytic>
               {link.text}
             </Tag>
           );
@@ -202,6 +202,15 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
 
 <script>
   import { lockBodyScroll, unlockBodyScroll } from 'src/utils/dom';
+  const links = document.querySelectorAll('[data-analytic]')!;
+
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      window.gtag('event', 'header_link_click', {
+        name: link.textContent,
+      });
+    });
+  });
 
   const menuButton = document.querySelector(
     '[data-js-mobile-nav-open-button]'
@@ -213,7 +222,6 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
   const mobileNav = document.querySelector('[data-js-mobile-nav]')!;
 
   const handleCloseMobileNav = () => {
-    window.gtag('event', 'header_menu_links_click');
     mobileNav.classList.remove('is-open');
     menuButton.setAttribute('aria-expanded', 'false');
     unlockBodyScroll();
