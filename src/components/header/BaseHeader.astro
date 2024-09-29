@@ -233,7 +233,7 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
   if (mainHeader) {
     headerLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        document.querySelector('.main-header')!.classList.add('is-scrolling');
+        mainHeader.classList.add('is-scrolling');
       });
     });
   }
