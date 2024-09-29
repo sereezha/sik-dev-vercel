@@ -1,12 +1,10 @@
 <!-- Google tag (gtag.js) -->
 <script
-  type="text/partytown"
   async
   is:inline
   src=`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`
 ></script>
 <script
-  type="text/partytown"
   is:inline
   define:vars={{
     GOOGLE_ANALYTICS_ID: import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID,
@@ -20,3 +18,17 @@
 
   window.gtag('config', `${GOOGLE_ANALYTICS_ID}`);
 </script>
+
+
+<!-- Google Tag Manager -->
+<!-- <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WX7TFF87');</script> -->
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Tag Manager (noscript) -->
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX7TFF87"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+  <!-- End Google Tag Manager (noscript) -->

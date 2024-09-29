@@ -228,7 +228,9 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
     menuCloseButton.addEventListener('click', handleCloseMobileNav);
   }
 
-  headerLinks.forEach((link) => {
-    link.addEventListener('click', handleCloseMobileNav);
-  });
+  if (mobileNav) {
+    headerLinks.forEach((link) => {
+      link.addEventListener('click', handleCloseMobileNav);
+    });
+  }
 </script>

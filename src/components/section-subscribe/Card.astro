@@ -254,10 +254,11 @@ const backgroundColor = getSubscriptionTypeColor(type);
       '[data-js-subscribe-button]'
     )! as HTMLAnchorElement;
 
-    const subscribeCardButton = document.querySelector(
+    const subscribeCardButton = card.querySelector(
       '[data-js-subscribe-button]'
     )!;
-    subscribeCardButton.addEventListener('click', () => {
+
+    subscribeCardButton.addEventListener('click', (e) => {
       const analyticsName = getAnalyticsName(type);
       window.gtag('event', analyticsName, {
         price: price.textContent,

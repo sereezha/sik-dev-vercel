@@ -58,10 +58,12 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
     const analyticElements = document.querySelectorAll('[data-analytics]');
     if (analyticElements.length > 0) {
       analyticElements.forEach((element) => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (e) => {
+          // if (element.tagName === 'A') {
+          //   e.preventDefault();
+          // }
           const value = element.getAttribute('data-analytics');
           const options = element.getAttribute('data-analytics-options');
-          console.log(typeof options);
           if (value) {
             if (options) {
               window.gtag('event', value, JSON.parse(options));
@@ -69,6 +71,11 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
               window.gtag('event', value);
             }
           }
+          // if (element.tagName === 'A') {
+          //   setTimeout(() => {
+          //     window.location.href = (element as HTMLAnchorElement).href;
+          //   }, 10);
+          // }
         });
       });
     }
