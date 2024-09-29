@@ -1,12 +1,20 @@
 ---
 import Container from '@components/Container.astro';
 import { Image } from 'astro:assets';
-import tableImage from '@assets/img/table.jpg';
+import tableImageMobile from '@assets/img/table-mobile.jpg';
+import tableImageTablet from '@assets/img/table-tablet.jpg';
+import tableImageDesktop from '@assets/img/table-desktop.jpg';
 ---
 
-<section class="section">
+<section class="section" data-intersect>
   <Container>
-    <!-- <Image class="image" src={tableImage} alt="" /> -->
+    <Image
+      class="image"
+      src={tableImageDesktop}
+      widths={[343, 688, tableImageDesktop.width]}
+      sizes={`(max-width: 342px) 343px, (max-width: 767px) 688px,  ${tableImageDesktop.width}px`}
+      alt=""
+    />
   </Container>
 </section>
 

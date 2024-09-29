@@ -20,6 +20,8 @@ const { shouldShowLinks = true }: Props = Astro.props;
               target="_blank"
               rel="noopener noreferrer"
               href={SocialLinks.instagram}
+              data-analytics="footer_link_social_click"
+              data-analytics-options='{"label": "інстаграм"}'
             >
               інстаграм
             </a>
@@ -29,6 +31,8 @@ const { shouldShowLinks = true }: Props = Astro.props;
               target="_blank"
               rel="noopener noreferrer"
               href={SocialLinks.telegram}
+              data-analytics="footer_link_social_click"
+              data-analytics-options='{"label": "телеграм"}'
             >
               телеграм
             </a>

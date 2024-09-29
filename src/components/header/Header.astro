@@ -25,7 +25,13 @@ const links: IHeaderLink[] = [
 
 <BaseHeader className="header" data-js-main-header hasMobileView links={links}>
   <div slot="actions">
-    <Link href={AnchorLinks.subscribe} isAnchor withIcon>Підписатись</Link>
+    <Link
+      href={AnchorLinks.subscribe}
+      isAnchor
+      withIcon
+      data-analytics="header_link_subscribe_click"
+      >Підписатись</Link
+    >
   </div>
 </BaseHeader>
 

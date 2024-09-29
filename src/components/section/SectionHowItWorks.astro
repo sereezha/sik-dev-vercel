@@ -6,21 +6,29 @@ import Paragraphs from '@components/Paragraphs.astro';
 import { AnchorLinks, AnchorSections } from 'src/config';
 ---
 
-<Section class="section-how-it-works" data-intersect id={AnchorSections.howItWorks} titleId="section-how-it-works-title">
+<Section
+  class="section-how-it-works"
+  data-intersect
+  id={AnchorSections.howItWorks}
+  titleId="section-how-it-works-title"
+>
   <Fragment slot="section-subtitle">Як це працює</Fragment>
   <Fragment slot="section-title">Підписка на вино</Fragment>
   <Paragraphs>
     <Paragraph>
-      Це як Netflix, тільки винний. Підписуєтесь і кожного місяця до вас
+      Це як Netflix, тільки винний. Підписуєтесь — і кожного місяця до вас
       приїжджатиме одна або дві пляшки вина. І кожен раз ці вина будуть різні.
     </Paragraph>
     <Paragraph>
-      А ще, ми знімаємо відео-огляди про кожну пляшку, що потрапляють у
-      підписку. Доступ до цих відео мають лише підписники. Казали ж, як Netflix!
+      А ще ми знімаємо відеоогляди про кожну пляшку, що потрапляють у підписку.
+      Доступ до цих відео мають лише підписники. Казали ж, як Netflix!
     </Paragraph>
   </Paragraphs>
   <div class="button-wrapper">
-    <Button href={AnchorLinks.subscribe}>Підписатись</Button>
+    <Button
+      href={AnchorLinks.subscribe}
+      data-analytics="first_section_button_subscribe_click">Підписатись</Button
+    >
   </div>
 </Section>
 
