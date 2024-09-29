@@ -22,57 +22,51 @@ import { AnchorSections, SocialLinks } from '../config';
       <div class="content">
         <div class="intro">
           <SectionIntro align="center" titleId="section-for-who-title">
-            <Fragment slot="section-subtitle">Тут Якийсь Текст</Fragment>
-            <Fragment slot="section-title">Для кого це?</Fragment>
+            <Fragment slot="section-subtitle">Для кого</Fragment>
+            <Fragment slot="section-title">Кому потрібно підписатись?</Fragment>
           </SectionIntro>
         </div>
         <div class="grid">
           <div class="grid-item">
             <p>
-              Для тих, хто любить вино, але <span class="wh-nowrap"
-                >не любить</span
-              > обирати, що нового скуштувати
+              Тим, хто любить вино, але не любить обирати, що нового скуштувати
             </p>
           </div>
           <div class="grid-item">
             <p>
-              Тих, хто хоче кожен місяць розпаковувати таємну пляшку <span
-                class="wh-nowrap">та слухати</span
-              >
+              Тим, хто хоче кожен місяць розпаковувати таємну пляшку та слухати
               цікаві історії про неї
             </p>
           </div>
           <div class="grid-item">
             <p>
-              Тих, хто полює за особливими винами, а головне — особливими
-              емоціями
+              Тим, хто полює за особливими винами, <span class="wh-nowrap"
+                >а головне</span
+              > — особливими емоціями
             </p>
           </div>
           <div class="grid-item">
             <p>
-              Та для тих, хто хоче приємно здивувати людину, яка також любить
-              вино
+              Та тим, хто хоче приємно здивувати людину, яка також любить вино
             </p>
           </div>
         </div>
         <div class="footer">
-          <p>Коротко кажучи — для всіх, хто любить вино</p>
+          <p>Коротко кажучи — усім, хто любить вино</p>
         </div>
       </div>
       <div class="content content--gift" data-intersect>
         <div class="intro">
           <SectionIntro align="center">
-            <Fragment slot="section-subtitle">До речі</Fragment>
-            <Fragment slot="section-title">Про подарунки</Fragment>
+            <Fragment slot="section-subtitle">І наостанок</Fragment>
+            <Fragment slot="section-title">Подаруйте підписку</Fragment>
           </SectionIntro>
         </div>
         <Paragraphs>
           <p>
-            Ви можете підписати на вино свою близьку людину! <br
-              class="section-for-br"
-            />Уявіть, щомісяця новий подарунок протягом трьох, шести <span
-              class="wh-nowrap">або дванадцяти</span
-            > місяців. Цілий рік подарунків!
+            Ви можете підписати на вино свою близьку людину! Уявіть, їй або йому
+            приїжджатимуть подарунки протягом трьох, шести або дванадцяти
+            місяців. Цілий рік подарунків!
           </p>
           <p>
             Також, ми можемо зробити вам персональний подарунковий сертифікат —
@@ -105,12 +99,6 @@ import { AnchorSections, SocialLinks } from '../config';
   .grid-item {
     padding: 16px 28px 32px 16px;
     border-bottom: var(--grid-border);
-  }
-
-  @media screen and (max-width: $bp-tablet-max) {
-    .section-for-br {
-      display: none;
-    }
   }
 
   .img-desktop-wrapper {
