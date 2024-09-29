@@ -2,8 +2,9 @@
 import ButtonLink from '@components/ButtonLink.astro';
 import HeaderLink from './HeaderLink.astro';
 import { SocialLinks } from 'src/config';
+import type { HTMLAttributes } from 'astro/types';
 
-export interface IHeaderLink {
+export interface IHeaderLink extends HTMLAttributes<'header'> {
   href?: string;
   text: string;
   tag?: string;
@@ -16,7 +17,7 @@ interface Props {
   links: IHeaderLink[];
 }
 
-const { className, hasMobileView, links } = Astro.props;
+const { className, hasMobileView, links, ...otherProps } = Astro.props;
 ---
 
 <header
@@ -27,6 +28,7 @@ const { className, hasMobileView, links } = Astro.props;
       'main-header--with-mobile-view': hasMobileView,
     },
   ]}
+  {...otherProps}
 >
   {
     hasMobileView && (
