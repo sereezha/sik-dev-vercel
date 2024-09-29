@@ -5,6 +5,7 @@ import { bottlesMap, getBenefitsList } from './config';
 import { getSubscribeUrl } from 'src/utils/url';
 import type { SubscriptionType } from 'src/services/subscriptions/types';
 import { getSubscriptionTypeColor } from 'src/services/subscriptions/config';
+import { Image } from 'astro:assets';
 
 export interface CardProps {
   type: SubscriptionType;
@@ -34,16 +35,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
         benefits.map((benefit) => (
           <li class="benefits-item">
             <span class="benefits-icon">
-              <svg
-                width="64"
-                height="64"
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M17 17L47 47" stroke="#1A1A1F" />
-                <path d="M47 17L17 47" stroke="#1A1A1F" />
-              </svg>
+              <Image src={benefit.icon} alt="" />
             </span>
             <span class="benefits-title" set:html={benefit.title} />
           </li>
