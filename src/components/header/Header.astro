@@ -47,6 +47,7 @@ const links: IHeaderLink[] = [
 >
   <div slot="actions">
     <Link
+      class="js-subscribe-link"
       href={AnchorLinks.subscribe}
       isAnchor
       withIcon
@@ -79,6 +80,14 @@ const links: IHeaderLink[] = [
   import { revealOnBackScroll } from 'src/utils/dom';
 
   const mainHeader = document.querySelector('[data-js-main-header]');
+  const subscribeLink = document.querySelector('.js-subscribe-link');
+
+  if (subscribeLink && mainHeader) {
+    subscribeLink.addEventListener('click', () => {
+      mainHeader.classList.add('is-scrolling');
+    });
+  }
+
   if (mainHeader) {
     revealOnBackScroll(mainHeader);
   }
