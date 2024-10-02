@@ -28,9 +28,9 @@ const backgroundColor = getSubscriptionTypeColor(type);
   class:list={['card', `card--${type}`]}
   data-js-subscribe-card
   data-bottles={bottles}
-  data-months="1"
   data-type={type}
   data-intersect
+  x-data={`subscribeCard('${bottles}', '${type}')`}
 >
   <div class="content">
     <h3 class="title heading">{title}</h3>
@@ -49,54 +49,54 @@ const backgroundColor = getSubscriptionTypeColor(type);
     </ul>
   </div>
   <div class="footer">
-    <form>
-      <div class="radiogroup">
-        <label class="radio-item" data-js-radio-item
-          ><input
-            value="1"
-            name="months"
-            type="radio"
-            class="radio-input visually-hidden"
-            checked=""
-          /><span class="radio-inner js-month">місяць</span></label
-        ><label class="radio-item" data-js-radio-item
-          ><input
-            value="3"
-            name="months"
-            type="radio"
-            class="radio-input visually-hidden"
-          /><span class="radio-inner"
-            ><span class="radio-inner__text"
-              >3 <span class="month-short">міс.</span><span class="month-long"
-                >місяці</span
-              ></span
+    <div class="radiogroup">
+      <label class="radio-item" data-js-radio-item x-on:click="months = 1"
+        ><input
+          value="1"
+          name={`months-${type}`}
+          type="radio"
+          class="radio-input visually-hidden"
+          checked=""
+        /><span class="radio-inner js-month">місяць</span></label
+      ><label class="radio-item" data-js-radio-item x-on:click={`months = 3`}
+        ><input
+          value="3"
+          name={`months-${type}`}
+          type="radio"
+          class="radio-input visually-hidden"
+        /><span class="radio-inner"
+          ><span class="radio-inner__text"
+            >3 <span class="month-short">міс.</span><span class="month-long"
+              >місяці</span
             ></span
-          ></label
-        ><label class="radio-item" data-js-radio-item
-          ><input
-            value="6"
-            name="months"
-            type="radio"
-            class="radio-input visually-hidden"
-          /><span class="radio-inner"
-            ><span class="radio-inner__text wh-nowrap">пів року</span></span
-          ></label
-        ><label class="radio-item" data-js-radio-item
-          ><input
-            value="12"
-            name="months"
-            type="radio"
-            class="radio-input visually-hidden"
-          /><span class="radio-inner"
-            ><span class="radio-inner__text">рік</span></span
-          ></label
-        >
-      </div>
-    </form>
-    <Button data-js-subscribe-button href={initialHref} fullWidth
+          ></span
+        ></label
+      ><label class="radio-item" data-js-radio-item x-on:click={`months = 6`}
+        ><input
+          value="6"
+          name={`months-${type}`}
+          type="radio"
+          class="radio-input visually-hidden"
+        /><span class="radio-inner"
+          ><span class="radio-inner__text wh-nowrap">пів року</span></span
+        ></label
+      ><label class="radio-item" data-js-radio-item x-on:click={`months = 12`}
+        ><input
+          value="12"
+          name={`months-${type}`}
+          type="radio"
+          class="radio-input visually-hidden"
+        /><span class="radio-inner"
+          ><span class="radio-inner__text">рік</span></span
+        ></label
+      >
+    </div>
+    <Button isLink fullWidth x-bind:href="href" x-on:click="trackAnalytics"
       ><div class="button">
         Підписатись <span class="price"
-          ><span data-js-subscribe-price>{initialPrice}</span> ₴</span
+          ><span data-js-subscribe-price x-text="getPrice()"
+            >{initialPrice}</span
+          > ₴</span
         >
       </div></Button
     >
@@ -243,37 +243,40 @@ const backgroundColor = getSubscriptionTypeColor(type);
   import { getPrices } from '../../services/subscriptions/utils';
   import { getAnalyticsName } from 'src/services/subscriptions/config';
   import type { SubscriptionType } from 'src/services/subscriptions/types';
+  import Alpine from 'alpinejs';
 
-  const cards = document.querySelectorAll('[data-js-subscribe-card]')!;
-  cards.forEach((card) => {
-    const bottles = card.getAttribute('data-bottles')!;
-    const type = card.getAttribute('data-type')! as SubscriptionType;
-    const radioItems = card.querySelectorAll('[data-js-radio-item]');
-    const price = card.querySelector('[data-js-subscribe-price]')!;
-    const button = card.querySelector(
-      '[data-js-subscribe-button]'
-    )! as HTMLAnchorElement;
+  document.addEventListener('alpine:init', () => {
+    Alpine.data(
+      'subscribeCard',
+      (bottles: string | number, type: SubscriptionType) => ({
+        months: 1,
+        href: '',
+        bottles,
+        type,
 
-    const subscribeCardButton = card.querySelector(
-      '[data-js-subscribe-button]'
-    )!;
+        getPrice() {
+          return getPrices(this.bottles, this.months).sum;
+        },
 
-    subscribeCardButton.addEventListener('click', (e) => {
-      const analyticsName = getAnalyticsName(type);
-      window.gtag('event', analyticsName, {
-        price: price.textContent,
-        months: card.getAttribute('data-months'),
-      });
-    });
+        init() {
+          this.updateHref(this.months);
+          this.$watch('months', (val) => {
+            this.updateHref(val);
+          });
+        },
 
-    radioItems.forEach((item) => {
-      item.addEventListener('change', (e) => {
-        const { value } = e.target as HTMLInputElement;
-        button.href = getSubscribeUrl(bottles, Number(value));
-        const priceValue = getPrices(bottles, Number(value)).sum;
-        price.textContent = priceValue.toString();
-        card.setAttribute('data-months', value);
-      });
-    });
+        updateHref(months: number) {
+          this.href = getSubscribeUrl(this.bottles, months);
+        },
+
+        trackAnalytics() {
+          const analyticsName = getAnalyticsName(type);
+          window.gtag('event', analyticsName, {
+            price: this.getPrice(),
+            months: this.months,
+          });
+        },
+      })
+    );
   });
 </script>

@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import partytown from "@astrojs/partytown";
 
+import alpinejs from "@astrojs/alpinejs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -19,15 +21,12 @@ export default defineConfig({
   },
   scopedStyleStrategy: "class",
 
-  integrations: [
-    sitemap(),
-    icon(),
-    // partytown({
-    //   config: {
-    //     forward: ["dataLayer.push", "fbq", "gtag"],
-    //   },
-    // }),
-  ],
+  integrations: [sitemap(), // partytown({
+  //   config: {
+  //     forward: ["dataLayer.push", "fbq", "gtag"],
+  //   },
+  // }),
+  icon(), alpinejs()],
   devToolbar: {
     enabled: false,
   },

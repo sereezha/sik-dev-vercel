@@ -8,6 +8,7 @@ interface Props extends HTMLAttributes<'button'> {
   fullWidth?: boolean;
   className?: string;
   isLoading?: boolean;
+  isLink?: boolean;
 }
 const {
   size = 'medium',
@@ -16,9 +17,10 @@ const {
   appearance = 'default',
   className,
   isLoading = false,
+  isLink = false,
   ...otherProps
 } = Astro.props;
-const Tag = href ? 'a' : 'button';
+const Tag = href || isLink ? 'a' : 'button';
 ---
 
 <Tag

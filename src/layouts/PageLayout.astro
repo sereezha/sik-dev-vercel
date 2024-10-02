@@ -9,3 +9,36 @@ import GeneralLayout from './GeneralLayout.astro';
     <slot />
   </div>
 </GeneralLayout>
+
+<script>
+  // @ts-nocheck
+  import {
+    lockBodyScroll,
+    revealOnBackScroll,
+    unlockBodyScroll,
+  } from 'src/utils/dom';
+  import Alpine from 'alpinejs';
+
+  revealOnBackScroll();
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('mainHeader', {
+      isOpen: false,
+      isScrolling: false,
+
+      openMobileNav() {
+        this.isOpen = true;
+        lockBodyScroll();
+      },
+
+      closeMobileNav() {
+        this.isOpen = false;
+        unlockBodyScroll();
+      },
+
+      headerLinkClick() {
+        this.isScrolling = true;
+      },
+    });
+  });
+</script>

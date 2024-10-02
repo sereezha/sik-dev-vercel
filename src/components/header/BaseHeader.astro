@@ -15,9 +15,19 @@ interface Props {
   className?: string;
   hasMobileView?: boolean;
   links: IHeaderLink[];
+  isSticky?: boolean;
 }
 
-const { className, hasMobileView, links, ...otherProps } = Astro.props;
+const { className, hasMobileView, links, isSticky, ...otherProps } =
+  Astro.props;
+
+const alpineProps = isSticky
+  ? {
+      'x-data': 'true',
+      'x-bind:class': "$store.mainHeader.isScrolling ? 'is-scrolling' : ''",
+      'x-on:scrollend.window': '$store.mainHeader.isScrolling = false',
+    }
+  : {};
 ---
 
 <header
@@ -28,15 +38,17 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
       'main-header--with-mobile-view': hasMobileView,
     },
   ]}
+  data-js-main-header
+  {...alpineProps}
   {...otherProps}
 >
   {
     hasMobileView && (
       <ButtonLink
         aria-controls="nav-mobile-menu"
-        aria-expanded="false"
         class="mobile-nav-open-button"
-        data-js-mobile-nav-open-button
+        x-on:click="$store.mainHeader.openMobileNav()"
+        x-bind:aria-expanded="$store.mainHeader.isOpen ? 'true' : 'false'"
       >
         Меню
       </ButtonLink>
@@ -50,7 +62,11 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
           const Tag = isLink ? HeaderLink : (link.tag ?? 'span');
           const otherProps =
             isLink && !link?.props?.isInactive
-              ? { href: link.href, 'data-header-link': true }
+              ? {
+                  href: link.href,
+                  'data-js-header-link': true,
+                  'x-on:click': '$store.mainHeader.headerLinkClick()',
+                }
               : {};
           return (
             <Tag {...link.props} {...otherProps} {...link.props}>
@@ -64,13 +80,19 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
 
   {
     hasMobileView && (
-      <nav class="mobile-nav" data-js-mobile-nav id="nav-mobile-menu">
+      <nav
+        class="mobile-nav"
+        data-js-mobile-nav
+        id="nav-mobile-menu"
+        x-bind:class="$store.mainHeader.isOpen ? 'is-open' : ''"
+      >
         <div class="mobile-nav-overlay" />
         <div class="mobile-nav-content">
           <ButtonLink
             class="mobile-nav-close-button"
-            data-js-mobile-nav-close-button
             aria-controls="nav-mobile-menu"
+            x-on:click="$store.mainHeader.closeMobileNav()"
+            x-bind:aria-expanded="$store.mainHeader.isOpen ? 'true' : 'false'"
           >
             Закрити
           </ButtonLink>
@@ -78,7 +100,8 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
             {links.map((link) => (
               <a
                 class="mobile-nav-link heading-font"
-                data-header-link
+                data-js-header-link
+                x-on:click="$store.mainHeader.headerLinkClick();$store.mainHeader.closeMobileNav();"
                 href={link.href}
               >
                 {link.text}
@@ -199,48 +222,3 @@ const { className, hasMobileView, links, ...otherProps } = Astro.props;
     }
   }
 </style>
-
-<script>
-  import { lockBodyScroll, unlockBodyScroll } from 'src/utils/dom';
-
-  const menuButton = document.querySelector(
-    '[data-js-mobile-nav-open-button]'
-  )!;
-  const headerLinks = document.querySelectorAll('[data-header-link]')!;
-  const menuCloseButton = document.querySelector(
-    '[data-js-mobile-nav-close-button]'
-  )!;
-  const mobileNav = document.querySelector('[data-js-mobile-nav]')!;
-
-  const handleCloseMobileNav = () => {
-    mobileNav.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    unlockBodyScroll();
-  };
-
-  if (menuButton && menuCloseButton) {
-    menuButton.addEventListener('click', () => {
-      mobileNav.classList.add('is-open');
-      menuButton.setAttribute('aria-expanded', 'true');
-      lockBodyScroll();
-    });
-
-    menuCloseButton.addEventListener('click', handleCloseMobileNav);
-  }
-
-  const mainHeader = document.querySelector('.main-header');
-
-  if (mainHeader) {
-    headerLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        mainHeader.classList.add('is-scrolling');
-      });
-    });
-  }
-
-  if (mobileNav) {
-    headerLinks.forEach((link) => {
-      link.addEventListener('click', handleCloseMobileNav);
-    });
-  }
-</script>

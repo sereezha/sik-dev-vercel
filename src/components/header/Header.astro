@@ -41,8 +41,9 @@ const links: IHeaderLink[] = [
 
 <BaseHeader
   className="header is-visible"
-  data-js-main-header
+  data-reveal-on-back-scroll
   hasMobileView
+  isSticky
   links={links}
 >
   <div slot="actions">
@@ -51,6 +52,8 @@ const links: IHeaderLink[] = [
       href={AnchorLinks.subscribe}
       isAnchor
       withIcon
+      x-data
+      x-on:click="$store.mainHeader.headerLinkClick()"
       data-analytics="header_link_subscribe_click">Підписатись</Link
     >
   </div>
@@ -75,20 +78,3 @@ const links: IHeaderLink[] = [
     }
   }
 </style>
-
-<script>
-  import { revealOnBackScroll } from 'src/utils/dom';
-
-  const mainHeader = document.querySelector('[data-js-main-header]');
-  const subscribeLink = document.querySelector('.js-subscribe-link');
-
-  if (subscribeLink && mainHeader) {
-    subscribeLink.addEventListener('click', () => {
-      mainHeader.classList.add('is-scrolling');
-    });
-  }
-
-  if (mainHeader) {
-    revealOnBackScroll(mainHeader);
-  }
-</script>
