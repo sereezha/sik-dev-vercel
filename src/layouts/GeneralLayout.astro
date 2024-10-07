@@ -38,22 +38,15 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
       <AdultModal />
       <slot name="modals" />
     </div>
-    <script is:inline define:vars={{ LocalStorageKeys, ModalIds }}>
-      const adultModal = document.getElementById(ModalIds.ADULT_MODAL);
-      const isInStorage = localStorage.getItem(LocalStorageKeys.ADULT_MODAL);
-      if (isInStorage) {
-        adultModal?.remove();
-      } else {
-        adultModal?.setAttribute('aria-hidden', 'false');
-      }
-    </script>
   </body>
 </html>
 
 <script>
-  import { initAnalyticsDOM } from 'src/services/analytics/utils';
   import AnalyticsManager from 'src/services/analytics';
-  import { ModalIds } from 'src/constants/modals';
+  import { initAnalyticsDOM } from 'src/services/analytics/utils';
+  import { ModalController } from '@components/modal/Modal';
+
+  window.modalController = new ModalController();
 
   document.addEventListener('DOMContentLoaded', () => {
     const analyticsManager = new AnalyticsManager();

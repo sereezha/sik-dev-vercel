@@ -2,6 +2,7 @@ import A11yDialog from "a11y-dialog";
 import type { ModalIds } from "src/constants/modals";
 import { lockBodyScroll, unlockBodyScroll } from "src/utils/dom";
 import type { ModalAction } from "./types";
+import { adaptedLocalStorage } from "src/services/storage";
 
 export class ModalController {
   private modals: Map<string, A11yDialog> = new Map();
@@ -11,10 +12,12 @@ export class ModalController {
       "DOMContentLoaded",
       this.initializeModals.bind(this),
     );
-
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.destroy = this.destroy.bind(this);
+    this.executeMethod = this.executeMethod.bind(this);
+    this.initializeActions = this.initializeActions.bind(this);
+    this.renderOnMount = this.renderOnMount.bind(this);
   }
 
   private initializeActions(container: Element) {
@@ -45,21 +48,15 @@ export class ModalController {
     }
   }
 
-  private removeModalInStorage(container: Element) {
-    const id = container.id as ModalIds;
-    const isInStorage = localStorage.getItem(id);
-    if (isInStorage) {
-      container.remove();
-      return;
-    }
-  }
-
   private initializeModal(container: Element) {
     const id = container.id as ModalIds;
     if (!id) return;
 
-    this.removeModalInStorage(container);
-    this.renderOnMount(container);
+    const isInStorage = adaptedLocalStorage.get(id);
+    if (isInStorage) {
+      container.remove();
+      return;
+    }
 
     const modal = new A11yDialog(container as HTMLElement);
 
@@ -71,15 +68,17 @@ export class ModalController {
         unlockBodyScroll();
       });
 
-    this.initializeActions(container);
-
     this.modals.set(id, modal);
+    this.renderOnMount(container);
+    this.initializeActions(container);
   }
 
   private initializeModals() {
     document
       .querySelectorAll("[data-sh-modal-container]")
-      .forEach((container) => this.initializeModal(container));
+      .forEach((container) => {
+        this.initializeModal(container);
+      });
   }
 
   private executeMethod(id: ModalIds, action: ModalAction) {

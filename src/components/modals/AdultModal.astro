@@ -20,6 +20,7 @@ import Modal from '../modal/Modal.astro';
   import { LocalStorageKeys } from 'src/constants/storage';
   import { ModalIds } from 'src/constants/modals';
   import Alpine from 'alpinejs';
+  import { adaptedLocalStorage } from 'src/services/storage';
 
   const id = ModalIds.ADULT_MODAL;
 
@@ -30,7 +31,7 @@ import Modal from '../modal/Modal.astro';
     перегляду сайту.`,
 
       onAgreeClick() {
-        localStorage.setItem(LocalStorageKeys.ADULT_MODAL, 'true');
+        adaptedLocalStorage.set(LocalStorageKeys.ADULT_MODAL, 'true');
         window.modalController.destroy(id);
       },
       onDisagreeClick() {

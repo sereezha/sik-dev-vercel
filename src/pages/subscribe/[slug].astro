@@ -205,6 +205,7 @@ const editLinkProps = {
 
 <script>
   import { SessionStorageKeys } from 'src/constants/storage';
+  import { adaptedSessionStorage } from 'src/services/storage';
 
   const editButtons = document.querySelectorAll('[data-js-checkout-edit]')!;
   editButtons.forEach((button) => {
@@ -220,7 +221,7 @@ const editLinkProps = {
         formData.append('phone', phoneValue);
       }
 
-      sessionStorage.setItem(
+      adaptedSessionStorage.set(
         SessionStorageKeys.CHECKOUT,
         JSON.stringify(Object.fromEntries(formData))
       );
