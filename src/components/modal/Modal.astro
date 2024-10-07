@@ -23,14 +23,14 @@ const titleId = `${id}-title`;
 <div
   class:list={['modal-container', `modal-container--${type}`]}
   id={id}
-  data-js-modal-container
   aria-labelledby={titleId}
-  data-js-show-on-mount={showOnMount.toString()}
+  data-sh-modal-container
+  data-sh-modal-show-on-mount={showOnMount.toString()}
   data-a11y-dialog={id}
   aria-hidden="true"
   {...otherProps}
 >
-  <div class="modal-overlay" data-js-modal-action-hide></div>
+  <div class="modal-overlay" data-sh-modal-action="hide"></div>
   <div class="modal" role="document">
     <div class="modal-content">
       {
@@ -38,7 +38,7 @@ const titleId = `${id}-title`;
           <button
             class="modal-close"
             type="button"
-            data-js-modal-action-hide
+            data-sh-modal-action="hide"
             aria-label="Закрити вікно"
           >
             <Icon width={32} height={32} name="close" />

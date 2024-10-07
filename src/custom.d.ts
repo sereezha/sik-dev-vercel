@@ -1,8 +1,8 @@
 interface Window {
   modalController: {
-    show: (id: string) => void;
-    hide: (id: string) => void;
-    destroy: (id: string) => void;
+    show: (id: ModalIds) => void;
+    hide: (id: ModalIds) => void;
+    destroy: (id: ModalIds) => void;
   };
   gtag: (event: string, action: string, options?: Record<string, any>) => void;
   analyticsManager: AnalyticsManager;
