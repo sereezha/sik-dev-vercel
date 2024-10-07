@@ -11,7 +11,7 @@ export const unlockBodyScroll = () => {
 export const revealOnBackScroll = (options?: {
   shouldAttachScrollEndListener: boolean;
 }) => {
-  const elements = document.querySelectorAll("[data-reveal-on-back-scroll]");
+  const elements = document.querySelectorAll("[data-sh-reveal-on-back-scroll]");
 
   if (elements.length <= 0) return;
 
