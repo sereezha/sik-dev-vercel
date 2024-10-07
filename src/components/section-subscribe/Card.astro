@@ -6,7 +6,6 @@ import { getSubscribeUrl } from 'src/utils/url';
 import type { SubscriptionType } from 'src/services/subscriptions/types';
 import {
   getSubscriptionTypeColor,
-  getAnalyticsName,
 } from 'src/services/subscriptions/config';
 import { Image } from 'astro:assets';
 
@@ -20,15 +19,12 @@ const { type, title, description } = Astro.props as CardProps;
 const benefits = getBenefitsList(type);
 const bottles = bottlesMap[type];
 const initialPrice = getPrices(bottles, 1).sum;
-const initialHref = getSubscribeUrl(bottles, 1);
 const backgroundColor = getSubscriptionTypeColor(type);
 ---
 
 <div
   class:list={['card', `card--${type}`]}
   data-js-subscribe-card
-  data-bottles={bottles}
-  data-type={type}
   data-intersect
   x-data={`subscribeCard('${bottles}', '${type}')`}
 >

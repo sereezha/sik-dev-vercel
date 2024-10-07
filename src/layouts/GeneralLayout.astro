@@ -38,8 +38,7 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
     <Toast />
     <div id="modal-container">
       <AdultModal />
-      <SuccessModal />
-      <ErrorModal />
+      <slot name="modals" />
     </div>
     <script is:inline define:vars={{ LocalStorageKeys, ModalIds }}>
       const adultModal = document.getElementById(ModalIds.ADULT_MODAL);
@@ -54,22 +53,9 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
 </html>
 
 <script>
+  import { initAnalytics } from 'src/services/analytics/utils';
+
   document.addEventListener('DOMContentLoaded', () => {
-    const analyticElements = document.querySelectorAll('[data-analytics]');
-    if (analyticElements.length > 0) {
-      analyticElements.forEach((element) => {
-        element.addEventListener('click', () => {
-          const value = element.getAttribute('data-analytics');
-          const options = element.getAttribute('data-analytics-options');
-          if (value) {
-            if (options) {
-              window.gtag('event', value, JSON.parse(options));
-            } else {
-              window.gtag('event', value);
-            }
-          }
-        });
-      });
-    }
+    initAnalytics();
   });
 </script>

@@ -17,6 +17,7 @@ const {
   description,
   type = 'info',
   showCloseButton = false,
+  ...otherProps
 } = Astro.props;
 const titleId = `${id}-title`;
 ---
@@ -29,6 +30,7 @@ const titleId = `${id}-title`;
   data-show-on-mount={showOnMount.toString()}
   data-a11y-dialog={id}
   aria-hidden="true"
+  {...otherProps}
 >
   <div class="dialog-overlay" data-a11y-dialog-hide></div>
   <div class="dialog" role="document">

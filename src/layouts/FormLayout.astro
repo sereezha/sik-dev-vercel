@@ -1,12 +1,18 @@
 ---
 import FormHeader from '@components/header/FormHeader.astro';
 import GeneralLayout from './GeneralLayout.astro';
+import SuccessModal from '@components/modals/SuccessModal.astro';
+import ErrorModal from '@components/modals/ErrorModal.astro';
 ---
 
 <GeneralLayout isSmallPage>
   <div class="content">
     <FormHeader />
     <slot />
+    <Fragment name="modals">
+      <SuccessModal />
+      <ErrorModal />
+    </Fragment>
   </div>
 </GeneralLayout>
 

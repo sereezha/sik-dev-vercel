@@ -11,7 +11,6 @@ import GeneralLayout from './GeneralLayout.astro';
 </GeneralLayout>
 
 <script>
-  // @ts-nocheck
   import {
     lockBodyScroll,
     revealOnBackScroll,
@@ -20,6 +19,14 @@ import GeneralLayout from './GeneralLayout.astro';
   import Alpine from 'alpinejs';
 
   revealOnBackScroll();
+
+  interface MainHeaderStore {
+    isOpen: boolean;
+    isScrolling: boolean;
+    openMobileNav: () => void;
+    closeMobileNav: () => void;
+    headerLinkClick: () => void;
+  }
 
   document.addEventListener('alpine:init', () => {
     Alpine.store('mainHeader', {
@@ -39,6 +46,6 @@ import GeneralLayout from './GeneralLayout.astro';
       headerLinkClick() {
         this.isScrolling = true;
       },
-    });
+    } satisfies MainHeaderStore);
   });
 </script>

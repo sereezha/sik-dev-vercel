@@ -10,26 +10,23 @@ import { ModalIds } from 'src/constants/modals';
   showCloseButton
   id={ModalIds.SUCCESS_MODAL}
   description="Дякуємо! Ми дуже раді, що ви замовили підписку та найближчим часом звʼяжемось з вами, щоб підтвердити замовлення та дізнатись дані для відправки."
+  x-data="successModal"
 >
   <Fragment slot="title">Замовлення успішно прийняте!</Fragment>
   <Fragment slot="buttons">
-    <Button href={Routes.home} fullWidth data-action="close">На головну</Button>
+    <Button href={Routes.home} fullWidth x-on:click="onClick">На головну</Button>
   </Fragment>
 </Modal>
 
 <script>
-import { ModalIds } from "src/constants/modals";
+  import Alpine from 'alpinejs';
+  import { ModalIds } from 'src/constants/modals';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const successModal = document.getElementById(ModalIds.SUCCESS_MODAL);
-
-    successModal?.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      const action = target.getAttribute('data-action');
-
-      if (action === 'close') {
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('successModal', () => ({
+      onClick() {
         window.modalController.hide(ModalIds.SUCCESS_MODAL);
-      }
-    });
+      },
+    }));
   });
 </script>
