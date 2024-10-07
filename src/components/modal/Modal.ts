@@ -60,6 +60,8 @@ export class ModalController {
 
     const modal = new A11yDialog(container as HTMLElement);
 
+    this.modals.set(id, modal);
+
     modal
       .on("show", () => {
         lockBodyScroll();
@@ -68,7 +70,6 @@ export class ModalController {
         unlockBodyScroll();
       });
 
-    this.modals.set(id, modal);
     this.renderOnMount(container);
     this.initializeActions(container);
   }
