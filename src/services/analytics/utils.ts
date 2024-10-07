@@ -1,4 +1,4 @@
-export const initAnalytics = () => {
+export const initAnalyticsDOM = () => {
   const analyticElements = document.querySelectorAll("[data-analytics]");
   if (analyticElements.length > 0) {
     analyticElements.forEach((element) => {
@@ -7,9 +7,9 @@ export const initAnalytics = () => {
         const options = element.getAttribute("data-analytics-options");
         if (value) {
           if (options) {
-            window.gtag("event", value, JSON.parse(options));
+            window.analyticsManager.track(value, JSON.parse(options));
           } else {
-            window.gtag("event", value);
+            window.analyticsManager.track(value);
           }
         }
       });

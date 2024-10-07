@@ -104,7 +104,7 @@ const { months, bottles } = Astro.props;
 
   const showFetchError = () => {
     window.modalController.show(ModalIds.ERROR_MODAL);
-    window.gtag('event', 'checkout_error_modal_load');
+    window.analyticsManager.track('checkout_error_modal_load');
   };
 
   const resetForm = () => {

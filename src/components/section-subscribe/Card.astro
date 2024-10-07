@@ -267,7 +267,7 @@ const backgroundColor = getSubscriptionTypeColor(type);
 
         trackAnalytics() {
           const analyticsName = getAnalyticsName(type);
-          window.gtag('event', analyticsName, {
+          window.analyticsManager.track('event', analyticsName, {
             price: this.getPrice(),
             months: this.months,
           });

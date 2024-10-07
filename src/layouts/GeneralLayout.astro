@@ -8,8 +8,6 @@ import GoogleAnalytics from '@components/head/analytics/GoogleAnalytics.astro';
 import FacebookAnalytics from '@components/head/analytics/facebook/FacebookAnalytics.astro';
 import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/FacebookAnalyticsNoScript.astro';
 import Favicons from '@components/head/Favicons.astro';
-import SuccessModal from '@components/modals/SuccessModal.astro';
-import ErrorModal from '@components/modals/ErrorModal.astro';
 import { LocalStorageKeys } from 'src/constants/storage';
 import { ModalIds } from 'src/constants/modals';
 
@@ -53,9 +51,12 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
 </html>
 
 <script>
-  import { initAnalytics } from 'src/services/analytics/utils';
+  import { initAnalyticsDOM } from 'src/services/analytics/utils';
+  import AnalyticsManager from 'src/services/analytics';
 
   document.addEventListener('DOMContentLoaded', () => {
-    initAnalytics();
+    const analyticsManager = new AnalyticsManager();
+    window.analyticsManager = analyticsManager;
+    initAnalyticsDOM();
   });
 </script>

@@ -5,6 +5,7 @@ interface Window {
     destroy: (id: string) => void;
   };
   gtag: (event: string, action: string, options?: Record<string, any>) => void;
+  analyticsManager: AnalyticsManager;
 }
 
 interface Element {

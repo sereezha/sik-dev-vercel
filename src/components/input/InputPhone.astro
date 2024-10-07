@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<'input'> {
   id: string;
 }
 
-const { id } = Astro.props;
+const { id, ...otherProps } = Astro.props;
 ---
 
 <Input
@@ -16,6 +16,7 @@ const { id } = Astro.props;
   label="Телефон"
   placeholder="+38 (___) ___-__-__"
   data-js-phone-input
+  {...otherProps}
 />
 
 <script>
