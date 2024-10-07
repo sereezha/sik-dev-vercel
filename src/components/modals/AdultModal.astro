@@ -6,7 +6,8 @@ import Modal from '../modal/Modal.astro';
 
 <Modal x-data="adultModal" type="info" showOnMount id={ModalIds.ADULT_MODAL}>
   <Fragment slot="title">
-    <span x-html="text"></span>
+    <span x-html="text">Будь ласка, підтвердіть, <span class="wh-nowrap">що вам</span> 18+ років для
+    перегляду сайту.</span>
   </Fragment>
   <Fragment slot="buttons">
     <Button fullWidth appearance="text" x-on:click="onDisagreeClick"
