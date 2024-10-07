@@ -10,25 +10,11 @@ import { ModalIds } from 'src/constants/modals';
   showCloseButton
   id={ModalIds.ERROR_MODAL}
   description="Не перейматесь, проблема на нашому боці — вже розбираємось. А ви поки напишіть нам в Телеграмі, ми з радістю допоможемо оформити замовлення."
-  x-data="errorModal"
 >
   <Fragment slot="title">Щось пішло не так.</Fragment>
   <Fragment slot="buttons">
-    <Button href={SocialLinks.telegram} x-on:click="onClick" fullWidth
+    <Button href={SocialLinks.telegram} data-js-modal-action-hide fullWidth
       >Телеграм</Button
     >
   </Fragment>
 </Modal>
-
-<script>
-  import Alpine from 'alpinejs';
-  import { ModalIds } from 'src/constants/modals';
-
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('errorModal', () => ({
-      onClick() {
-        window.modalController.hide(ModalIds.ERROR_MODAL);
-      },
-    }));
-  });
-</script>

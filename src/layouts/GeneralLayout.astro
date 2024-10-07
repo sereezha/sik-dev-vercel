@@ -53,8 +53,12 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
 <script>
   import { initAnalyticsDOM } from 'src/services/analytics/utils';
   import AnalyticsManager from 'src/services/analytics';
+  import { ModalIds } from 'src/constants/modals';
 
   document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      window.modalController.show(ModalIds.ERROR_MODAL);
+    });
     const analyticsManager = new AnalyticsManager();
     window.analyticsManager = analyticsManager;
     initAnalyticsDOM();

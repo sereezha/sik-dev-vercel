@@ -6,6 +6,7 @@ interface Window {
   };
   gtag: (event: string, action: string, options?: Record<string, any>) => void;
   analyticsManager: AnalyticsManager;
+  Alpine: import("alpinejs").Alpine;
 }
 
 interface Element {

@@ -1,6 +1,4 @@
 ---
-import A11yDialog from 'a11y-dialog';
-import Button from '../Button.astro';
 import Paragraph from '../Paragraph.astro';
 import { Icon } from 'astro-icon/components';
 interface Props {
@@ -23,41 +21,41 @@ const titleId = `${id}-title`;
 ---
 
 <div
-  class={`dialog-container dialog-container--${type}`}
+  class:list={['modal-container', `modal-container--${type}`]}
   id={id}
   data-js-modal-container
   aria-labelledby={titleId}
-  data-show-on-mount={showOnMount.toString()}
+  data-js-show-on-mount={showOnMount.toString()}
   data-a11y-dialog={id}
   aria-hidden="true"
   {...otherProps}
 >
-  <div class="dialog-overlay" data-a11y-dialog-hide></div>
-  <div class="dialog" role="document">
-    <div class="dialog-content">
+  <div class="modal-overlay" data-js-modal-action-hide></div>
+  <div class="modal" role="document">
+    <div class="modal-content">
       {
         showCloseButton && (
           <button
-            class="dialog-close"
+            class="modal-close"
             type="button"
-            data-a11y-dialog-hide
+            data-js-modal-action-hide
             aria-label="Закрити вікно"
           >
             <Icon width={32} height={32} name="close" />
           </button>
         )
       }
-      <h1 class="dialog-title heading" id={titleId}>
+      <h1 class="modal-title heading" id={titleId}>
         <slot name="title" />
       </h1>
       {
         description && (
-          <div class="dialog-description">
+          <div class="modal-description">
             <Paragraph set:html={description} />
           </div>
         )
       }
-      <div class="dialog-buttons">
+      <div class="modal-buttons">
         <slot name="buttons" />
       </div>
     </div>
@@ -65,7 +63,7 @@ const titleId = `${id}-title`;
 </div>
 
 <style is:global lang="scss">
-  .dialog-close {
+  .modal-close {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -78,44 +76,47 @@ const titleId = `${id}-title`;
     cursor: pointer;
   }
 
-  .dialog-container,
-  .dialog-overlay {
+  .modal-container,
+  .modal-overlay {
     position: fixed;
     inset: 0;
   }
 
-  .dialog-container--info .dialog-content {
-    background-color: #6f6f72;
+  .modal-container {
+    --modal-content-bg-color: #6f6f72;
+    &--info .modal-content {
+      --modal-content-bg-color: #6f6f72;
+    }
+
+    &--success .modal-content {
+      --modal-content-bg-color: #78a782;
+    }
+
+    &--error .modal-content {
+      --modal-content-bg-color: var(--main-error);
+    }
   }
 
-  .dialog-container--success .dialog-content {
-    background-color: #78a782;
-  }
-
-  .dialog-container--error .dialog-content {
-    background-color: var(--main-error);
-  }
-
-  .dialog-container {
+  .modal-container {
     z-index: 1000;
     display: flex;
   }
 
-  .dialog-container[aria-hidden='true'] {
+  .modal-container[aria-hidden='true'] {
     display: none;
   }
 
-  .dialog-overlay {
+  .modal-overlay {
     background-color: var(--overlay-color);
   }
 
-  .dialog-description {
+  .modal-description {
     max-width: 560px;
     width: 100%;
     margin-top: 24px;
   }
 
-  .dialog {
+  .modal {
     --padding-inline: 16px;
 
     margin: auto;
@@ -129,21 +130,22 @@ const titleId = `${id}-title`;
     }
   }
 
-  .dialog-buttons button.button {
+  .modal-buttons button.button {
     @media screen and (max-width: $bp-tablet-max) {
       font-size: 1.7rem;
     }
   }
 
-  .dialog-content {
+  .modal-content {
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 24px 16px 16px;
     min-height: 406px;
+    background-color: var(--modal-content-bg-color);
   }
 
-  .dialog-title {
+  .modal-title {
     font-size: 2.8rem;
     line-height: 1.14;
     max-width: 66rem;
@@ -154,7 +156,7 @@ const titleId = `${id}-title`;
     }
   }
 
-  .dialog-buttons {
+  .modal-buttons {
     display: grid;
     gap: 8px;
     margin-top: auto;
