@@ -13,23 +13,8 @@ import { ModalIds } from 'src/constants/modals';
 >
   <Fragment slot="title">Замовлення успішно прийняте!</Fragment>
   <Fragment slot="buttons">
-    <Button href={Routes.home} fullWidth data-action="close">На головну</Button>
+    <Button href={Routes.home} fullWidth data-sh-modal-action="hide"
+      >На головну</Button
+    >
   </Fragment>
 </Modal>
-
-<script>
-import { ModalIds } from "src/constants/modals";
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const successModal = document.getElementById(ModalIds.SUCCESS_MODAL);
-
-    successModal?.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      const action = target.getAttribute('data-action');
-
-      if (action === 'close') {
-        window.modalController.hide(ModalIds.SUCCESS_MODAL);
-      }
-    });
-  });
-</script>

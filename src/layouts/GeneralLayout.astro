@@ -8,8 +8,6 @@ import GoogleAnalytics from '@components/head/analytics/GoogleAnalytics.astro';
 import FacebookAnalytics from '@components/head/analytics/facebook/FacebookAnalytics.astro';
 import FacebookAnalyticsNoScript from '@components/head/analytics/facebook/FacebookAnalyticsNoScript.astro';
 import Favicons from '@components/head/Favicons.astro';
-import SuccessModal from '@components/modals/SuccessModal.astro';
-import ErrorModal from '@components/modals/ErrorModal.astro';
 import { LocalStorageKeys } from 'src/constants/storage';
 import { ModalIds } from 'src/constants/modals';
 
@@ -38,38 +36,21 @@ const { pageThemeColor, isSmallPage = false } = Astro.props;
     <Toast />
     <div id="modal-container">
       <AdultModal />
-      <SuccessModal />
-      <ErrorModal />
+      <slot name="modals" />
     </div>
-    <script is:inline define:vars={{ LocalStorageKeys, ModalIds }}>
-      const adultModal = document.getElementById(ModalIds.ADULT_MODAL);
-      const isInStorage = localStorage.getItem(LocalStorageKeys.ADULT_MODAL);
-      if (isInStorage) {
-        adultModal?.remove();
-      } else {
-        adultModal?.setAttribute('aria-hidden', 'false');
-      }
-    </script>
   </body>
 </html>
 
 <script>
+  import AnalyticsManager from 'src/services/analytics';
+  import { initAnalyticsDOM } from 'src/services/analytics/utils';
+  import { ModalController } from '@components/modal/Modal';
+
+  window.modalController = new ModalController();
+
   document.addEventListener('DOMContentLoaded', () => {
-    const analyticElements = document.querySelectorAll('[data-analytics]');
-    if (analyticElements.length > 0) {
-      analyticElements.forEach((element) => {
-        element.addEventListener('click', (e) => {
-          const value = element.getAttribute('data-analytics');
-          const options = element.getAttribute('data-analytics-options');
-          if (value) {
-            if (options) {
-              window.gtag('event', value, JSON.parse(options));
-            } else {
-              window.gtag('event', value);
-            }
-          }
-        });
-      });
-    }
+    const analyticsManager = new AnalyticsManager();
+    window.analyticsManager = analyticsManager;
+    initAnalyticsDOM();
   });
 </script>

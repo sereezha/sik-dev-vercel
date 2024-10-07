@@ -4,42 +4,40 @@ import Button from '../Button.astro';
 import Modal from '../modal/Modal.astro';
 ---
 
-<Modal type="info" showOnMount id={ModalIds.ADULT_MODAL}>
+<Modal x-data="adultModal" type="info" showOnMount id={ModalIds.ADULT_MODAL}>
   <Fragment slot="title">
-    Будь ласка, підтвердіть, <span class="wh-nowrap">що вам</span> 18+ років для
-    перегляду сайту.
+    <span x-html="text"></span>
   </Fragment>
   <Fragment slot="buttons">
-    <Button fullWidth appearance="text" data-action="under-18"
+    <Button fullWidth appearance="text" x-on:click="onDisagreeClick"
       >Я ще неповнолітній</Button
     >
-    <Button fullWidth data-action="over-18">Мені більше 18</Button>
+    <Button fullWidth x-on:click="onAgreeClick">Мені більше 18</Button>
   </Fragment>
 </Modal>
 
 <script>
   import { LocalStorageKeys } from 'src/constants/storage';
   import { ModalIds } from 'src/constants/modals';
+  import Alpine from 'alpinejs';
+  import { adaptedLocalStorage } from 'src/services/storage';
 
   const id = ModalIds.ADULT_MODAL;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const adultModal = document.getElementById(id);
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('adultModal', () => ({
+      isAdult: false,
+      text: `Будь ласка, підтвердіть, <span class="wh-nowrap">що вам</span> 18+ років для
+    перегляду сайту.`,
 
-    adultModal?.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      const action = target.getAttribute('data-action');
-      if (!action) return;
-
-      const title = adultModal.querySelector(`#${id}-title`)!;
-
-      if (action === 'under-18') {
-        title.textContent =
-          'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
-      } else {
+      onAgreeClick() {
+        adaptedLocalStorage.set(LocalStorageKeys.ADULT_MODAL, 'true');
         window.modalController.destroy(id);
-        localStorage.setItem(LocalStorageKeys.ADULT_MODAL, 'true');
-      }
-    });
+      },
+      onDisagreeClick() {
+        this.isAdult = false;
+        this.text = 'Ви маєте бути повнолітнім щоб переглядати цей сайт.';
+      },
+    }));
   });
 </script>

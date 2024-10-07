@@ -2,7 +2,12 @@
 import Logo from './Logo.astro';
 ---
 
-<div class="fixed-logo is-visible" data-js-fixed-logo>
+<div
+  class="fixed-logo is-visible"
+  data-sh-reveal-on-back-scroll
+  x-data
+  x-bind:class="$store.mainHeader.isScrolling ? 'is-scrolling' : ''"
+>
   <Logo />
 </div>
 
@@ -29,12 +34,3 @@ import Logo from './Logo.astro';
     pointer-events: auto;
   }
 </style>
-
-<script>
-  import { revealOnBackScroll } from 'src/utils/dom';
-
-  const fixedLogo = document.querySelector('[data-js-fixed-logo]');
-  if (fixedLogo) {
-    revealOnBackScroll(fixedLogo);
-  }
-</script>
