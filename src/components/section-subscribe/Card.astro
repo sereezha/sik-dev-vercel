@@ -2,12 +2,9 @@
 import { getPrices } from 'src/services/subscriptions/utils';
 import Button from '../Button.astro';
 import { bottlesMap, getBenefitsList } from './config';
-import { getSubscribeUrl } from 'src/utils/url';
 import type { SubscriptionType } from 'src/services/subscriptions/types';
-import {
-  getSubscriptionTypeColor,
-} from 'src/services/subscriptions/config';
-import { Image } from 'astro:assets';
+import { getSubscriptionTypeColor } from 'src/services/subscriptions/config';
+import { Picture } from 'astro:assets';
 
 export interface CardProps {
   type: SubscriptionType;
@@ -36,7 +33,12 @@ const backgroundColor = getSubscriptionTypeColor(type);
         benefits.map((benefit) => (
           <li class="benefits-item">
             <span class="benefits-icon">
-              <Image src={benefit.icon} alt="" />
+              <Picture
+                width={benefit.icon.width / 2}
+                src={benefit.icon}
+                formats={['avif', 'webp']}
+                alt=""
+              />
             </span>
             <span class="benefits-title" set:html={benefit.title} />
           </li>
