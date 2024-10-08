@@ -1,15 +1,24 @@
 ---
 import { Image, Picture } from 'astro:assets';
 import Logo from './Logo.astro';
-import heroImg from '@assets/img/hero.jpg';
-import heroImgWebp from '@assets/img/hero.webp';
-import heroImgAvif from '@assets/img/hero.avif';
-import heroImgMobile from '@assets/img/hero-mobile.jpg';
-import heroImgMobileWebp from '@assets/img/hero-mobile.webp';
-import heroImgMobileAvif from '@assets/img/hero-mobile.avif';
-import heroImgTablet from '@assets/img/hero-tablet.jpg';
-import heroImgTabletWebp from '@assets/img/hero-tablet.webp';
-import heroImgTabletAvif from '@assets/img/hero-tablet.avif';
+import heroImg1x from '@assets/img/hero@1x.jpg';
+import heroImg2x from '@assets/img/hero@2x.jpg';
+import heroImgWebp1x from '@assets/img/hero@1x.webp';
+import heroImgWebp2x from '@assets/img/hero@2x.webp';
+import heroImgAvif1x from '@assets/img/hero@1x.avif';
+import heroImgAvif2x from '@assets/img/hero@2x.avif';
+import heroImgMobile1x from '@assets/img/hero-mobile@1x.jpg';
+import heroImgMobile2x from '@assets/img/hero-mobile@2x.jpg';
+import heroImgMobileWebp1x from '@assets/img/hero-mobile@1x.webp';
+import heroImgMobileWebp2x from '@assets/img/hero-mobile@2x.webp';
+import heroImgMobileAvif1x from '@assets/img/hero-mobile@1x.avif';
+import heroImgMobileAvif2x from '@assets/img/hero-mobile@2x.avif';
+import heroImgTablet1x from '@assets/img/hero-tablet@1x.jpg';
+import heroImgTablet2x from '@assets/img/hero-tablet@2x.jpg';
+import heroImgTabletWebp1x from '@assets/img/hero-tablet@1x.webp';
+import heroImgTabletWebp2x from '@assets/img/hero-tablet@2x.webp';
+import heroImgTabletAvif1x from '@assets/img/hero-tablet@1x.avif';
+import heroImgTabletAvif2x from '@assets/img/hero-tablet@2x.avif';
 ---
 
 <section class="hero">
@@ -17,53 +26,54 @@ import heroImgTabletAvif from '@assets/img/hero-tablet.avif';
     <picture>
       <source
         media="(min-width: 1024px)"
-        srcset={heroImgAvif.src}
+        srcset={`${heroImgAvif1x.src} 1x, ${heroImgAvif2x.src} 2x`}
         type="image/avif"
       />
       <source
         media="(min-width: 1024px)"
-        srcset={heroImgWebp.src}
+        srcset={`${heroImgWebp1x.src} 1x, ${heroImgWebp2x.src} 2x`}
         type="image/webp"
       />
       <source
         media="(min-width: 1024px)"
-        srcset={heroImg.src}
+        srcset={`${heroImg1x.src} 1x, ${heroImg2x.src} 2x`}
         type="image/jpeg"
       />
       <source
         media="(max-width: 1023px)"
-        srcset={heroImgTabletAvif.src}
+        srcset={`${heroImgTabletAvif1x.src} 1x, ${heroImgTabletAvif2x.src} 2x`}
         type="image/avif"
       />
       <source
         media="(max-width: 1023px)"
-        srcset={heroImgTabletWebp.src}
+        srcset={`${heroImgTabletWebp1x.src} 1x, ${heroImgTabletWebp2x.src} 2x`}
         type="image/webp"
       />
       <source
         media="(max-width: 1023px)"
-        srcset={heroImgTablet.src}
+        srcset={`${heroImgTablet1x.src} 1x, ${heroImgTablet2x.src} 2x`}
         type="image/jpeg"
       />
       <source
         media="(max-width: 767px)"
-        srcset={heroImgMobileAvif.src}
+        srcset={`${heroImgMobileAvif1x.src} 1x, ${heroImgMobileAvif2x.src} 2x`}
         type="image/avif"
       />
       <source
         media="(max-width: 767px)"
-        srcset={heroImgMobileWebp.src}
+        srcset={`${heroImgMobileWebp1x.src} 1x, ${heroImgMobileWebp2x.src} 2x`}
         type="image/webp"
       />
       <source
         media="(max-width: 767px)"
-        srcset={heroImgMobile.src}
+        srcset={`${heroImgMobile1x.src} 1x, ${heroImgMobile2x.src} 2x`}
         type="image/jpeg"
       />
       <img
-        src={heroImgMobile.src}
-        width={heroImgMobile.width}
-        height={heroImgMobile.height}
+        src={heroImgMobile2x.src}
+        srcset={`${heroImgMobile1x.src} 1x, ${heroImgMobile2x.src} 2x`}
+        width={heroImgMobile2x.width}
+        height={heroImgMobile2x.height}
         alt=""
         fetchpriority="high"
       />
