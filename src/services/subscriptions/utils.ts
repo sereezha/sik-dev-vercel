@@ -18,6 +18,12 @@ export const getPrices = (bottles: number | string, months: number) => {
       6: 72000,
       12: 138000,
     },
+    set: {
+      1: 4500,
+      3: 12000,
+      6: 22500,
+      12: 45000,
+    },
   };
 
   const formatter = new Intl.NumberFormat("uk-UA", {

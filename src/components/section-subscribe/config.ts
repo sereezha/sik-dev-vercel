@@ -10,6 +10,7 @@ export const bottlesMap = {
   one: 1,
   two: 2,
   special: "special",
+  set: "set",
 };
 
 export const benefits = [
@@ -42,6 +43,10 @@ export const getBenefitsList = (type: SubscriptionType) => {
     special: {
       title: "Одна рідкісна пляшка",
       icon: bottleSpecialIcon,
+    },
+    set: {
+      title: "Ящик вина",
+      icon: bottle1Icon,
     },
   }[type];
 

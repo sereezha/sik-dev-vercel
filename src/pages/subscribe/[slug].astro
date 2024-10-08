@@ -12,6 +12,8 @@ import {
   pages,
   getMonthsTextDescription,
   getSubscriptionTypeColor,
+  getFormPageTitle,
+  getFormPageDescription,
 } from '../../services/subscriptions/config';
 import Form from '../../components/Form.astro';
 import { AnchorLinks, Routes } from 'src/config';
@@ -25,12 +27,13 @@ export async function getStaticPaths() {
   });
 }
 
-const { type, bottles, months } = Astro.props;
+const { bottles, months } = Astro.props;
+const type = Astro.props.type as SubscriptionType;
 
 const monthsText = `${months} ${getMonthsText(months)}`;
 const monthsTextDescription = `${months} ${getMonthsTextDescription(months)}`;
-const descriptionText = getDescription(type as SubscriptionType);
-const subscriptionTypeText = getSubscriptionTypeText(type as SubscriptionType);
+const descriptionText = getDescription(type);
+const subscriptionTypeText = getSubscriptionTypeText(type);
 const editLink = `${Routes.home}${AnchorLinks.subscribe}`;
 const editLinkProps = {
   href: editLink,
@@ -43,13 +46,11 @@ const editLinkProps = {
   <Container>
     <div class="wrapper">
       <div class="main-content">
-        <SectionTitle>Підписка на вино</SectionTitle>
+        <SectionTitle>{getFormPageTitle(type)}</SectionTitle>
         <Paragraph>
-          Щоб підписатись заповніть форму нижче. Після оплати ми напишемо вам
-          підтвердження в Телеграмі та запитаємо дані для доставки. Відправляємо
-          вино Новою Поштою за наш рахунок.
+          {getFormPageDescription(type)}
         </Paragraph>
-        <Form months={months} bottles={bottles} />
+        <Form type={type} months={months} bottles={bottles} />
       </div>
       <div class="checkout-desktop">
         <SectionTitle Tag="p">Ваше замовлення</SectionTitle>

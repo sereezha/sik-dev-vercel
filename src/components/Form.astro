@@ -3,16 +3,26 @@ import Button from '@components/Button.astro';
 import { getPrices } from '../services/subscriptions/utils';
 import Input from './input/Input.astro';
 import InputPhone from './input/InputPhone.astro';
+import type { Bottles, SubscriptionType } from 'src/services/subscriptions/types';
+import { getFormSubmitButtonText } from 'src/services/subscriptions/config';
 
 interface Props {
   months: number;
-  bottles: number | 'special';
+  bottles: Bottles;
+  type: SubscriptionType;
 }
 
-const { months, bottles } = Astro.props;
+const { months, bottles, type } = Astro.props;
+const submitButtonText = getFormSubmitButtonText({ type, bottles, months });
 ---
 
-<form class="form" id="subscribe-form" novalidate data-js-subscribe-form>
+<form
+  data-js-form-type={type}
+  class="form"
+  id="subscribe-form"
+  novalidate
+  data-js-subscribe-form
+>
   <div class="inputs">
     <InputPhone name="phone" id="phone-field" />
     <Input
@@ -29,8 +39,7 @@ const { months, bottles } = Astro.props;
     <Button
       type="submit"
       id="form-submit-button"
-      data-analytics="checkout_button_submit_click"
-      >Підписатись за {getPrices(bottles, months).sum} ₴</Button
+      data-analytics="checkout_button_submit_click">{submitButtonText}</Button
     >
   </div>
 </form>
@@ -70,6 +79,7 @@ const { months, bottles } = Astro.props;
   import { SessionStorageKeys } from 'src/constants/storage';
   import { ModalIds } from 'src/constants/modals';
   import { adaptedSessionStorage } from 'src/services/storage';
+  import type { SubscriptionType } from 'src/services/subscriptions/types';
 
   const form = document.querySelector(
     '[data-js-subscribe-form]'
@@ -112,9 +122,19 @@ const { months, bottles } = Astro.props;
     form.reset();
   };
 
+  const getRequest = (type: SubscriptionType) => {
+    return type === 'set'
+      ? actions.subscribeForms.submitSetPreOrderForm
+      : actions.subscribeForms.submitSubscriptionForm;
+  };
+
   async function sendMessage({ email, phone, bottles, months }: FormData) {
     try {
-      const { data, error } = await actions.submitSubscriptionForm({
+      const formType = form.getAttribute(
+        'data-js-form-type'
+      ) as SubscriptionType;
+      const request = getRequest(formType);
+      const { data, error } = await request({
         email,
         phone,
         bottles,
