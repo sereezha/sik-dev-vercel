@@ -2,16 +2,22 @@
 import { Image, Picture } from 'astro:assets';
 import Logo from './Logo.astro';
 import heroImg from '@assets/img/hero.jpg';
+import heroImgWebp from '@assets/img/hero.webp';
 import heroImgMobile from '@assets/img/hero-mobile.jpg';
+import heroImgMobileWebp from '@assets/img/hero-mobile.webp';
 import heroImgTablet from '@assets/img/hero-tablet.jpg';
+import heroImgTabletWebp from '@assets/img/hero-tablet.webp';
 ---
 
 <section class="hero">
   <div class="image">
     <picture>
-      <source media="(min-width: 1024px)" srcset={heroImg.src} />
-      <source media="(max-width: 1023px)" srcset={heroImgTablet.src} />
-      <source media="(max-width: 767px)" srcset={heroImgMobile.src} />
+      <source media="(min-width: 1024px)" srcset={heroImgWebp.src} type="image/webp" />
+      <source media="(min-width: 1024px)" srcset={heroImg.src} type="image/jpeg" />
+      <source media="(max-width: 1023px)" srcset={heroImgTabletWebp.src} type="image/webp" />
+      <source media="(max-width: 1023px)" srcset={heroImgTablet.src} type="image/jpeg" />
+      <source media="(max-width: 767px)" srcset={heroImgMobileWebp.src} type="image/webp" />
+      <source media="(max-width: 767px)" srcset={heroImgMobile.src} type="image/jpeg" />
       <img
         src={heroImgMobile.src}
         width={heroImgMobile.width}
